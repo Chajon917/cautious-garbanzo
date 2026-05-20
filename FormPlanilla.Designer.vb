@@ -28,8 +28,8 @@ Namespace ProyectoPlanillaUMG1
             '
             'dgvTrabajadores
             '
-            Me.dgvTrabajadores.BackgroundColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer))
-            Me.dgvTrabajadores.BorderStyle = System.Windows.Forms.BorderStyle.None
+            Me.dgvTrabajadores.BackgroundColor = System.Drawing.Color.Gray
+            Me.dgvTrabajadores.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
             DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
             DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(48, Byte), Integer))
             DataGridViewCellStyle1.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
@@ -53,7 +53,7 @@ Namespace ProyectoPlanillaUMG1
             Me.dgvTrabajadores.Name = "dgvTrabajadores"
             Me.dgvTrabajadores.RowHeadersWidth = 40
             Me.dgvTrabajadores.RowTemplate.Height = 28
-            Me.dgvTrabajadores.Size = New System.Drawing.Size(853, 384)
+            Me.dgvTrabajadores.Size = New System.Drawing.Size(883, 384)
             Me.dgvTrabajadores.TabIndex = 0
             '
             'panelToolbar
@@ -77,7 +77,7 @@ Namespace ProyectoPlanillaUMG1
             Me.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.button1.Font = New System.Drawing.Font("Segoe UI", 9.5!, System.Drawing.FontStyle.Bold)
             Me.button1.ForeColor = System.Drawing.Color.White
-            Me.button1.Location = New System.Drawing.Point(496, 11)
+            Me.button1.Location = New System.Drawing.Point(496, 10)
             Me.button1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
             Me.button1.Name = "button1"
             Me.button1.Size = New System.Drawing.Size(119, 35)
@@ -104,10 +104,10 @@ Namespace ProyectoPlanillaUMG1
             Me.btnEditar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.btnEditar.Font = New System.Drawing.Font("Segoe UI", 9.5!, System.Drawing.FontStyle.Bold)
             Me.btnEditar.ForeColor = System.Drawing.Color.White
-            Me.btnEditar.Location = New System.Drawing.Point(621, 10)
+            Me.btnEditar.Location = New System.Drawing.Point(620, 10)
             Me.btnEditar.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
             Me.btnEditar.Name = "btnEditar"
-            Me.btnEditar.Size = New System.Drawing.Size(107, 35)
+            Me.btnEditar.Size = New System.Drawing.Size(107, 33)
             Me.btnEditar.TabIndex = 1
             Me.btnEditar.Text = "✏  Editar"
             Me.btnEditar.UseVisualStyleBackColor = False
@@ -131,7 +131,7 @@ Namespace ProyectoPlanillaUMG1
             '
             Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-            Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer))
+            Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
             Me.ClientSize = New System.Drawing.Size(874, 432)
             Me.Controls.Add(Me.dgvTrabajadores)
             Me.Controls.Add(Me.panelToolbar)
