@@ -31,7 +31,9 @@ Namespace ProyectoPlanillaUMG1
                         "       igss           AS 'IGSS'," &
                         "       bono           AS 'Bono'," &
                         "       otros          AS 'Otros'," &
-                        "       liquido        AS 'Líquido'" &
+                        "       liquido        AS 'Líquido'," &
+                        "       no_cuenta      AS 'No. Cuenta'," &
+                        "       correo         AS 'Correo Electrónico'" &
                         " FROM trabajadores" &
                         " ORDER BY id_trabajador"
 

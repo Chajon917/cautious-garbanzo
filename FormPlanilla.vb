@@ -27,7 +27,9 @@ Namespace ProyectoPlanillaUMG1
                         "       igss          AS 'IGSS'," &
                         "       bono          AS 'Bono'," &
                         "       otros         AS 'Otros'," &
-                        "       liquido       AS 'Líquido'" &
+                        "       liquido       AS 'Líquido'," &
+                        "       no_cuenta     AS 'No. Cuenta'," &
+                        "       correo        AS 'Correo Electrónico'" &
                         " FROM trabajadores" &
                         " ORDER BY id_trabajador"
 
@@ -65,8 +67,10 @@ Namespace ProyectoPlanillaUMG1
             Dim cargo As String = If(fila.Cells("Cargo").Value IsNot Nothing, fila.Cells("Cargo").Value.ToString(), "")
             Dim sueldo As Double = Convert.ToDouble(fila.Cells("Sueldo Base").Value,
                                                     Globalization.CultureInfo.InvariantCulture)
+            Dim correo As String = If(fila.Cells("Correo Electrónico").Value IsNot Nothing, fila.Cells("Correo Electrónico").Value.ToString(), "")
+            Dim noCuenta As String = If(fila.Cells("No. Cuenta").Value IsNot Nothing, fila.Cells("No. Cuenta").Value.ToString(), "")
 
-            Using dlg As New FormEditar(id, nombre, cargo, sueldo)
+            Using dlg As New FormEditar(id, nombre, cargo, sueldo, correo, noCuenta)
                 If dlg.ShowDialog() = DialogResult.OK Then
                     CargarDatos()
                 End If
@@ -141,17 +145,21 @@ Namespace ProyectoPlanillaUMG1
         Private ReadOnly txtNombre As System.Windows.Forms.TextBox
         Private ReadOnly txtCargo As System.Windows.Forms.TextBox
         Private ReadOnly txtSueldo As System.Windows.Forms.TextBox
+        Private ReadOnly txtCorreo As System.Windows.Forms.TextBox
+        Private ReadOnly txtNoCuenta As System.Windows.Forms.TextBox
 
-        Public Sub New(id As Integer, nombre As String, cargo As String, sueldo As Double)
+        Public Sub New(id As Integer, nombre As String, cargo As String, sueldo As Double,
+                       correo As String, noCuenta As String)
             _id = id
             Text = "Editar Trabajador"
-            ClientSize = New System.Drawing.Size(380, 280)
+            ClientSize = New System.Drawing.Size(420, 420)
             BackColor = System.Drawing.Color.FromArgb(45, 45, 48)
             FormBorderStyle = FormBorderStyle.FixedDialog
             StartPosition = FormStartPosition.CenterParent
             MaximizeBox = False
             MinimizeBox = False
 
+            ' ── Nombre ────────────────────────────────────────────────────
             Controls.Add(New System.Windows.Forms.Label With {
                 .Text = "Nombre:",
                 .ForeColor = System.Drawing.Color.Gainsboro,
@@ -161,14 +169,15 @@ Namespace ProyectoPlanillaUMG1
             })
             txtNombre = New System.Windows.Forms.TextBox With {
                 .Text = nombre,
-                .Location = New System.Drawing.Point(130, 27),
-                .Size = New System.Drawing.Size(220, 26),
+                .Location = New System.Drawing.Point(150, 27),
+                .Size = New System.Drawing.Size(240, 26),
                 .BackColor = System.Drawing.Color.FromArgb(30, 30, 30),
                 .ForeColor = System.Drawing.Color.White,
                 .BorderStyle = BorderStyle.FixedSingle
             }
             Controls.Add(txtNombre)
 
+            ' ── Cargo ─────────────────────────────────────────────────────
             Controls.Add(New System.Windows.Forms.Label With {
                 .Text = "Cargo:",
                 .ForeColor = System.Drawing.Color.Gainsboro,
@@ -178,14 +187,15 @@ Namespace ProyectoPlanillaUMG1
             })
             txtCargo = New System.Windows.Forms.TextBox With {
                 .Text = cargo,
-                .Location = New System.Drawing.Point(130, 77),
-                .Size = New System.Drawing.Size(220, 26),
+                .Location = New System.Drawing.Point(150, 77),
+                .Size = New System.Drawing.Size(240, 26),
                 .BackColor = System.Drawing.Color.FromArgb(30, 30, 30),
                 .ForeColor = System.Drawing.Color.White,
                 .BorderStyle = BorderStyle.FixedSingle
             }
             Controls.Add(txtCargo)
 
+            ' ── Sueldo ────────────────────────────────────────────────────
             Controls.Add(New System.Windows.Forms.Label With {
                 .Text = "Sueldo Base:",
                 .ForeColor = System.Drawing.Color.Gainsboro,
@@ -195,17 +205,54 @@ Namespace ProyectoPlanillaUMG1
             })
             txtSueldo = New System.Windows.Forms.TextBox With {
                 .Text = sueldo.ToString("F2"),
-                .Location = New System.Drawing.Point(130, 127),
-                .Size = New System.Drawing.Size(220, 26),
+                .Location = New System.Drawing.Point(150, 127),
+                .Size = New System.Drawing.Size(240, 26),
                 .BackColor = System.Drawing.Color.FromArgb(30, 30, 30),
                 .ForeColor = System.Drawing.Color.White,
                 .BorderStyle = BorderStyle.FixedSingle
             }
             Controls.Add(txtSueldo)
 
+            ' ── No. Cuenta ────────────────────────────────────────────────
+            Controls.Add(New System.Windows.Forms.Label With {
+                .Text = "No. Cuenta:",
+                .ForeColor = System.Drawing.Color.Gainsboro,
+                .Font = New System.Drawing.Font("Segoe UI", 9.0F, System.Drawing.FontStyle.Bold),
+                .Location = New System.Drawing.Point(20, 180),
+                .AutoSize = True
+            })
+            txtNoCuenta = New System.Windows.Forms.TextBox With {
+                .Text = noCuenta,
+                .Location = New System.Drawing.Point(150, 177),
+                .Size = New System.Drawing.Size(240, 26),
+                .BackColor = System.Drawing.Color.FromArgb(30, 30, 30),
+                .ForeColor = System.Drawing.Color.White,
+                .BorderStyle = BorderStyle.FixedSingle
+            }
+            Controls.Add(txtNoCuenta)
+
+            ' ── Correo ────────────────────────────────────────────────────
+            Controls.Add(New System.Windows.Forms.Label With {
+                .Text = "Correo:",
+                .ForeColor = System.Drawing.Color.Gainsboro,
+                .Font = New System.Drawing.Font("Segoe UI", 9.0F, System.Drawing.FontStyle.Bold),
+                .Location = New System.Drawing.Point(20, 230),
+                .AutoSize = True
+            })
+            txtCorreo = New System.Windows.Forms.TextBox With {
+                .Text = correo,
+                .Location = New System.Drawing.Point(150, 227),
+                .Size = New System.Drawing.Size(240, 26),
+                .BackColor = System.Drawing.Color.FromArgb(30, 30, 30),
+                .ForeColor = System.Drawing.Color.White,
+                .BorderStyle = BorderStyle.FixedSingle
+            }
+            Controls.Add(txtCorreo)
+
+            ' ── Botones ───────────────────────────────────────────────────
             Dim btnGuardar As New System.Windows.Forms.Button With {
                 .Text = "Guardar Cambios",
-                .Location = New System.Drawing.Point(60, 195),
+                .Location = New System.Drawing.Point(60, 320),
                 .Size = New System.Drawing.Size(160, 36),
                 .BackColor = System.Drawing.Color.FromArgb(39, 174, 96),
                 .ForeColor = System.Drawing.Color.White,
@@ -218,7 +265,7 @@ Namespace ProyectoPlanillaUMG1
 
             Dim btnCancelar As New System.Windows.Forms.Button With {
                 .Text = "Cancelar",
-                .Location = New System.Drawing.Point(235, 195),
+                .Location = New System.Drawing.Point(255, 320),
                 .Size = New System.Drawing.Size(100, 36),
                 .BackColor = System.Drawing.Color.FromArgb(192, 57, 43),
                 .ForeColor = System.Drawing.Color.White,
@@ -232,10 +279,21 @@ Namespace ProyectoPlanillaUMG1
         Private Sub BtnGuardar_Click(sender As Object, e As EventArgs)
             If String.IsNullOrWhiteSpace(txtNombre.Text) OrElse
                String.IsNullOrWhiteSpace(txtCargo.Text) OrElse
-               String.IsNullOrWhiteSpace(txtSueldo.Text) Then
+               String.IsNullOrWhiteSpace(txtSueldo.Text) OrElse
+               String.IsNullOrWhiteSpace(txtNoCuenta.Text) OrElse
+               String.IsNullOrWhiteSpace(txtCorreo.Text) Then
                 MessageBox.Show(
                     "Todos los campos son obligatorios.",
                     "Campos vacíos", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Return
+            End If
+
+            ' Validar formato básico de correo
+            Dim correo As String = txtCorreo.Text.Trim()
+            If Not correo.Contains("@") OrElse Not correo.Contains(".") Then
+                MessageBox.Show(
+                    "Ingrese un correo electrónico válido.",
+                    "Correo inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 Return
             End If
 
@@ -259,13 +317,15 @@ Namespace ProyectoPlanillaUMG1
             Try
                 Const query As String =
                     "UPDATE trabajadores " &
-                    "SET nombres = @nombre," &
-                    "    cargo   = @cargo," &
-                    "    sueldo  = @sueldo," &
-                    "    igss    = @igss," &
-                    "    bono    = @bono," &
-                    "    otros   = @otros," &
-                    "    liquido = @liquido " &
+                    "SET nombres   = @nombre," &
+                    "    cargo     = @cargo," &
+                    "    sueldo    = @sueldo," &
+                    "    igss      = @igss," &
+                    "    bono      = @bono," &
+                    "    otros     = @otros," &
+                    "    liquido   = @liquido," &
+                    "    correo    = @correo," &
+                    "    no_cuenta = @no_cuenta " &
                     "WHERE id_trabajador = @id"
 
                 Dim objetoConexion As New CConexion()
@@ -280,6 +340,8 @@ Namespace ProyectoPlanillaUMG1
                         cmd.Parameters.AddWithValue("@bono", bono)
                         cmd.Parameters.AddWithValue("@otros", otros)
                         cmd.Parameters.AddWithValue("@liquido", liquido)
+                        cmd.Parameters.AddWithValue("@correo", correo)
+                        cmd.Parameters.AddWithValue("@no_cuenta", txtNoCuenta.Text.Trim())
                         cmd.Parameters.AddWithValue("@id", _id)
                         cmd.ExecuteNonQuery()
                     End Using
