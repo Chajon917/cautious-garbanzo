@@ -4,6 +4,9 @@ Imports System.Drawing
 Imports System.Drawing.Printing
 Imports System.Globalization
 Imports System.Windows.Forms
+Imports MailKit.Net.Smtp
+Imports MailKit.Security
+Imports MimeKit
 
 Namespace ProyectoPlanillaUMG1
 
@@ -12,6 +15,18 @@ Namespace ProyectoPlanillaUMG1
 
         Private _nombreEmpleado As String = ""
         Private _montoLiquido As Double = 0
+        Private _correoEmpleado As String = ""
+        Private _noCuenta As String = ""
+
+        ' ── Configuración SMTP ────────────────────────────────────────────────
+        ' SmtpClave debe ser una CONTRASEÑA DE APLICACIÓN de Google, NO tu clave normal.
+        ' Cómo obtenerla: myaccount.google.com → Seguridad → Verificación en 2 pasos
+        '                 → Contraseñas de aplicaciones → Seleccionar app "Correo"
+        Private Const SmtpHost As String = "smtp.gmail.com"
+        Private Const SmtpPort As Integer = 587
+        Private Const SmtpUsuario As String = "averkzalexd@gmail.com"   ' <-- cambia esto
+        Private Const SmtpClave As String = "hwlvvzwvirxlwrvv"     ' <-- clave de aplicación (16 caracteres)
+        Private Const RemitenteMostrado As String = "Recursos Humanos"
 
         Public Sub New()
             InitializeComponent()
@@ -21,7 +36,7 @@ Namespace ProyectoPlanillaUMG1
             Me.New()
             If Not String.IsNullOrWhiteSpace(idExterno) Then
                 txtIdBusqueda.Text = idExterno.Trim()
-                btnGenerar_Click(Nothing, EventArgs.Empty)
+                BtnGenerar_Click(Nothing, EventArgs.Empty)
             End If
         End Sub
 
@@ -93,7 +108,7 @@ Namespace ProyectoPlanillaUMG1
 
             Try
                 Const query As String =
-                    "SELECT nombres, cargo, sueldo, igss, bono, otros, liquido " &
+                    "SELECT nombres, cargo, sueldo, igss, bono, otros, liquido, correo, no_cuenta " &
                     "FROM trabajadores " &
                     "WHERE id_trabajador = @id"
 
@@ -116,6 +131,8 @@ Namespace ProyectoPlanillaUMG1
 
                             _nombreEmpleado = dr("nombres").ToString()
                             _montoLiquido = Convert.ToDouble(dr("liquido"))
+                            _correoEmpleado = dr("correo").ToString()
+                            _noCuenta = dr("no_cuenta").ToString()
 
                             lblFecha.Text = DateTime.Now.ToString("dd 'de' MMMM 'de' yyyy", culturaGT)
                             lblNoCheque.Text = "No. " & idTrabajador.ToString("D6")
@@ -155,9 +172,68 @@ Namespace ProyectoPlanillaUMG1
             If dlg.ShowDialog() = DialogResult.OK Then
                 printDocument1.Print()
             End If
+
+            If Not String.IsNullOrWhiteSpace(_correoEmpleado) Then
+                EnviarComprobantePorCorreo(_nombreEmpleado, _correoEmpleado, _noCuenta, _montoLiquido)
+            End If
         End Sub
 
-        ' ── Evento PrintPage (dibuja directo, sin capturar panel) ──────────────
+        ' ── Enviar comprobante por correo (MailKit) ────────────────────────────
+        Private Sub EnviarComprobantePorCorreo(nombre As String, correo As String,
+                                               noCuenta As String, monto As Double)
+            Try
+                Dim culturaGT As New CultureInfo("es-GT")
+                Dim fechaHoy As String = DateTime.Now.ToString("dd 'de' MMMM 'de' yyyy", culturaGT)
+                Dim periodo As String = DateTime.Now.ToString("MMMM yyyy", culturaGT).ToUpper()
+
+                Dim cuerpo As String =
+                    "Estimado/a " & nombre & "," & Environment.NewLine & Environment.NewLine &
+                    "Le informamos que su pago de planilla correspondiente al período de " &
+                    periodo & " ya ha sido liquidado." & Environment.NewLine & Environment.NewLine &
+                    "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" & Environment.NewLine &
+                    "  COMPROBANTE DE PAGO" & Environment.NewLine &
+                    "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" & Environment.NewLine &
+                    "  Nombre:          " & nombre & Environment.NewLine &
+                    "  No. de Cuenta:   " & noCuenta & Environment.NewLine &
+                    "  Monto Líquido:   Q " & monto.ToString("N2") & Environment.NewLine &
+                    "  En Letras:       " & Enletras(monto) & Environment.NewLine &
+                    "  Fecha:           " & fechaHoy & Environment.NewLine &
+                    "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" & Environment.NewLine & Environment.NewLine &
+                    "El monto ha sido acreditado a su cuenta bancaria." & Environment.NewLine & Environment.NewLine &
+                    "Atentamente," & Environment.NewLine &
+                    RemitenteMostrado & Environment.NewLine &
+                    "Departamento de Recursos Humanos"
+
+                ' Construir mensaje con MimeKit
+                Dim mensaje As New MimeMessage()
+                mensaje.From.Add(New MailboxAddress(RemitenteMostrado, SmtpUsuario))
+                mensaje.To.Add(New MailboxAddress(nombre, correo))
+                mensaje.Subject = "Comprobante de Pago - " & periodo
+                mensaje.Body = New TextPart("plain") With {.Text = cuerpo}
+
+                ' Enviar con MailKit — maneja correctamente STARTTLS y credenciales modernas
+                Using smtp As New SmtpClient()
+                    smtp.Connect(SmtpHost, SmtpPort, SecureSocketOptions.StartTls)
+                    smtp.Authenticate(SmtpUsuario, SmtpClave)
+                    smtp.Send(mensaje)
+                    smtp.Disconnect(True)
+                End Using
+
+                MessageBox.Show(
+                    "Comprobante enviado a: " & correo,
+                    "Correo enviado", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+            Catch ex As Exception
+                MessageBox.Show(
+                    "No se pudo enviar el correo a " & correo & ":" & Environment.NewLine &
+                    ex.Message & Environment.NewLine & Environment.NewLine &
+                    "Verifique que SmtpUsuario y SmtpClave sean correctos en FormCheque.vb" & Environment.NewLine &
+                    "y que esté usando una Contraseña de Aplicación de Google (no su clave normal).",
+                    "Error de correo", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            End Try
+        End Sub
+
+        ' ── Evento PrintPage ───────────────────────────────────────────────────
         Private Sub PrintDocument1_PrintPage(sender As Object, e As PrintPageEventArgs) Handles printDocument1.PrintPage
             Dim g As Graphics = e.Graphics
             g.SmoothingMode = Drawing2D.SmoothingMode.AntiAlias
@@ -190,8 +266,10 @@ Namespace ProyectoPlanillaUMG1
             y += 10
 
             ' ── Datos del empleado ────────────────────────────────────────
-            g.DrawString("Nombre:  " & lblNombre.Text, fontBold, negro, x, y) : y += lineH
-            g.DrawString("Cargo:   " & lblCargo.Text, fontNormal, negro, x, y) : y += lineH + 10
+            g.DrawString("Nombre:     " & lblNombre.Text, fontBold, negro, x, y) : y += lineH
+            g.DrawString("Cargo:      " & lblCargo.Text, fontNormal, negro, x, y) : y += lineH
+            g.DrawString("No. Cuenta: " & _noCuenta, fontNormal, negro, x, y) : y += lineH
+            g.DrawString("Correo:     " & _correoEmpleado, fontNormal, negro, x, y) : y += lineH + 10
 
             g.DrawLine(Pens.Black, x, y, x + w, y)
             y += 10
@@ -247,13 +325,12 @@ Namespace ProyectoPlanillaUMG1
             g.DrawRectangle(Pens.Black, rectCheque)
             y += 10
 
-            ' ── Cabecera del banco ────────────────────────────────────────
             g.DrawString("BANTRAB", fontBanco, negro, x + 10, y)
             g.DrawString("BANCO DE LOS TRABAJADORES, GUATEMALA, C. A.", fontCheque, negro, x + 10, y + 18)
 
-            Dim noCheque As String = "CHEQUE No.: 04000011"
-            Dim szNo As SizeF = g.MeasureString(noCheque, fontChequeBold)
-            g.DrawString(noCheque, fontChequeBold, negro, x + w - CInt(szNo.Width) - 10, y)
+            Dim noChequeStr As String = "CHEQUE No.: 04000011"
+            Dim szNo As SizeF = g.MeasureString(noChequeStr, fontChequeBold)
+            g.DrawString(noChequeStr, fontChequeBold, negro, x + w - CInt(szNo.Width) - 10, y)
 
             Dim correlativo As String = "05790702"
             Dim szCorr As SizeF = g.MeasureString(correlativo, fontChequeBold)
@@ -264,40 +341,33 @@ Namespace ProyectoPlanillaUMG1
             g.DrawLine(Pens.Black, x + 10, y, x + w - 10, y)
             y += 8
 
-            ' ── Cuenta y titular dinámico ─────────────────────────────────
-            g.DrawString("Cta. No.: 790029964-7          Titular: " & _nombreEmpleado.ToUpper(),
+            ' Solo número de cuenta en el cheque (sin correo)
+            g.DrawString("Cta. No.: " & _noCuenta & "          Titular: " & _nombreEmpleado.ToUpper(),
                 fontCheque, negro, x + 10, y) : y += lineH
 
-            ' ── Fecha / Páguese a ─────────────────────────────────────────
             g.DrawString("Lugar y Fecha: _______________________", fontCheque, negro, x + 10, y)
             y += lineH
 
-            ' ── Páguese a: nombre del empleado ───────────────────────────
             g.DrawString("Páguese a: " & _nombreEmpleado.ToUpper(),
                 fontCheque, negro, x + 10, y) : y += lineH
 
-            ' ── Monto en números ──────────────────────────────────────────
             g.DrawString("La Cantidad de (Q.): " & "Q " & _montoLiquido.ToString("N2"),
                 fontChequeBold, negro, x + 10, y) : y += lineH
 
-            ' ── Monto en letras ───────────────────────────────────────────
             g.DrawString("Son: " & Enletras(_montoLiquido),
                 fontCheque, negro, x + 10, y) : y += lineH + 6
 
-            ' ── Referencia IBAN ───────────────────────────────────────────
             g.DrawString("Ref.: GT95 TRAJ 0101 0000 0079 0029 9647",
                 fontCheque, negro, x + 10, y) : y += lineH + 6
 
             g.DrawLine(Pens.Black, x + 10, y, x + w - 10, y)
             y += 8
 
-            ' ── Firma(s) registrada(s) ────────────────────────────────────
             Dim firmaLabel As String = "Firma(s) Registrada(s)"
             Dim szFirma As SizeF = g.MeasureString(firmaLabel, fontCheque)
             g.DrawString(firmaLabel, fontCheque, negro,
                 x + w - CInt(szFirma.Width) - 10, y) : y += lineH + 4
 
-            ' ── Banda MICR ────────────────────────────────────────────────
             Dim fontMICR As New Font("Courier New", 8, FontStyle.Regular)
             Dim comilla As String = Convert.ToChar(34).ToString()
             g.DrawString("||" & comilla & " 31:000000112:7900 299647||" & comilla & "04000011 || " & comilla & "00000000921,'",
@@ -306,7 +376,6 @@ Namespace ProyectoPlanillaUMG1
             g.DrawString("F. STANDARD, S.A.  PBX: 2423-8900  FAX: 2439-4916",
                 fontCorte, Brushes.Gray, x + 10, y)
 
-            ' ── Liberar recursos ──────────────────────────────────────────
             fontTitulo.Dispose()
             fontNormal.Dispose()
             fontBold.Dispose()
@@ -350,7 +419,6 @@ Namespace ProyectoPlanillaUMG1
         End Sub
 
         Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-            ' Confirmar una sola vez antes del ciclo
             Dim dlg As New PrintDialog() With {
                .Document = printDocument1
             }
@@ -359,7 +427,7 @@ Namespace ProyectoPlanillaUMG1
 
             Try
                 Const query As String =
-                    "SELECT nombres, cargo, sueldo, igss, bono, otros, liquido " &
+                    "SELECT nombres, cargo, sueldo, igss, bono, otros, liquido, correo, no_cuenta " &
                     "FROM trabajadores ORDER BY nombres;"
 
                 Dim obj As New CConexion()
@@ -373,6 +441,8 @@ Namespace ProyectoPlanillaUMG1
 
                                 _nombreEmpleado = dr("nombres").ToString()
                                 _montoLiquido = Convert.ToDouble(dr("liquido"))
+                                _correoEmpleado = dr("correo").ToString()
+                                _noCuenta = dr("no_cuenta").ToString()
 
                                 lblFecha.Text = DateTime.Now.ToString("dd 'de' MMMM 'de' yyyy", culturaGT)
                                 lblNoCheque.Text = "No. "
@@ -385,8 +455,11 @@ Namespace ProyectoPlanillaUMG1
                                 lblMontoNumero.Text = "Q " & _montoLiquido.ToString("N2")
                                 lblMontoLetras.Text = Enletras(_montoLiquido)
 
-                                ' Imprimir directamente sin abrir otro diálogo
                                 printDocument1.Print()
+
+                                If Not String.IsNullOrWhiteSpace(_correoEmpleado) Then
+                                    EnviarComprobantePorCorreo(_nombreEmpleado, _correoEmpleado, _noCuenta, _montoLiquido)
+                                End If
                             End While
                         End Using
                     End Using
@@ -400,6 +473,7 @@ Namespace ProyectoPlanillaUMG1
                                 "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End Try
         End Sub
+
     End Class
 
 End Namespace

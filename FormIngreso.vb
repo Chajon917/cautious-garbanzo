@@ -16,7 +16,9 @@ Namespace ProyectoPlanillaUMG1
             If String.IsNullOrWhiteSpace(txtId.Text) OrElse
                String.IsNullOrWhiteSpace(txtNombre.Text) OrElse
                String.IsNullOrWhiteSpace(txtCargo.Text) OrElse
-               String.IsNullOrWhiteSpace(txtSueldo.Text) Then
+               String.IsNullOrWhiteSpace(txtSueldo.Text) OrElse
+               String.IsNullOrWhiteSpace(txtCorreo.Text) OrElse
+               String.IsNullOrWhiteSpace(txtNoCuenta.Text) Then
                 MessageBox.Show(
                     "Por favor, complete todos los campos antes de guardar.",
                     "Campos incompletos", MessageBoxButtons.OK, MessageBoxIcon.Warning)
@@ -32,6 +34,19 @@ Namespace ProyectoPlanillaUMG1
                 txtId.Focus()
                 Return
             End If
+
+            ' Validar formato básico de correo electrónico.
+            Dim correo As String = txtCorreo.Text.Trim()
+            If Not correo.Contains("@") OrElse Not correo.Contains(".") Then
+                MessageBox.Show(
+                    "Ingrese un correo electrónico válido.",
+                    "Correo inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                txtCorreo.Focus()
+                Return
+            End If
+
+            ' Validar número de cuenta no vacío.
+            Dim noCuenta As String = txtNoCuenta.Text.Trim()
 
             ' CORRECCIÓN: usar InvariantCulture para aceptar punto decimal en cualquier
             ' configuración regional del sistema operativo.
@@ -61,9 +76,9 @@ Namespace ProyectoPlanillaUMG1
                 ' Parámetros para evitar SQL Injection.
                 Const query As String =
                     "INSERT INTO trabajadores " &
-                    "(id_trabajador, nombres, cargo, sueldo, igss, bono, otros, liquido) " &
+                    "(id_trabajador, nombres, cargo, sueldo, igss, bono, otros, liquido, correo, no_cuenta) " &
                     "VALUES " &
-                    "(@id, @nombre, @cargo, @sueldo, @igss, @bono, @otros, @liquido)"
+                    "(@id, @nombre, @cargo, @sueldo, @igss, @bono, @otros, @liquido, @correo, @no_cuenta)"
 
                 Dim objetoConexion As New CConexion()
                 Using conn As MySqlConnection = objetoConexion.ObtenerConexion()
@@ -78,6 +93,8 @@ Namespace ProyectoPlanillaUMG1
                         comando.Parameters.AddWithValue("@bono", bono)
                         comando.Parameters.AddWithValue("@otros", otros)
                         comando.Parameters.AddWithValue("@liquido", liquido)
+                        comando.Parameters.AddWithValue("@correo", correo)
+                        comando.Parameters.AddWithValue("@no_cuenta", noCuenta)
 
                         comando.ExecuteNonQuery()
                     End Using
@@ -92,6 +109,8 @@ Namespace ProyectoPlanillaUMG1
                 txtNombre.Clear()
                 txtCargo.Clear()
                 txtSueldo.Clear()
+                txtCorreo.Clear()
+                txtNoCuenta.Clear()
                 txtId.Focus()
             Catch ex As MySqlException When ex.Number = 1062  ' Duplicate entry
                 MessageBox.Show(
@@ -105,7 +124,6 @@ Namespace ProyectoPlanillaUMG1
         End Sub
 
         Private Sub Button1_Click(sender As Object, e As EventArgs) Handles button1.Click
-            ' CORRECCIÓN: cerrar solo este formulario, no toda la aplicación.
             Me.Close()
         End Sub
 

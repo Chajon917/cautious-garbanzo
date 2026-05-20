@@ -35,6 +35,8 @@ Namespace ProyectoPlanillaUMG1
             Me.label4 = New System.Windows.Forms.Label()
             Me.txtCargo = New System.Windows.Forms.TextBox()
             Me.button1 = New System.Windows.Forms.Button()
+            Me.txtCorreo = New System.Windows.Forms.TextBox()
+            Me.txtNoCuenta = New System.Windows.Forms.TextBox()
             Me.SuspendLayout()
             '
             'btnGuardar
@@ -138,6 +140,20 @@ Namespace ProyectoPlanillaUMG1
             Me.button1.Text = "X"
             Me.button1.UseVisualStyleBackColor = False
             '
+            'txtCorreo
+            '
+            Me.txtCorreo.Location = New System.Drawing.Point(210, 228)
+            Me.txtCorreo.Name = "txtCorreo"
+            Me.txtCorreo.Size = New System.Drawing.Size(100, 22)
+            Me.txtCorreo.TabIndex = 7
+            '
+            'txtNoCuenta
+            '
+            Me.txtNoCuenta.Location = New System.Drawing.Point(210, 265)
+            Me.txtNoCuenta.Name = "txtNoCuenta"
+            Me.txtNoCuenta.Size = New System.Drawing.Size(100, 22)
+            Me.txtNoCuenta.TabIndex = 8
+            '
             'FormIngreso
             '
             Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -145,6 +161,8 @@ Namespace ProyectoPlanillaUMG1
             Me.BackColor = System.Drawing.Color.DarkGray
             Me.BackgroundImage = Global.ProyectoPlanillaUMG1.My.Resources.Resources.Conoce_Bantrab
             Me.ClientSize = New System.Drawing.Size(456, 427)
+            Me.Controls.Add(Me.txtNoCuenta)
+            Me.Controls.Add(Me.txtCorreo)
             Me.Controls.Add(Me.button1)
             Me.Controls.Add(Me.txtCargo)
             Me.Controls.Add(Me.label4)
@@ -173,7 +191,8 @@ Namespace ProyectoPlanillaUMG1
         Private WithEvents label4 As System.Windows.Forms.Label
         Private WithEvents txtCargo As System.Windows.Forms.TextBox
         Private WithEvents button1 As System.Windows.Forms.Button
-
+        Friend WithEvents txtCorreo As System.Windows.Forms.TextBox
+        Friend WithEvents txtNoCuenta As System.Windows.Forms.TextBox
     End Class
 
 End Namespace
