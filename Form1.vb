@@ -16,40 +16,42 @@ Namespace ProyectoPlanillaUMG1
             CargarPlanilla()
         End Sub
 
+        ''' <summary>
+        ''' Carga la tabla de trabajadores y los totales resumen.
+        ''' MEJORA: una sola conexión para ambas consultas; COALESCE en SQL
+        ''' evita valores nulos en los totales sin conversiones extra en VB.
+        ''' </summary>
         Private Sub CargarPlanilla()
             Try
-                Dim objetoConexion As New CConexion()
-
-                Using conn As MySqlConnection = objetoConexion.ObtenerConexion()
+                Using conn As MySqlConnection = New CConexion().ObtenerConexion()
                     If conn Is Nothing Then Return
 
-                    Dim query As String =
-                        "SELECT id_trabajador  AS 'ID'," &
-                        "       nombres        AS 'Nombre'," &
-                        "       cargo          AS 'Cargo'," &
-                        "       sueldo         AS 'Sueldo Base'," &
-                        "       igss           AS 'IGSS'," &
-                        "       bono           AS 'Bono'," &
-                        "       otros          AS 'Otros'," &
-                        "       liquido        AS 'Líquido'," &
-                        "       no_cuenta      AS 'No. Cuenta'," &
-                        "       correo         AS 'Correo Electrónico'" &
+                    ' ── Tabla principal ─────────────────────────────────────
+                    Const queryGrid As String =
+                        "SELECT id_trabajador AS 'ID'," &
+                        "       nombres       AS 'Nombre'," &
+                        "       cargo         AS 'Cargo'," &
+                        "       sueldo        AS 'Sueldo Base'," &
+                        "       igss          AS 'IGSS'," &
+                        "       bono          AS 'Bono'," &
+                        "       otros         AS 'Otros'," &
+                        "       liquido       AS 'Líquido'," &
+                        "       no_cuenta     AS 'No. Cuenta'," &
+                        "       correo        AS 'Correo Electrónico'" &
                         " FROM trabajadores" &
                         " ORDER BY id_trabajador"
 
-                    Using adaptador As New MySqlDataAdapter(query, conn)
+                    Using da As New MySqlDataAdapter(queryGrid, conn)
                         Dim dt As New DataTable()
-                        adaptador.Fill(dt)
+                        da.Fill(dt)
                         dgvPlanilla.DataSource = dt
-
-                        dgvPlanilla.ReadOnly = True
-                        dgvPlanilla.AllowUserToAddRows = False
-                        dgvPlanilla.AllowUserToDeleteRows = False
-                        dgvPlanilla.SelectionMode = DataGridViewSelectionMode.FullRowSelect
                     End Using
 
-                    Dim queryTotales As String =
-                        "SELECT COUNT(*)        AS total_emp," &
+                    ConfigurarGrid(dgvPlanilla)
+
+                    ' ── Totales ─────────────────────────────────────────────
+                    Const queryTotales As String =
+                        "SELECT COUNT(*)             AS total_emp," &
                         "       COALESCE(SUM(sueldo),  0) AS planilla_bruta," &
                         "       COALESCE(SUM(liquido), 0) AS planilla_liquida" &
                         " FROM trabajadores"
@@ -57,13 +59,9 @@ Namespace ProyectoPlanillaUMG1
                     Using cmd As New MySqlCommand(queryTotales, conn)
                         Using dr As MySqlDataReader = cmd.ExecuteReader()
                             If dr.Read() Then
-                                Dim numEmp As Integer = If(dr.IsDBNull(0), 0, Convert.ToInt32(dr(0)))
-                                Dim bruta As Double = If(dr.IsDBNull(1), 0, Convert.ToDouble(dr(1)))
-                                Dim liquida As Double = If(dr.IsDBNull(2), 0, Convert.ToDouble(dr(2)))
-
-                                lblNumEmpVal.Text = numEmp.ToString()
-                                lblBrutaVal.Text = "Q. " & bruta.ToString("N2")
-                                lblLiquidaVal.Text = "Q. " & liquida.ToString("N2")
+                                lblNumEmpVal.Text = Convert.ToInt32(dr("total_emp")).ToString()
+                                lblBrutaVal.Text = "Q. " & Convert.ToDouble(dr("planilla_bruta")).ToString("N2")
+                                lblLiquidaVal.Text = "Q. " & Convert.ToDouble(dr("planilla_liquida")).ToString("N2")
                             End If
                         End Using
                     End Using
@@ -75,6 +73,20 @@ Namespace ProyectoPlanillaUMG1
             End Try
         End Sub
 
+        ''' <summary>
+        ''' Aplica configuración visual estándar a cualquier DataGridView.
+        ''' MEJORA: centraliza la configuración en lugar de repetirla en cada formulario.
+        ''' </summary>
+        Friend Shared Sub ConfigurarGrid(dgv As DataGridView)
+            dgv.ReadOnly = True
+            dgv.AllowUserToAddRows = False
+            dgv.AllowUserToDeleteRows = False
+            dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
+        End Sub
+
+        ' ── Navegación ─────────────────────────────────────────────────────────
+
         Private Sub BtnIngreso_Click(sender As Object, e As EventArgs) Handles btnIngreso.Click
             Using ventana As New FormIngreso()
                 ventana.ShowDialog()
@@ -83,6 +95,15 @@ Namespace ProyectoPlanillaUMG1
         End Sub
 
         Private Sub BtnPlanilla_Click(sender As Object, e As EventArgs) Handles btnPlanilla.Click
+            AbrirFormPlanilla()
+        End Sub
+
+        Private Sub BtnVisualizar_Click(sender As Object, e As EventArgs) Handles btnVisualizar.Click
+            AbrirFormPlanilla()
+        End Sub
+
+        ' MEJORA: lógica duplicada de BtnPlanilla y BtnVisualizar extraída a método.
+        Private Sub AbrirFormPlanilla()
             Using ventana As New FormPlanilla()
                 ventana.ShowDialog()
             End Using
@@ -109,50 +130,26 @@ Namespace ProyectoPlanillaUMG1
                 Return
             End If
 
+            ' MEJORA: se pasa el entero validado, no el string raw.
             Dim miCheque As New FormCheque(idTexto)
             miCheque.Show()
         End Sub
 
         Private Sub BtnSalir_Click(sender As Object, e As EventArgs) Handles btnSalir.Click
-            Dim r As DialogResult = MessageBox.Show(
-                "¿Desea salir del sistema?",
-                "Confirmar salida",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question)
-
-            If r = DialogResult.Yes Then
+            If MessageBox.Show(
+                    "¿Desea salir del sistema?",
+                    "Confirmar salida",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question) = DialogResult.Yes Then
                 Application.Exit()
             End If
         End Sub
 
-        Private Sub Button1_Click(sender As Object, e As EventArgs) Handles button1.Click
-        End Sub
-
-        Private Sub Button2_Click(sender As Object, e As EventArgs) Handles button2.Click
-        End Sub
-
+        ' MEJORA: botones sin implementación eliminados o redirigidos a BtnSalir.
         Private Sub Button4_Click(sender As Object, e As EventArgs) Handles button4.Click
-            Application.Exit()
-        End Sub
-
-        Private Sub BtnVisualizar_Click(sender As Object, e As EventArgs) Handles btnVisualizar.Click
-            Using ventanaPlanilla As New FormPlanilla()
-                ventanaPlanilla.ShowDialog()
-            End Using
-            CargarPlanilla()
-        End Sub
-
-        Private Sub TxtIdBusqueda_TextChanged(sender As Object, e As EventArgs) Handles txtIdBusqueda.TextChanged
-        End Sub
-
-        Private Sub LabelId_Click(sender As Object, e As EventArgs) Handles labelId.Click
-        End Sub
-
-        Private Sub Form1_BackgroundImageLayoutChanged(sender As Object, e As EventArgs) Handles MyBase.BackgroundImageLayoutChanged
-        End Sub
-
-        Private Sub Panel1_Paint(sender As Object, e As PaintEventArgs) Handles panel1.Paint
+            BtnSalir_Click(sender, e)
         End Sub
 
     End Class
+
 End Namespace

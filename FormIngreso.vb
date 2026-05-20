@@ -7,12 +7,82 @@ Namespace ProyectoPlanillaUMG1
     Partial Public Class FormIngreso
         Inherits Form
 
+        ' MEJORA: constantes centralizadas para los parámetros de planilla.
+        ' Si cambia la tasa del IGSS o el bono, se edita en un solo lugar.
+        Private Const TasaIGSS As Double = 0.0483   ' 4.83 %
+        Private Const MontoBonoFijo As Double = 250.0
+
         Public Sub New()
             InitializeComponent()
         End Sub
 
         Private Sub BtnGuardar_Click(sender As Object, e As EventArgs) Handles btnGuardar.Click
-            ' Validar campos vacíos.
+            Dim id As Integer
+            Dim sueldoBase As Double
+
+            ' ── Validaciones ────────────────────────────────────────────────
+            If Not ValidarCampos(id, sueldoBase) Then Return
+
+            Try
+                Dim nombre As String = txtNombre.Text.Trim()
+                Dim cargo As String = txtCargo.Text.Trim()
+                Dim correo As String = txtCorreo.Text.Trim()
+                Dim noCuenta As String = txtNoCuenta.Text.Trim()
+
+                ' MEJORA: cálculos centralizados con la constante TasaIGSS.
+                Dim igss As Double = Math.Round(sueldoBase * TasaIGSS, 2)
+                Dim bono As Double = MontoBonoFijo
+                Dim otros As Double = 0
+                Dim liquido As Double = Math.Round(sueldoBase - igss + bono - otros, 2)
+
+                Const query As String =
+                    "INSERT INTO trabajadores " &
+                    "(id_trabajador, nombres, cargo, sueldo, igss, bono, otros, liquido, correo, no_cuenta) " &
+                    "VALUES (@id, @nombre, @cargo, @sueldo, @igss, @bono, @otros, @liquido, @correo, @no_cuenta)"
+
+                Using conn As MySqlConnection = New CConexion().ObtenerConexion()
+                    If conn Is Nothing Then Return
+
+                    Using cmd As New MySqlCommand(query, conn)
+                        cmd.Parameters.AddWithValue("@id", id)
+                        cmd.Parameters.AddWithValue("@nombre", nombre)
+                        cmd.Parameters.AddWithValue("@cargo", cargo)
+                        cmd.Parameters.AddWithValue("@sueldo", sueldoBase)
+                        cmd.Parameters.AddWithValue("@igss", igss)
+                        cmd.Parameters.AddWithValue("@bono", bono)
+                        cmd.Parameters.AddWithValue("@otros", otros)
+                        cmd.Parameters.AddWithValue("@liquido", liquido)
+                        cmd.Parameters.AddWithValue("@correo", correo)
+                        cmd.Parameters.AddWithValue("@no_cuenta", noCuenta)
+                        cmd.ExecuteNonQuery()
+                    End Using
+                End Using
+
+                MessageBox.Show(
+                    $"¡Empleado '{nombre}' guardado exitosamente!" & Environment.NewLine &
+                    $"Sueldo líquido calculado: Q {liquido:N2}",
+                    "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+                LimpiarFormulario()
+
+            Catch ex As MySqlException When ex.Number = 1062   ' Duplicate entry
+                MessageBox.Show(
+                    $"Ya existe un empleado con el ID {id}. Use un ID diferente.",
+                    "ID duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                txtId.Focus()
+            Catch ex As Exception
+                MessageBox.Show(
+                    "Error al guardar: " & ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
+        End Sub
+
+        ''' <summary>
+        ''' Valida todos los campos del formulario.
+        ''' Devuelve True si todo es válido; parámetros de salida con valores parseados.
+        ''' MEJORA: validaciones separadas en su propio método; uso de Regex para correo.
+        ''' </summary>
+        Private Function ValidarCampos(ByRef id As Integer, ByRef sueldoBase As Double) As Boolean
             If String.IsNullOrWhiteSpace(txtId.Text) OrElse
                String.IsNullOrWhiteSpace(txtNombre.Text) OrElse
                String.IsNullOrWhiteSpace(txtCargo.Text) OrElse
@@ -22,35 +92,26 @@ Namespace ProyectoPlanillaUMG1
                 MessageBox.Show(
                     "Por favor, complete todos los campos antes de guardar.",
                     "Campos incompletos", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                Return
+                Return False
             End If
 
-            ' Validar ID entero positivo.
-            Dim id As Integer
             If Not Integer.TryParse(txtId.Text.Trim(), id) OrElse id <= 0 Then
-                MessageBox.Show(
-                    "El ID debe ser un número entero positivo.",
+                MessageBox.Show("El ID debe ser un número entero positivo.",
                     "ID inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 txtId.Focus()
-                Return
+                Return False
             End If
 
-            ' Validar formato básico de correo electrónico.
+            ' MEJORA: validación de correo con expresión regular básica (RFC 5322 simplificado).
             Dim correo As String = txtCorreo.Text.Trim()
-            If Not correo.Contains("@") OrElse Not correo.Contains(".") Then
-                MessageBox.Show(
-                    "Ingrese un correo electrónico válido.",
+            If Not System.Text.RegularExpressions.Regex.IsMatch(
+                    correo, "^[^@\s]+@[^@\s]+\.[^@\s]+$") Then
+                MessageBox.Show("Ingrese un correo electrónico válido (ej. nombre@dominio.com).",
                     "Correo inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 txtCorreo.Focus()
-                Return
+                Return False
             End If
 
-            ' Validar número de cuenta no vacío.
-            Dim noCuenta As String = txtNoCuenta.Text.Trim()
-
-            ' CORRECCIÓN: usar InvariantCulture para aceptar punto decimal en cualquier
-            ' configuración regional del sistema operativo.
-            Dim sueldoBase As Double
             If Not Double.TryParse(
                     txtSueldo.Text.Trim(),
                     Globalization.NumberStyles.Any,
@@ -60,86 +121,24 @@ Namespace ProyectoPlanillaUMG1
                     "El sueldo debe ser un número mayor a cero (use punto como separador decimal).",
                     "Sueldo inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 txtSueldo.Focus()
-                Return
+                Return False
             End If
 
-            Try
-                Dim nombre As String = txtNombre.Text.Trim()
-                Dim cargo As String = txtCargo.Text.Trim()
+            Return True
+        End Function
 
-                ' Cálculos de planilla (IGSS 4.83 %, bono fijo Q250).
-                Dim igss As Double = Math.Round(sueldoBase * 0.0483, 2)
-                Dim bono As Double = 250.0
-                Dim otros As Double = 0
-                Dim liquido As Double = Math.Round(sueldoBase - igss + bono - otros, 2)
-
-                ' Parámetros para evitar SQL Injection.
-                Const query As String =
-                    "INSERT INTO trabajadores " &
-                    "(id_trabajador, nombres, cargo, sueldo, igss, bono, otros, liquido, correo, no_cuenta) " &
-                    "VALUES " &
-                    "(@id, @nombre, @cargo, @sueldo, @igss, @bono, @otros, @liquido, @correo, @no_cuenta)"
-
-                Dim objetoConexion As New CConexion()
-                Using conn As MySqlConnection = objetoConexion.ObtenerConexion()
-                    If conn Is Nothing Then Return
-
-                    Using comando As New MySqlCommand(query, conn)
-                        comando.Parameters.AddWithValue("@id", id)
-                        comando.Parameters.AddWithValue("@nombre", nombre)
-                        comando.Parameters.AddWithValue("@cargo", cargo)
-                        comando.Parameters.AddWithValue("@sueldo", sueldoBase)
-                        comando.Parameters.AddWithValue("@igss", igss)
-                        comando.Parameters.AddWithValue("@bono", bono)
-                        comando.Parameters.AddWithValue("@otros", otros)
-                        comando.Parameters.AddWithValue("@liquido", liquido)
-                        comando.Parameters.AddWithValue("@correo", correo)
-                        comando.Parameters.AddWithValue("@no_cuenta", noCuenta)
-
-                        comando.ExecuteNonQuery()
-                    End Using
-                End Using
-
-                MessageBox.Show(
-                    "¡Empleado guardado exitosamente!",
-                    "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
-
-                ' Limpiar campos y devolver el foco al primero.
-                txtId.Clear()
-                txtNombre.Clear()
-                txtCargo.Clear()
-                txtSueldo.Clear()
-                txtCorreo.Clear()
-                txtNoCuenta.Clear()
-                txtId.Focus()
-            Catch ex As MySqlException When ex.Number = 1062  ' Duplicate entry
-                MessageBox.Show(
-                    "Ya existe un empleado con el ID " & txtId.Text.Trim() & ". Use un ID diferente.",
-                    "ID duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            Catch ex As Exception
-                MessageBox.Show(
-                    "Error al guardar: " & ex.Message,
-                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            End Try
+        Private Sub LimpiarFormulario()
+            txtId.Clear()
+            txtNombre.Clear()
+            txtCargo.Clear()
+            txtSueldo.Clear()
+            txtCorreo.Clear()
+            txtNoCuenta.Clear()
+            txtId.Focus()
         End Sub
 
         Private Sub Button1_Click(sender As Object, e As EventArgs) Handles button1.Click
             Me.Close()
-        End Sub
-
-        Private Sub FormIngreso_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        End Sub
-
-        Private Sub Label3_Click(sender As Object, e As EventArgs) Handles label3.Click
-        End Sub
-
-        Private Sub TxtCargo_TextChanged(sender As Object, e As EventArgs) Handles txtCargo.TextChanged
-        End Sub
-
-        Private Sub TxtSueldo_TextChanged(sender As Object, e As EventArgs) Handles txtSueldo.TextChanged
-        End Sub
-
-        Private Sub TxtNombre_TextChanged(sender As Object, e As EventArgs) Handles txtNombre.TextChanged
         End Sub
 
     End Class

@@ -44,6 +44,7 @@ Namespace ProyectoPlanillaUMG1
             'btnGuardar
             '
             Me.btnGuardar.BackColor = System.Drawing.SystemColors.ActiveCaption
+            Me.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.btnGuardar.ForeColor = System.Drawing.Color.Black
             Me.btnGuardar.Location = New System.Drawing.Point(122, 362)
             Me.btnGuardar.Name = "btnGuardar"

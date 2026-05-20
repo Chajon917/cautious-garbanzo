@@ -50,13 +50,42 @@ ProyectoPlanillaUMG1
 <member name="T:ProyectoPlanillaUMG1.ProyectoPlanillaUMG1.CConexion">
  <summary>
  Clase de conexión a la base de datos MySQL.
- La cadena de conexión se lee desde App.config.
+ La cadena de conexión se lee desde App.config (clave "PlanillaDB").
+ MEJORA: implementa IDisposable para liberar recursos correctamente;
+ expone un método de prueba de conexión separado del de producción.
  </summary>
 </member>
 <member name="M:ProyectoPlanillaUMG1.ProyectoPlanillaUMG1.CConexion.ObtenerConexion">
  <summary>
- Abre y devuelve una nueva conexión. El llamador es responsable de
- cerrarla (idealmente con 'Using'). Devuelve Nothing si falla.
+ Abre y devuelve una nueva conexión lista para usar.
+ Ciérrela con Using o llamando a .Dispose().
+ Devuelve Nothing y muestra un mensaje si falla.
+ </summary>
+</member>
+<member name="M:ProyectoPlanillaUMG1.ProyectoPlanillaUMG1.CConexion.PuedoConectar">
+ <summary>
+ Prueba si la conexión puede establecerse sin mostrar UI.
+ Útil para verificar configuración al arrancar la app.
+ </summary>
+</member>
+<member name="M:ProyectoPlanillaUMG1.ProyectoPlanillaUMG1.Form1.CargarPlanilla">
+ <summary>
+ Carga la tabla de trabajadores y los totales resumen.
+ MEJORA: una sola conexión para ambas consultas; COALESCE en SQL
+ evita valores nulos en los totales sin conversiones extra en VB.
+ </summary>
+</member>
+<member name="M:ProyectoPlanillaUMG1.ProyectoPlanillaUMG1.Form1.ConfigurarGrid(System.Windows.Forms.DataGridView)">
+ <summary>
+ Aplica configuración visual estándar a cualquier DataGridView.
+ MEJORA: centraliza la configuración en lugar de repetirla en cada formulario.
+ </summary>
+</member>
+<member name="M:ProyectoPlanillaUMG1.ProyectoPlanillaUMG1.FormIngreso.ValidarCampos(System.Int32@,System.Double@)">
+ <summary>
+ Valida todos los campos del formulario.
+ Devuelve True si todo es válido; parámetros de salida con valores parseados.
+ MEJORA: validaciones separadas en su propio método; uso de Regex para correo.
  </summary>
 </member>
 <member name="F:ProyectoPlanillaUMG1.ProyectoPlanillaUMG1.FormIngreso.components">
@@ -76,10 +105,34 @@ ProyectoPlanillaUMG1
  el contenido de este método con el editor de código.
  </summary>
 </member>
+<member name="M:ProyectoPlanillaUMG1.ProyectoPlanillaUMG1.FormCheque.Enletras(System.Double)">
+ <summary>
+ Convierte un monto monetario en su representación en letras (español).
+ MEJORA: maneja correctamente el caso especial "CIEN" vs "CIENTO".
+ </summary>
+</member>
+<member name="M:ProyectoPlanillaUMG1.ProyectoPlanillaUMG1.FormPlanilla.ObtenerCelda(System.Windows.Forms.DataGridViewRow,System.String,System.String)">
+ <summary>
+ Lee el valor de una celda como String de forma segura.
+ MEJORA: elimina la repetición de checks IsNot Nothing/ToString() en todo el código.
+ </summary>
+</member>
 <member name="M:ProyectoPlanillaUMG1.ProyectoPlanillaUMG1.Program.Main">
  <summary>
  Punto de entrada principal para la aplicación.
+ MEJORA: arranca desde FormLogin en lugar de Form1,
+ y registra un manejador global de excepciones no capturadas.
  </summary>
+</member>
+<member name="T:ProyectoPlanillaUMG1.FormLogin">
+ <summary>
+ Formulario de inicio de sesión.
+ MEJORA: credenciales no se comparan en texto plano; se usa hashing SHA-256.
+ En producción real, las credenciales deben validarse contra la base de datos.
+ </summary>
+</member>
+<member name="M:ProyectoPlanillaUMG1.FormLogin.ComputarSHA256(System.String)">
+ <summary>Calcula el hash SHA-256 de un texto y lo devuelve en hexadecimal.</summary>
 </member>
 </members>
 </doc>

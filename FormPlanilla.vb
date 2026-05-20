@@ -1,4 +1,5 @@
 Imports System
+Imports System.Collections.Generic
 Imports System.Data
 Imports System.Windows.Forms
 Imports MySql.Data.MySqlClient
@@ -15,8 +16,7 @@ Namespace ProyectoPlanillaUMG1
 
         Public Sub CargarDatos()
             Try
-                Dim objetoConexion As New CConexion()
-                Using conn As MySqlConnection = objetoConexion.ObtenerConexion()
+                Using conn As MySqlConnection = New CConexion().ObtenerConexion()
                     If conn Is Nothing Then Return
 
                     Const query As String =
@@ -33,16 +33,14 @@ Namespace ProyectoPlanillaUMG1
                         " FROM trabajadores" &
                         " ORDER BY id_trabajador"
 
-                    Using adaptador As New MySqlDataAdapter(query, conn)
+                    Using da As New MySqlDataAdapter(query, conn)
                         Dim dt As New DataTable()
-                        adaptador.Fill(dt)
+                        da.Fill(dt)
                         dgvTrabajadores.DataSource = dt
-
-                        dgvTrabajadores.ReadOnly = True
-                        dgvTrabajadores.AllowUserToAddRows = False
-                        dgvTrabajadores.AllowUserToDeleteRows = False
-                        dgvTrabajadores.SelectionMode = DataGridViewSelectionMode.FullRowSelect
                     End Using
+
+                    ' MEJORA: configuración del grid centralizada en Form1.
+                    Form1.ConfigurarGrid(dgvTrabajadores)
                 End Using
             Catch ex As Exception
                 MessageBox.Show(
@@ -53,8 +51,7 @@ Namespace ProyectoPlanillaUMG1
 
         Private Sub BtnEditar_Click(sender As Object, e As EventArgs) Handles btnEditar.Click
             If dgvTrabajadores.CurrentRow Is Nothing Then
-                MessageBox.Show(
-                    "Seleccione un trabajador para editar.",
+                MessageBox.Show("Seleccione un trabajador para editar.",
                     "Sin selección", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 Return
             End If
@@ -63,70 +60,67 @@ Namespace ProyectoPlanillaUMG1
             If fila.Cells("ID").Value Is Nothing Then Return
 
             Dim id As Integer = Convert.ToInt32(fila.Cells("ID").Value)
-            Dim nombre As String = If(fila.Cells("Nombre").Value IsNot Nothing, fila.Cells("Nombre").Value.ToString(), "")
-            Dim cargo As String = If(fila.Cells("Cargo").Value IsNot Nothing, fila.Cells("Cargo").Value.ToString(), "")
-            Dim sueldo As Double = Convert.ToDouble(fila.Cells("Sueldo Base").Value,
-                                                    Globalization.CultureInfo.InvariantCulture)
-            Dim correo As String = If(fila.Cells("Correo Electrónico").Value IsNot Nothing, fila.Cells("Correo Electrónico").Value.ToString(), "")
-            Dim noCuenta As String = If(fila.Cells("No. Cuenta").Value IsNot Nothing, fila.Cells("No. Cuenta").Value.ToString(), "")
+            Dim nombre As String = ObtenerCelda(fila, "Nombre")
+            Dim cargo As String = ObtenerCelda(fila, "Cargo")
+            Dim sueldo As Double = Convert.ToDouble(
+                fila.Cells("Sueldo Base").Value,
+                Globalization.CultureInfo.InvariantCulture)
+            Dim correo As String = ObtenerCelda(fila, "Correo Electrónico")
+            Dim noCuenta As String = ObtenerCelda(fila, "No. Cuenta")
 
             Using dlg As New FormEditar(id, nombre, cargo, sueldo, correo, noCuenta)
-                If dlg.ShowDialog() = DialogResult.OK Then
-                    CargarDatos()
-                End If
+                If dlg.ShowDialog() = DialogResult.OK Then CargarDatos()
             End Using
         End Sub
 
         Private Sub BtnEliminar_Click(sender As Object, e As EventArgs) Handles btnEliminar.Click
             If dgvTrabajadores.CurrentRow Is Nothing Then
-                MessageBox.Show(
-                    "Seleccione un trabajador para eliminar.",
+                MessageBox.Show("Seleccione un trabajador para eliminar.",
                     "Sin selección", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 Return
             End If
 
-            If dgvTrabajadores.CurrentRow.Cells("ID").Value Is Nothing Then Return
+            Dim fila As DataGridViewRow = dgvTrabajadores.CurrentRow
+            If fila.Cells("ID").Value Is Nothing Then Return
 
-            Dim id As Integer = Convert.ToInt32(dgvTrabajadores.CurrentRow.Cells("ID").Value)
-            Dim nombre As String = If(dgvTrabajadores.CurrentRow.Cells("Nombre").Value IsNot Nothing, dgvTrabajadores.CurrentRow.Cells("Nombre").Value.ToString(), "(sin nombre)")
+            Dim id As Integer = Convert.ToInt32(fila.Cells("ID").Value)
+            Dim nombre As String = ObtenerCelda(fila, "Nombre", "(sin nombre)")
 
-            Dim confirm As DialogResult = MessageBox.Show(
-                "¿Está seguro de eliminar al trabajador '" & nombre & "' (ID: " & id & ")?",
-                "Confirmar eliminación",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Warning)
-
-            If confirm <> DialogResult.Yes Then Return
+            If MessageBox.Show(
+                    $"¿Está seguro de eliminar al trabajador '{nombre}' (ID: {id})?",
+                    "Confirmar eliminación",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning) <> DialogResult.Yes Then Return
 
             Try
-                Dim objetoConexion As New CConexion()
-                Using conn As MySqlConnection = objetoConexion.ObtenerConexion()
+                Using conn As MySqlConnection = New CConexion().ObtenerConexion()
                     If conn Is Nothing Then Return
 
                     Using cmd As New MySqlCommand(
                         "DELETE FROM trabajadores WHERE id_trabajador = @id", conn)
                         cmd.Parameters.AddWithValue("@id", id)
-                        cmd.ExecuteNonQuery()
+                        Dim afectados As Integer = cmd.ExecuteNonQuery()
+
+                        ' MEJORA: verificar que realmente se eliminó una fila.
+                        If afectados = 0 Then
+                            MessageBox.Show("El trabajador ya no existe en la base de datos.",
+                                "No encontrado", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                            Return
+                        End If
                     End Using
                 End Using
 
-                MessageBox.Show(
-                    "Trabajador eliminado exitosamente.",
+                MessageBox.Show("Trabajador eliminado exitosamente.",
                     "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
-
                 CargarDatos()
+
             Catch ex As MySqlException
-                MessageBox.Show(
-                    "Error de base de datos al eliminar: " & ex.Message,
+                MessageBox.Show("Error de base de datos al eliminar: " & ex.Message,
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Catch ex As Exception
-                MessageBox.Show(
-                    "Error al eliminar: " & ex.Message,
+                MessageBox.Show("Error al eliminar: " & ex.Message,
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End Try
-        End Sub
-
-        Private Sub DgvTrabajadores_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvTrabajadores.CellContentClick
         End Sub
 
         Private Sub Button1_Click(sender As Object, e As EventArgs) Handles button1.Click
@@ -136,139 +130,101 @@ Namespace ProyectoPlanillaUMG1
             CargarDatos()
         End Sub
 
+        ''' <summary>
+        ''' Lee el valor de una celda como String de forma segura.
+        ''' MEJORA: elimina la repetición de checks IsNot Nothing/ToString() en todo el código.
+        ''' </summary>
+        Private Shared Function ObtenerCelda(fila As DataGridViewRow, columna As String,
+                                             Optional porDefecto As String = "") As String
+            Dim val = fila.Cells(columna).Value
+            Return If(val IsNot Nothing, val.ToString(), porDefecto)
+        End Function
+
     End Class
 
+    ' ════════════════════════════════════════════════════════════════════════════
+    '  FormEditar — diálogo modal para editar un trabajador existente
+    ' ════════════════════════════════════════════════════════════════════════════
     Public Class FormEditar
         Inherits Form
 
         Private ReadOnly _id As Integer
-        Private ReadOnly txtNombre As System.Windows.Forms.TextBox
-        Private ReadOnly txtCargo As System.Windows.Forms.TextBox
-        Private ReadOnly txtSueldo As System.Windows.Forms.TextBox
-        Private ReadOnly txtCorreo As System.Windows.Forms.TextBox
-        Private ReadOnly txtNoCuenta As System.Windows.Forms.TextBox
+        Private Const TasaIGSS As Double = 0.0483
+        Private Const MontoBonoFijo As Double = 250.0
 
-        Public Sub New(id As Integer, nombre As String, cargo As String, sueldo As Double,
-                       correo As String, noCuenta As String)
+        Private ReadOnly txtNombre As TextBox
+        Private ReadOnly txtCargo As TextBox
+        Private ReadOnly txtSueldo As TextBox
+        Private ReadOnly txtCorreo As TextBox
+        Private ReadOnly txtNoCuenta As TextBox
+
+        Public Sub New(id As Integer, nombre As String, cargo As String,
+                       sueldo As Double, correo As String, noCuenta As String)
             _id = id
-            Text = "Editar Trabajador"
-            ClientSize = New System.Drawing.Size(420, 420)
-            BackColor = System.Drawing.Color.FromArgb(45, 45, 48)
+            Text = $"Editar Trabajador — ID {id}"
+            ClientSize = New Drawing.Size(420, 420)
+            BackColor = Drawing.Color.FromArgb(45, 45, 48)
             FormBorderStyle = FormBorderStyle.FixedDialog
             StartPosition = FormStartPosition.CenterParent
             MaximizeBox = False
             MinimizeBox = False
 
-            ' ── Nombre ────────────────────────────────────────────────────
-            Controls.Add(New System.Windows.Forms.Label With {
-                .Text = "Nombre:",
-                .ForeColor = System.Drawing.Color.Gainsboro,
-                .Font = New System.Drawing.Font("Segoe UI", 9.0F, System.Drawing.FontStyle.Bold),
-                .Location = New System.Drawing.Point(20, 30),
-                .AutoSize = True
-            })
-            txtNombre = New System.Windows.Forms.TextBox With {
-                .Text = nombre,
-                .Location = New System.Drawing.Point(150, 27),
-                .Size = New System.Drawing.Size(240, 26),
-                .BackColor = System.Drawing.Color.FromArgb(30, 30, 30),
-                .ForeColor = System.Drawing.Color.White,
-                .BorderStyle = BorderStyle.FixedSingle
+            Dim campos As (Label As String, Valor As String, Y As Integer)() = {
+                ("Nombre:", nombre, 30),
+                ("Cargo:", cargo, 80),
+                ("Sueldo Base:", sueldo.ToString("F2"), 130),
+                ("No. Cuenta:", noCuenta, 180),
+                ("Correo:", correo, 230)
             }
-            Controls.Add(txtNombre)
 
-            ' ── Cargo ─────────────────────────────────────────────────────
-            Controls.Add(New System.Windows.Forms.Label With {
-                .Text = "Cargo:",
-                .ForeColor = System.Drawing.Color.Gainsboro,
-                .Font = New System.Drawing.Font("Segoe UI", 9.0F, System.Drawing.FontStyle.Bold),
-                .Location = New System.Drawing.Point(20, 80),
-                .AutoSize = True
-            })
-            txtCargo = New System.Windows.Forms.TextBox With {
-                .Text = cargo,
-                .Location = New System.Drawing.Point(150, 77),
-                .Size = New System.Drawing.Size(240, 26),
-                .BackColor = System.Drawing.Color.FromArgb(30, 30, 30),
-                .ForeColor = System.Drawing.Color.White,
-                .BorderStyle = BorderStyle.FixedSingle
-            }
-            Controls.Add(txtCargo)
+            ' MEJORA: construcción del formulario en un bucle; elimina la repetición
+            ' de bloques Controls.Add idénticos para cada campo.
+            Dim txtBoxes As New List(Of TextBox)()
+            For Each campo In campos
+                Controls.Add(New Label With {
+                    .Text = campo.Label,
+                    .ForeColor = Drawing.Color.Gainsboro,
+                    .Font = New Drawing.Font("Segoe UI", 9.0F, Drawing.FontStyle.Bold),
+                    .Location = New Drawing.Point(20, campo.Y),
+                    .AutoSize = True
+                })
+                Dim tb As New TextBox With {
+                    .Text = campo.Valor,
+                    .Location = New Drawing.Point(150, campo.Y - 3),
+                    .Size = New Drawing.Size(240, 26),
+                    .BackColor = Drawing.Color.FromArgb(30, 30, 30),
+                    .ForeColor = Drawing.Color.White,
+                    .BorderStyle = BorderStyle.FixedSingle
+                }
+                Controls.Add(tb)
+                txtBoxes.Add(tb)
+            Next
 
-            ' ── Sueldo ────────────────────────────────────────────────────
-            Controls.Add(New System.Windows.Forms.Label With {
-                .Text = "Sueldo Base:",
-                .ForeColor = System.Drawing.Color.Gainsboro,
-                .Font = New System.Drawing.Font("Segoe UI", 9.0F, System.Drawing.FontStyle.Bold),
-                .Location = New System.Drawing.Point(20, 130),
-                .AutoSize = True
-            })
-            txtSueldo = New System.Windows.Forms.TextBox With {
-                .Text = sueldo.ToString("F2"),
-                .Location = New System.Drawing.Point(150, 127),
-                .Size = New System.Drawing.Size(240, 26),
-                .BackColor = System.Drawing.Color.FromArgb(30, 30, 30),
-                .ForeColor = System.Drawing.Color.White,
-                .BorderStyle = BorderStyle.FixedSingle
-            }
-            Controls.Add(txtSueldo)
+            txtNombre = txtBoxes(0)
+            txtCargo = txtBoxes(1)
+            txtSueldo = txtBoxes(2)
+            txtNoCuenta = txtBoxes(3)
+            txtCorreo = txtBoxes(4)
 
-            ' ── No. Cuenta ────────────────────────────────────────────────
-            Controls.Add(New System.Windows.Forms.Label With {
-                .Text = "No. Cuenta:",
-                .ForeColor = System.Drawing.Color.Gainsboro,
-                .Font = New System.Drawing.Font("Segoe UI", 9.0F, System.Drawing.FontStyle.Bold),
-                .Location = New System.Drawing.Point(20, 180),
-                .AutoSize = True
-            })
-            txtNoCuenta = New System.Windows.Forms.TextBox With {
-                .Text = noCuenta,
-                .Location = New System.Drawing.Point(150, 177),
-                .Size = New System.Drawing.Size(240, 26),
-                .BackColor = System.Drawing.Color.FromArgb(30, 30, 30),
-                .ForeColor = System.Drawing.Color.White,
-                .BorderStyle = BorderStyle.FixedSingle
-            }
-            Controls.Add(txtNoCuenta)
-
-            ' ── Correo ────────────────────────────────────────────────────
-            Controls.Add(New System.Windows.Forms.Label With {
-                .Text = "Correo:",
-                .ForeColor = System.Drawing.Color.Gainsboro,
-                .Font = New System.Drawing.Font("Segoe UI", 9.0F, System.Drawing.FontStyle.Bold),
-                .Location = New System.Drawing.Point(20, 230),
-                .AutoSize = True
-            })
-            txtCorreo = New System.Windows.Forms.TextBox With {
-                .Text = correo,
-                .Location = New System.Drawing.Point(150, 227),
-                .Size = New System.Drawing.Size(240, 26),
-                .BackColor = System.Drawing.Color.FromArgb(30, 30, 30),
-                .ForeColor = System.Drawing.Color.White,
-                .BorderStyle = BorderStyle.FixedSingle
-            }
-            Controls.Add(txtCorreo)
-
-            ' ── Botones ───────────────────────────────────────────────────
-            Dim btnGuardar As New System.Windows.Forms.Button With {
+            Dim btnGuardar As New Button With {
                 .Text = "Guardar Cambios",
-                .Location = New System.Drawing.Point(60, 320),
-                .Size = New System.Drawing.Size(160, 36),
-                .BackColor = System.Drawing.Color.FromArgb(39, 174, 96),
-                .ForeColor = System.Drawing.Color.White,
+                .Location = New Drawing.Point(60, 320),
+                .Size = New Drawing.Size(160, 36),
+                .BackColor = Drawing.Color.FromArgb(39, 174, 96),
+                .ForeColor = Drawing.Color.White,
                 .FlatStyle = FlatStyle.Flat,
-                .Font = New System.Drawing.Font("Segoe UI", 9.0F, System.Drawing.FontStyle.Bold)
+                .Font = New Drawing.Font("Segoe UI", 9.0F, Drawing.FontStyle.Bold)
             }
             btnGuardar.FlatAppearance.BorderSize = 0
             AddHandler btnGuardar.Click, AddressOf BtnGuardar_Click
             Controls.Add(btnGuardar)
 
-            Dim btnCancelar As New System.Windows.Forms.Button With {
+            Dim btnCancelar As New Button With {
                 .Text = "Cancelar",
-                .Location = New System.Drawing.Point(255, 320),
-                .Size = New System.Drawing.Size(100, 36),
-                .BackColor = System.Drawing.Color.FromArgb(192, 57, 43),
-                .ForeColor = System.Drawing.Color.White,
+                .Location = New Drawing.Point(255, 320),
+                .Size = New Drawing.Size(100, 36),
+                .BackColor = Drawing.Color.FromArgb(192, 57, 43),
+                .ForeColor = Drawing.Color.White,
                 .FlatStyle = FlatStyle.Flat,
                 .DialogResult = DialogResult.Cancel
             }
@@ -277,22 +233,21 @@ Namespace ProyectoPlanillaUMG1
         End Sub
 
         Private Sub BtnGuardar_Click(sender As Object, e As EventArgs)
+            ' ── Validaciones ────────────────────────────────────────────────
             If String.IsNullOrWhiteSpace(txtNombre.Text) OrElse
                String.IsNullOrWhiteSpace(txtCargo.Text) OrElse
                String.IsNullOrWhiteSpace(txtSueldo.Text) OrElse
                String.IsNullOrWhiteSpace(txtNoCuenta.Text) OrElse
                String.IsNullOrWhiteSpace(txtCorreo.Text) Then
-                MessageBox.Show(
-                    "Todos los campos son obligatorios.",
+                MessageBox.Show("Todos los campos son obligatorios.",
                     "Campos vacíos", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 Return
             End If
 
-            ' Validar formato básico de correo
             Dim correo As String = txtCorreo.Text.Trim()
-            If Not correo.Contains("@") OrElse Not correo.Contains(".") Then
-                MessageBox.Show(
-                    "Ingrese un correo electrónico válido.",
+            If Not System.Text.RegularExpressions.Regex.IsMatch(
+                    correo, "^[^@\s]+@[^@\s]+\.[^@\s]+$") Then
+                MessageBox.Show("Ingrese un correo electrónico válido.",
                     "Correo inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 Return
             End If
@@ -304,15 +259,13 @@ Namespace ProyectoPlanillaUMG1
                     Globalization.CultureInfo.InvariantCulture,
                     sueldo) OrElse sueldo <= 0 Then
                 MessageBox.Show(
-                    "El sueldo debe ser un número mayor a cero (use punto como separador decimal).",
+                    "El sueldo debe ser un número mayor a cero (use punto decimal).",
                     "Sueldo inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 Return
             End If
 
-            Dim igss As Double = Math.Round(sueldo * 0.0483, 2)
-            Dim bono As Double = 250.0
-            Dim otros As Double = 0
-            Dim liquido As Double = Math.Round(sueldo - igss + bono - otros, 2)
+            Dim igss As Double = Math.Round(sueldo * TasaIGSS, 2)
+            Dim liquido As Double = Math.Round(sueldo - igss + MontoBonoFijo, 2)
 
             Try
                 Const query As String =
@@ -322,14 +275,13 @@ Namespace ProyectoPlanillaUMG1
                     "    sueldo    = @sueldo," &
                     "    igss      = @igss," &
                     "    bono      = @bono," &
-                    "    otros     = @otros," &
+                    "    otros     = 0," &
                     "    liquido   = @liquido," &
                     "    correo    = @correo," &
                     "    no_cuenta = @no_cuenta " &
                     "WHERE id_trabajador = @id"
 
-                Dim objetoConexion As New CConexion()
-                Using conn As MySqlConnection = objetoConexion.ObtenerConexion()
+                Using conn As MySqlConnection = New CConexion().ObtenerConexion()
                     If conn Is Nothing Then Return
 
                     Using cmd As New MySqlCommand(query, conn)
@@ -337,8 +289,7 @@ Namespace ProyectoPlanillaUMG1
                         cmd.Parameters.AddWithValue("@cargo", txtCargo.Text.Trim())
                         cmd.Parameters.AddWithValue("@sueldo", sueldo)
                         cmd.Parameters.AddWithValue("@igss", igss)
-                        cmd.Parameters.AddWithValue("@bono", bono)
-                        cmd.Parameters.AddWithValue("@otros", otros)
+                        cmd.Parameters.AddWithValue("@bono", MontoBonoFijo)
                         cmd.Parameters.AddWithValue("@liquido", liquido)
                         cmd.Parameters.AddWithValue("@correo", correo)
                         cmd.Parameters.AddWithValue("@no_cuenta", txtNoCuenta.Text.Trim())
@@ -347,19 +298,17 @@ Namespace ProyectoPlanillaUMG1
                     End Using
                 End Using
 
-                MessageBox.Show(
-                    "Datos actualizados correctamente.",
+                MessageBox.Show("Datos actualizados correctamente.",
                     "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
                 DialogResult = DialogResult.OK
                 Close()
+
             Catch ex As MySqlException
-                MessageBox.Show(
-                    "Error de base de datos al actualizar: " & ex.Message,
+                MessageBox.Show("Error de base de datos al actualizar: " & ex.Message,
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Catch ex As Exception
-                MessageBox.Show(
-                    "Error al actualizar: " & ex.Message,
+                MessageBox.Show("Error al actualizar: " & ex.Message,
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End Try
         End Sub
