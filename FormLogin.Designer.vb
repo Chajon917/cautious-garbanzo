@@ -31,15 +31,20 @@ Partial Class FormLogin
         '
         'Button1
         '
+        Me.Button1.BackColor = System.Drawing.SystemColors.MenuHighlight
+        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button1.Font = New System.Drawing.Font("Segoe UI", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button1.Location = New System.Drawing.Point(182, 149)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(100, 26)
+        Me.Button1.Size = New System.Drawing.Size(100, 27)
         Me.Button1.TabIndex = 0
         Me.Button1.Text = "Aceptar"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.Button1.UseVisualStyleBackColor = False
         '
         'txtContraseña
         '
+        Me.txtContraseña.BackColor = System.Drawing.SystemColors.HotTrack
+        Me.txtContraseña.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtContraseña.Location = New System.Drawing.Point(182, 83)
         Me.txtContraseña.Name = "txtContraseña"
         Me.txtContraseña.Size = New System.Drawing.Size(100, 22)
@@ -47,6 +52,8 @@ Partial Class FormLogin
         '
         'txtUsuario
         '
+        Me.txtUsuario.BackColor = System.Drawing.SystemColors.HotTrack
+        Me.txtUsuario.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtUsuario.Location = New System.Drawing.Point(182, 24)
         Me.txtUsuario.Name = "txtUsuario"
         Me.txtUsuario.Size = New System.Drawing.Size(100, 22)
@@ -55,18 +62,23 @@ Partial Class FormLogin
         'Label1
         '
         Me.Label1.AutoSize = True
+        Me.Label1.BackColor = System.Drawing.SystemColors.ActiveCaption
+        Me.Label1.Font = New System.Drawing.Font("Segoe UI", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.Location = New System.Drawing.Point(43, 30)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(68, 16)
+        Me.Label1.Size = New System.Drawing.Size(62, 17)
         Me.Label1.TabIndex = 3
         Me.Label1.Text = "USUARIO"
         '
         'Label2
         '
         Me.Label2.AutoSize = True
+        Me.Label2.BackColor = System.Drawing.SystemColors.ActiveCaption
+        Me.Label2.Font = New System.Drawing.Font("Segoe UI", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
         Me.Label2.Location = New System.Drawing.Point(43, 89)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(101, 16)
+        Me.Label2.Size = New System.Drawing.Size(91, 17)
         Me.Label2.TabIndex = 4
         Me.Label2.Text = "CONTRASEÑA"
         '
@@ -74,7 +86,8 @@ Partial Class FormLogin
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(301, 197)
+        Me.BackgroundImage = Global.ProyectoPlanillaUMG1.My.Resources.Resources.seedprod_login_page_example
+        Me.ClientSize = New System.Drawing.Size(329, 245)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.txtUsuario)

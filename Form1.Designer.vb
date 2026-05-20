@@ -1,6 +1,7 @@
 Namespace ProyectoPlanillaUMG1
 
     Partial Class Form1
+        Inherits System.Windows.Forms.Form
 
         Private components As System.ComponentModel.IContainer = Nothing
 
@@ -11,12 +12,12 @@ Namespace ProyectoPlanillaUMG1
             MyBase.Dispose(disposing)
         End Sub
 
-        #Region "Windows Form Designer generated code"
+#Region "Windows Form Designer generated code"
 
         Private Sub InitializeComponent()
-            Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-            Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-            Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+            Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+            Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+            Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
             Me.btnIngreso = New System.Windows.Forms.Button()
             Me.btnPlanilla = New System.Windows.Forms.Button()
             Me.btnCheque = New System.Windows.Forms.Button()
@@ -51,7 +52,7 @@ Namespace ProyectoPlanillaUMG1
             Me.btnIngreso.Location = New System.Drawing.Point(12, 12)
             Me.btnIngreso.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
             Me.btnIngreso.Name = "btnIngreso"
-            Me.btnIngreso.Size = New System.Drawing.Size(174, 30)
+            Me.btnIngreso.Size = New System.Drawing.Size(174, 33)
             Me.btnIngreso.TabIndex = 0
             Me.btnIngreso.Text = "➕  Nuevo Ingreso"
             Me.btnIngreso.UseVisualStyleBackColor = False
@@ -66,7 +67,7 @@ Namespace ProyectoPlanillaUMG1
             Me.btnPlanilla.Location = New System.Drawing.Point(192, 11)
             Me.btnPlanilla.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
             Me.btnPlanilla.Name = "btnPlanilla"
-            Me.btnPlanilla.Size = New System.Drawing.Size(138, 30)
+            Me.btnPlanilla.Size = New System.Drawing.Size(138, 34)
             Me.btnPlanilla.TabIndex = 1
             Me.btnPlanilla.Text = "📋  Ver Planilla"
             Me.btnPlanilla.UseVisualStyleBackColor = False
@@ -81,7 +82,7 @@ Namespace ProyectoPlanillaUMG1
             Me.btnCheque.Location = New System.Drawing.Point(465, 11)
             Me.btnCheque.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
             Me.btnCheque.Name = "btnCheque"
-            Me.btnCheque.Size = New System.Drawing.Size(173, 30)
+            Me.btnCheque.Size = New System.Drawing.Size(173, 34)
             Me.btnCheque.TabIndex = 3
             Me.btnCheque.Text = "🖨  Generar Cheque"
             Me.btnCheque.UseVisualStyleBackColor = False
@@ -96,7 +97,7 @@ Namespace ProyectoPlanillaUMG1
             Me.btnSalir.Location = New System.Drawing.Point(644, 11)
             Me.btnSalir.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
             Me.btnSalir.Name = "btnSalir"
-            Me.btnSalir.Size = New System.Drawing.Size(117, 30)
+            Me.btnSalir.Size = New System.Drawing.Size(117, 34)
             Me.btnSalir.TabIndex = 5
             Me.btnSalir.Text = "✖  Salir"
             Me.btnSalir.UseVisualStyleBackColor = False
@@ -128,29 +129,29 @@ Namespace ProyectoPlanillaUMG1
             '
             Me.dgvPlanilla.AllowUserToAddRows = False
             Me.dgvPlanilla.AllowUserToDeleteRows = False
-            DataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(CType(CType(55, Byte), Integer), CType(CType(55, Byte), Integer), CType(CType(55, Byte), Integer))
-            DataGridViewCellStyle4.ForeColor = System.Drawing.Color.WhiteSmoke
-            Me.dgvPlanilla.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle4
+            DataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(CType(CType(55, Byte), Integer), CType(CType(55, Byte), Integer), CType(CType(55, Byte), Integer))
+            DataGridViewCellStyle7.ForeColor = System.Drawing.Color.WhiteSmoke
+            Me.dgvPlanilla.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle7
             Me.dgvPlanilla.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
             Me.dgvPlanilla.BackgroundColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer))
             Me.dgvPlanilla.BorderStyle = System.Windows.Forms.BorderStyle.None
-            DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-            DataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer))
-            DataGridViewCellStyle5.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
-            DataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(156, Byte), Integer), CType(CType(18, Byte), Integer))
-            DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight
-            DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-            DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-            Me.dgvPlanilla.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle5
+            DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+            DataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer))
+            DataGridViewCellStyle8.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
+            DataGridViewCellStyle8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(156, Byte), Integer), CType(CType(18, Byte), Integer))
+            DataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight
+            DataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+            DataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+            Me.dgvPlanilla.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle8
             Me.dgvPlanilla.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-            DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-            DataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(45, Byte), Integer))
-            DataGridViewCellStyle6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            DataGridViewCellStyle6.ForeColor = System.Drawing.Color.WhiteSmoke
-            DataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(52, Byte), Integer), CType(CType(152, Byte), Integer), CType(CType(219, Byte), Integer))
-            DataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White
-            DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-            Me.dgvPlanilla.DefaultCellStyle = DataGridViewCellStyle6
+            DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+            DataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(45, Byte), Integer))
+            DataGridViewCellStyle9.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+            DataGridViewCellStyle9.ForeColor = System.Drawing.Color.WhiteSmoke
+            DataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(52, Byte), Integer), CType(CType(152, Byte), Integer), CType(CType(219, Byte), Integer))
+            DataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.White
+            DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+            Me.dgvPlanilla.DefaultCellStyle = DataGridViewCellStyle9
             Me.dgvPlanilla.EnableHeadersVisualStyles = False
             Me.dgvPlanilla.GridColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(60, Byte), Integer), CType(CType(60, Byte), Integer))
             Me.dgvPlanilla.Location = New System.Drawing.Point(11, 50)

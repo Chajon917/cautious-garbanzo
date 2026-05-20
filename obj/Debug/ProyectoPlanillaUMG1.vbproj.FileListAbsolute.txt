@@ -17,6 +17,7 @@ C:\Users\Usuario\Downloads\tarea\PlanillaUMG_VB\PlanillaUMG_VB\obj\Debug\Proyect
 C:\Users\Usuario\Downloads\tarea\PlanillaUMG_VB\PlanillaUMG_VB\obj\Debug\ProyectoPlanillaUMG1.ProyectoPlanillaUMG1.Form1.resources
 C:\Users\Usuario\Downloads\tarea\PlanillaUMG_VB\PlanillaUMG_VB\obj\Debug\ProyectoPlanillaUMG1.ProyectoPlanillaUMG1.FormIngreso.resources
 C:\Users\Usuario\Downloads\tarea\PlanillaUMG_VB\PlanillaUMG_VB\obj\Debug\ProyectoPlanillaUMG1.ProyectoPlanillaUMG1.FormCheque.resources
+C:\Users\Usuario\Downloads\tarea\PlanillaUMG_VB\PlanillaUMG_VB\obj\Debug\ProyectoPlanillaUMG1.FormLogin.resources
 C:\Users\Usuario\Downloads\tarea\PlanillaUMG_VB\PlanillaUMG_VB\obj\Debug\ProyectoPlanillaUMG1.ProyectoPlanillaUMG1.FormPlanilla.resources
 C:\Users\Usuario\Downloads\tarea\PlanillaUMG_VB\PlanillaUMG_VB\obj\Debug\ProyectoPlanillaUMG1.Resources.resources
 C:\Users\Usuario\Downloads\tarea\PlanillaUMG_VB\PlanillaUMG_VB\obj\Debug\ProyectoPlanillaUMG1.vbproj.GenerateResource.cache
@@ -25,4 +26,3 @@ C:\Users\Usuario\Downloads\tarea\PlanillaUMG_VB\PlanillaUMG_VB\obj\Debug\Proyect
 C:\Users\Usuario\Downloads\tarea\PlanillaUMG_VB\PlanillaUMG_VB\obj\Debug\ProyectoPlanillaUMG1.exe
 C:\Users\Usuario\Downloads\tarea\PlanillaUMG_VB\PlanillaUMG_VB\obj\Debug\ProyectoPlanillaUMG1.xml
 C:\Users\Usuario\Downloads\tarea\PlanillaUMG_VB\PlanillaUMG_VB\obj\Debug\ProyectoPlanillaUMG1.pdb
-C:\Users\Usuario\Downloads\tarea\PlanillaUMG_VB\PlanillaUMG_VB\obj\Debug\ProyectoPlanillaUMG1.FormLogin.resources
