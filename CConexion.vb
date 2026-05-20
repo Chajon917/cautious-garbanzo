@@ -23,11 +23,14 @@ Namespace ProyectoPlanillaUMG1
                     "No se encontró la cadena de conexión 'PlanillaDB' en App.config.")
             End If
 
-            Dim builder As New MySqlConnectionStringBuilder(cs.ConnectionString)
-            builder.ConnectionTimeout = 10
-            ' MEJORA: tiempo máximo de espera para sentencias largas (evita UI congelada).
-            builder.DefaultCommandTimeout = 30
+            ' Creamos el builder y asignamos los tiempos de espera en un solo bloque
+            Dim builder As New MySqlConnectionStringBuilder(cs.ConnectionString) With {
+                .ConnectionTimeout = 10,
+                .DefaultCommandTimeout = 30 ' MEJORA: evita UI congelada en sentencias largas
+            }
+
             _cadena = builder.ConnectionString
+
         End Sub
 
         ''' <summary>

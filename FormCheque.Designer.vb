@@ -19,7 +19,7 @@ Namespace ProyectoPlanillaUMG1
             Me.txtIdBusqueda = New System.Windows.Forms.TextBox()
             Me.btnGenerar = New System.Windows.Forms.Button()
             Me.btnImprimir = New System.Windows.Forms.Button()
-            Me.button1 = New System.Windows.Forms.Button()
+            Me.btnCerrar = New System.Windows.Forms.Button()
             Me.panelCheque = New System.Windows.Forms.Panel()
             Me.pnlHeader = New System.Windows.Forms.Panel()
             Me.lblBancoNombre = New System.Windows.Forms.Label()
@@ -105,20 +105,20 @@ Namespace ProyectoPlanillaUMG1
             Me.btnImprimir.Text = "Imprimir"
             Me.btnImprimir.UseVisualStyleBackColor = False
             '
-            'button1
+            'btnCerrar
             '
-            Me.button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(57, Byte), Integer), CType(CType(43, Byte), Integer))
-            Me.button1.FlatAppearance.BorderSize = 0
-            Me.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-            Me.button1.Font = New System.Drawing.Font("Segoe UI", 9.5!, System.Drawing.FontStyle.Bold)
-            Me.button1.ForeColor = System.Drawing.Color.White
-            Me.button1.Location = New System.Drawing.Point(12, 416)
-            Me.button1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-            Me.button1.Name = "button1"
-            Me.button1.Size = New System.Drawing.Size(171, 32)
-            Me.button1.TabIndex = 3
-            Me.button1.Text = "Cerrar"
-            Me.button1.UseVisualStyleBackColor = False
+            Me.btnCerrar.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(57, Byte), Integer), CType(CType(43, Byte), Integer))
+            Me.btnCerrar.FlatAppearance.BorderSize = 0
+            Me.btnCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+            Me.btnCerrar.Font = New System.Drawing.Font("Segoe UI", 9.5!, System.Drawing.FontStyle.Bold)
+            Me.btnCerrar.ForeColor = System.Drawing.Color.White
+            Me.btnCerrar.Location = New System.Drawing.Point(12, 416)
+            Me.btnCerrar.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+            Me.btnCerrar.Name = "btnCerrar"
+            Me.btnCerrar.Size = New System.Drawing.Size(171, 32)
+            Me.btnCerrar.TabIndex = 3
+            Me.btnCerrar.Text = "Cerrar"
+            Me.btnCerrar.UseVisualStyleBackColor = False
             '
             'panelCheque
             '
@@ -470,9 +470,6 @@ Namespace ProyectoPlanillaUMG1
             Me.lblAutorizado.TabIndex = 24
             Me.lblAutorizado.Text = "PAGADO"
             '
-            'printDocument1
-            '
-            '
             'pnlSide
             '
             Me.pnlSide.BackColor = System.Drawing.Color.FromArgb(CType(CType(37, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
@@ -482,7 +479,7 @@ Namespace ProyectoPlanillaUMG1
             Me.pnlSide.Controls.Add(Me.txtIdBusqueda)
             Me.pnlSide.Controls.Add(Me.btnGenerar)
             Me.pnlSide.Controls.Add(Me.btnImprimir)
-            Me.pnlSide.Controls.Add(Me.button1)
+            Me.pnlSide.Controls.Add(Me.btnCerrar)
             Me.pnlSide.Location = New System.Drawing.Point(0, 0)
             Me.pnlSide.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
             Me.pnlSide.Name = "pnlSide"
@@ -552,7 +549,7 @@ Namespace ProyectoPlanillaUMG1
         Private WithEvents txtIdBusqueda As System.Windows.Forms.TextBox
         Private WithEvents btnGenerar As System.Windows.Forms.Button
         Private WithEvents btnImprimir As System.Windows.Forms.Button
-        Private WithEvents button1 As System.Windows.Forms.Button
+        Private WithEvents btnCerrar As System.Windows.Forms.Button
         Private WithEvents panelCheque As System.Windows.Forms.Panel
         Private pnlHeader As System.Windows.Forms.Panel
         Private pnlMonto As System.Windows.Forms.Panel

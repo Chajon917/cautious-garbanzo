@@ -105,12 +105,6 @@ ProyectoPlanillaUMG1
  el contenido de este método con el editor de código.
  </summary>
 </member>
-<member name="M:ProyectoPlanillaUMG1.ProyectoPlanillaUMG1.FormCheque.Enletras(System.Double)">
- <summary>
- Convierte un monto monetario en su representación en letras (español).
- MEJORA: maneja correctamente el caso especial "CIEN" vs "CIENTO".
- </summary>
-</member>
 <member name="M:ProyectoPlanillaUMG1.ProyectoPlanillaUMG1.FormPlanilla.ObtenerCelda(System.Windows.Forms.DataGridViewRow,System.String,System.String)">
  <summary>
  Lee el valor de una celda como String de forma segura.
