@@ -17,11 +17,11 @@ Namespace ProyectoPlanillaUMG1
             Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
             Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
             Me.dgvTrabajadores = New System.Windows.Forms.DataGridView()
-            Me.btnEditar = New System.Windows.Forms.Button()
-            Me.btnEliminar = New System.Windows.Forms.Button()
             Me.panelToolbar = New System.Windows.Forms.Panel()
             Me.button1 = New System.Windows.Forms.Button()
             Me.lblTitulo = New System.Windows.Forms.Label()
+            Me.btnEditar = New System.Windows.Forms.Button()
+            Me.btnEliminar = New System.Windows.Forms.Button()
             CType(Me.dgvTrabajadores, System.ComponentModel.ISupportInitialize).BeginInit()
             Me.panelToolbar.SuspendLayout()
             Me.SuspendLayout()
@@ -56,6 +56,47 @@ Namespace ProyectoPlanillaUMG1
             Me.dgvTrabajadores.Size = New System.Drawing.Size(853, 384)
             Me.dgvTrabajadores.TabIndex = 0
             '
+            'panelToolbar
+            '
+            Me.panelToolbar.BackColor = System.Drawing.Color.FromArgb(CType(CType(37, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
+            Me.panelToolbar.BackgroundImage = Global.ProyectoPlanillaUMG1.My.Resources.Resources._1200x630_pautas_trabajadores_planilla
+            Me.panelToolbar.Controls.Add(Me.button1)
+            Me.panelToolbar.Controls.Add(Me.lblTitulo)
+            Me.panelToolbar.Controls.Add(Me.btnEditar)
+            Me.panelToolbar.Controls.Add(Me.btnEliminar)
+            Me.panelToolbar.Dock = System.Windows.Forms.DockStyle.Top
+            Me.panelToolbar.Location = New System.Drawing.Point(0, 0)
+            Me.panelToolbar.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+            Me.panelToolbar.Name = "panelToolbar"
+            Me.panelToolbar.Size = New System.Drawing.Size(874, 46)
+            Me.panelToolbar.TabIndex = 1
+            '
+            'button1
+            '
+            Me.button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
+            Me.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+            Me.button1.Font = New System.Drawing.Font("Segoe UI", 9.5!, System.Drawing.FontStyle.Bold)
+            Me.button1.ForeColor = System.Drawing.Color.White
+            Me.button1.Location = New System.Drawing.Point(496, 11)
+            Me.button1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+            Me.button1.Name = "button1"
+            Me.button1.Size = New System.Drawing.Size(119, 35)
+            Me.button1.TabIndex = 3
+            Me.button1.Text = "+ Agregar"
+            Me.button1.UseVisualStyleBackColor = False
+            '
+            'lblTitulo
+            '
+            Me.lblTitulo.AutoSize = True
+            Me.lblTitulo.BackColor = System.Drawing.Color.DarkGray
+            Me.lblTitulo.Font = New System.Drawing.Font("Segoe UI", 13.0!, System.Drawing.FontStyle.Bold)
+            Me.lblTitulo.ForeColor = System.Drawing.Color.Gainsboro
+            Me.lblTitulo.Location = New System.Drawing.Point(12, 13)
+            Me.lblTitulo.Name = "lblTitulo"
+            Me.lblTitulo.Size = New System.Drawing.Size(260, 30)
+            Me.lblTitulo.TabIndex = 0
+            Me.lblTitulo.Text = "Planilla de Trabajadores"
+            '
             'btnEditar
             '
             Me.btnEditar.BackColor = System.Drawing.Color.FromArgb(CType(CType(41, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(185, Byte), Integer))
@@ -85,45 +126,6 @@ Namespace ProyectoPlanillaUMG1
             Me.btnEliminar.TabIndex = 2
             Me.btnEliminar.Text = "🗑  Eliminar"
             Me.btnEliminar.UseVisualStyleBackColor = False
-            '
-            'panelToolbar
-            '
-            Me.panelToolbar.BackColor = System.Drawing.Color.FromArgb(CType(CType(37, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(38, Byte), Integer))
-            Me.panelToolbar.Controls.Add(Me.button1)
-            Me.panelToolbar.Controls.Add(Me.lblTitulo)
-            Me.panelToolbar.Controls.Add(Me.btnEditar)
-            Me.panelToolbar.Controls.Add(Me.btnEliminar)
-            Me.panelToolbar.Dock = System.Windows.Forms.DockStyle.Top
-            Me.panelToolbar.Location = New System.Drawing.Point(0, 0)
-            Me.panelToolbar.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-            Me.panelToolbar.Name = "panelToolbar"
-            Me.panelToolbar.Size = New System.Drawing.Size(874, 58)
-            Me.panelToolbar.TabIndex = 1
-            '
-            'button1
-            '
-            Me.button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
-            Me.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-            Me.button1.Font = New System.Drawing.Font("Segoe UI", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-            Me.button1.Location = New System.Drawing.Point(496, 11)
-            Me.button1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-            Me.button1.Name = "button1"
-            Me.button1.Size = New System.Drawing.Size(119, 35)
-            Me.button1.TabIndex = 3
-            Me.button1.Text = "+ Agregar"
-            Me.button1.UseVisualStyleBackColor = False
-            '
-            'lblTitulo
-            '
-            Me.lblTitulo.AutoSize = True
-            Me.lblTitulo.Font = New System.Drawing.Font("Segoe UI", 13.0!, System.Drawing.FontStyle.Bold)
-            Me.lblTitulo.ForeColor = System.Drawing.Color.Gainsboro
-            Me.lblTitulo.Location = New System.Drawing.Point(12, 13)
-            Me.lblTitulo.Name = "lblTitulo"
-            Me.lblTitulo.Size = New System.Drawing.Size(260, 30)
-            Me.lblTitulo.TabIndex = 0
-            Me.lblTitulo.Text = "Planilla de Trabajadores"
             '
             'FormPlanilla
             '

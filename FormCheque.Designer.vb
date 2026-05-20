@@ -53,9 +53,9 @@ Namespace ProyectoPlanillaUMG1
             Me.lblAutorizado = New System.Windows.Forms.Label()
             Me.printDocument1 = New System.Drawing.Printing.PrintDocument()
             Me.pnlSide = New System.Windows.Forms.Panel()
+            Me.Button2 = New System.Windows.Forms.Button()
             Me.lblSideTitle = New System.Windows.Forms.Label()
             Me.lblIdLbl = New System.Windows.Forms.Label()
-            Me.Button2 = New System.Windows.Forms.Button()
             Me.panelCheque.SuspendLayout()
             Me.pnlHeader.SuspendLayout()
             Me.pnlMonto.SuspendLayout()
@@ -489,6 +489,19 @@ Namespace ProyectoPlanillaUMG1
             Me.pnlSide.Size = New System.Drawing.Size(196, 464)
             Me.pnlSide.TabIndex = 6
             '
+            'Button2
+            '
+            Me.Button2.BackColor = System.Drawing.Color.Yellow
+            Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+            Me.Button2.Font = New System.Drawing.Font("Segoe UI", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+            Me.Button2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
+            Me.Button2.Location = New System.Drawing.Point(12, 262)
+            Me.Button2.Name = "Button2"
+            Me.Button2.Size = New System.Drawing.Size(171, 39)
+            Me.Button2.TabIndex = 7
+            Me.Button2.Text = "Imprimir planila"
+            Me.Button2.UseVisualStyleBackColor = False
+            '
             'lblSideTitle
             '
             Me.lblSideTitle.Font = New System.Drawing.Font("Segoe UI", 13.0!, System.Drawing.FontStyle.Bold)
@@ -510,24 +523,12 @@ Namespace ProyectoPlanillaUMG1
             Me.lblIdLbl.TabIndex = 1
             Me.lblIdLbl.Text = "ID Trabajador:"
             '
-            'Button2
-            '
-            Me.Button2.BackColor = System.Drawing.Color.Yellow
-            Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-            Me.Button2.Font = New System.Drawing.Font("Segoe UI", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.Button2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
-            Me.Button2.Location = New System.Drawing.Point(12, 262)
-            Me.Button2.Name = "Button2"
-            Me.Button2.Size = New System.Drawing.Size(171, 39)
-            Me.Button2.TabIndex = 7
-            Me.Button2.Text = "Imprimir planila"
-            Me.Button2.UseVisualStyleBackColor = False
-            '
             'FormCheque
             '
             Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
             Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer))
+            Me.BackgroundImage = Global.ProyectoPlanillaUMG1.My.Resources.Resources.saving_stack_coins_money_with_charts_and_graphs_finance_account_statistics_analytic_research_data_economy_stock_exchange_trading_and_business_concept_free_photo
             Me.ClientSize = New System.Drawing.Size(970, 471)
             Me.Controls.Add(Me.pnlSide)
             Me.Controls.Add(Me.panelCheque)

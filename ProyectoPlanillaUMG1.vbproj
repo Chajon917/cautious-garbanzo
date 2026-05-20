@@ -165,5 +165,14 @@
   <ItemGroup>
     <None Include="Resources\Conoce-Bantrab.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\La-interesante-razon-por-la-que-Bantrab-cambio-su-imagen-en-Guatemala-885x500.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\saving-stack-coins-money-with-charts-and-graphs-finance-account-statistics-analytic-research-data-economy-stock-exchange-trading-and-business-concept-free-photo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1200x630-pautas-trabajadores-planilla.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

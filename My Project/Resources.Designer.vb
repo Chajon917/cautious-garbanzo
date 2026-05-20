@@ -63,9 +63,40 @@ Namespace My.Resources
         '''<summary>
         '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property _1200x630_pautas_trabajadores_planilla() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("1200x630-pautas-trabajadores-planilla", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property Conoce_Bantrab() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("Conoce-Bantrab", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property La_interesante_razon_por_la_que_Bantrab_cambio_su_imagen_en_Guatemala_885x500() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("La-interesante-razon-por-la-que-Bantrab-cambio-su-imagen-en-Guatemala-885x500", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property saving_stack_coins_money_with_charts_and_graphs_finance_account_statistics_analytic_research_data_economy_stock_exchange_trading_and_business_concept_free_photo() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("saving-stack-coins-money-with-charts-and-graphs-finance-account-statistics-analyt"& _ 
+                        "ic-research-data-economy-stock-exchange-trading-and-business-concept-free-photo", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property

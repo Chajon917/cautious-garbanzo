@@ -22,6 +22,16 @@ ProyectoPlanillaUMG1
   búsquedas de recursos mediante esta clase de recurso fuertemente tipado.
 </summary>
 </member>
+<member name="P:ProyectoPlanillaUMG1.My.Resources.Resources.Conoce_Bantrab">
+<summary>
+  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:ProyectoPlanillaUMG1.My.Resources.Resources.La_interesante_razon_por_la_que_Bantrab_cambio_su_imagen_en_Guatemala_885x500">
+<summary>
+  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+</summary>
+</member>
 <member name="P:ProyectoPlanillaUMG1.My.Resources.Resources.seedprod_login_page_example">
 <summary>
   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
