@@ -4,14 +4,14 @@ Imports MySql.Data.MySqlClient
 
 Namespace ProyectoPlanillaUMG1
 
-    Public Partial Class FormIngreso
+    Partial Public Class FormIngreso
         Inherits Form
 
         Public Sub New()
             InitializeComponent()
         End Sub
 
-        Private Sub btnGuardar_Click(sender As Object, e As EventArgs) Handles btnGuardar.Click
+        Private Sub BtnGuardar_Click(sender As Object, e As EventArgs) Handles btnGuardar.Click
             ' Validar campos vacíos.
             If String.IsNullOrWhiteSpace(txtId.Text) OrElse
                String.IsNullOrWhiteSpace(txtNombre.Text) OrElse
@@ -104,7 +104,7 @@ Namespace ProyectoPlanillaUMG1
             End Try
         End Sub
 
-        Private Sub button1_Click(sender As Object, e As EventArgs) Handles button1.Click
+        Private Sub Button1_Click(sender As Object, e As EventArgs) Handles button1.Click
             ' CORRECCIÓN: cerrar solo este formulario, no toda la aplicación.
             Me.Close()
         End Sub
@@ -112,16 +112,16 @@ Namespace ProyectoPlanillaUMG1
         Private Sub FormIngreso_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         End Sub
 
-        Private Sub label3_Click(sender As Object, e As EventArgs) Handles label3.Click
+        Private Sub Label3_Click(sender As Object, e As EventArgs) Handles label3.Click
         End Sub
 
-        Private Sub txtCargo_TextChanged(sender As Object, e As EventArgs) Handles txtCargo.TextChanged
+        Private Sub TxtCargo_TextChanged(sender As Object, e As EventArgs) Handles txtCargo.TextChanged
         End Sub
 
-        Private Sub txtSueldo_TextChanged(sender As Object, e As EventArgs) Handles txtSueldo.TextChanged
+        Private Sub TxtSueldo_TextChanged(sender As Object, e As EventArgs) Handles txtSueldo.TextChanged
         End Sub
 
-        Private Sub txtNombre_TextChanged(sender As Object, e As EventArgs) Handles txtNombre.TextChanged
+        Private Sub TxtNombre_TextChanged(sender As Object, e As EventArgs) Handles txtNombre.TextChanged
         End Sub
 
     End Class

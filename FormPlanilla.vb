@@ -5,7 +5,7 @@ Imports MySql.Data.MySqlClient
 
 Namespace ProyectoPlanillaUMG1
 
-    Public Partial Class FormPlanilla
+    Partial Public Class FormPlanilla
         Inherits Form
 
         Public Sub New()
@@ -13,7 +13,6 @@ Namespace ProyectoPlanillaUMG1
             CargarDatos()
         End Sub
 
-        ' ── Carga la planilla en el grid ───────────────────────────────────────
         Public Sub CargarDatos()
             Try
                 Dim objetoConexion As New CConexion()
@@ -50,8 +49,7 @@ Namespace ProyectoPlanillaUMG1
             End Try
         End Sub
 
-        ' ── Botón Editar ───────────────────────────────────────────────────────
-        Private Sub btnEditar_Click(sender As Object, e As EventArgs) Handles btnEditar.Click
+        Private Sub BtnEditar_Click(sender As Object, e As EventArgs) Handles btnEditar.Click
             If dgvTrabajadores.CurrentRow Is Nothing Then
                 MessageBox.Show(
                     "Seleccione un trabajador para editar.",
@@ -60,14 +58,13 @@ Namespace ProyectoPlanillaUMG1
             End If
 
             Dim fila As DataGridViewRow = dgvTrabajadores.CurrentRow
-
-            ' CORRECCIÓN: manejo seguro de posibles nulos en las celdas.
             If fila.Cells("ID").Value Is Nothing Then Return
 
             Dim id As Integer = Convert.ToInt32(fila.Cells("ID").Value)
             Dim nombre As String = If(fila.Cells("Nombre").Value IsNot Nothing, fila.Cells("Nombre").Value.ToString(), "")
             Dim cargo As String = If(fila.Cells("Cargo").Value IsNot Nothing, fila.Cells("Cargo").Value.ToString(), "")
-            Dim sueldo As Double = Convert.ToDouble(fila.Cells("Sueldo Base").Value)
+            Dim sueldo As Double = Convert.ToDouble(fila.Cells("Sueldo Base").Value,
+                                                    Globalization.CultureInfo.InvariantCulture)
 
             Using dlg As New FormEditar(id, nombre, cargo, sueldo)
                 If dlg.ShowDialog() = DialogResult.OK Then
@@ -76,8 +73,7 @@ Namespace ProyectoPlanillaUMG1
             End Using
         End Sub
 
-        ' ── Botón Eliminar ─────────────────────────────────────────────────────
-        Private Sub btnEliminar_Click(sender As Object, e As EventArgs) Handles btnEliminar.Click
+        Private Sub BtnEliminar_Click(sender As Object, e As EventArgs) Handles btnEliminar.Click
             If dgvTrabajadores.CurrentRow Is Nothing Then
                 MessageBox.Show(
                     "Seleccione un trabajador para eliminar.",
@@ -126,27 +122,25 @@ Namespace ProyectoPlanillaUMG1
             End Try
         End Sub
 
-        Private Sub dgvTrabajadores_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvTrabajadores.CellContentClick
+        Private Sub DgvTrabajadores_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvTrabajadores.CellContentClick
         End Sub
 
-        Private Sub button1_Click(sender As Object, e As EventArgs) Handles button1.Click
+        Private Sub Button1_Click(sender As Object, e As EventArgs) Handles button1.Click
             Using ventana As New FormIngreso()
                 ventana.ShowDialog()
             End Using
+            CargarDatos()
         End Sub
 
     End Class
 
-    ' ══════════════════════════════════════════════════════════════════════════
-    ' Formulario de edición (inline, sin archivo .Designer adicional)
-    ' ══════════════════════════════════════════════════════════════════════════
     Public Class FormEditar
         Inherits Form
 
         Private ReadOnly _id As Integer
-        Private txtNombre As System.Windows.Forms.TextBox
-        Private txtCargo As System.Windows.Forms.TextBox
-        Private txtSueldo As System.Windows.Forms.TextBox
+        Private ReadOnly txtNombre As System.Windows.Forms.TextBox
+        Private ReadOnly txtCargo As System.Windows.Forms.TextBox
+        Private ReadOnly txtSueldo As System.Windows.Forms.TextBox
 
         Public Sub New(id As Integer, nombre As String, cargo As String, sueldo As Double)
             _id = id
@@ -158,7 +152,6 @@ Namespace ProyectoPlanillaUMG1
             MaximizeBox = False
             MinimizeBox = False
 
-            ' Etiquetas
             Controls.Add(New System.Windows.Forms.Label With {
                 .Text = "Nombre:",
                 .ForeColor = System.Drawing.Color.Gainsboro,
@@ -246,7 +239,6 @@ Namespace ProyectoPlanillaUMG1
                 Return
             End If
 
-            ' CORRECCIÓN: InvariantCulture para el sueldo (mismo criterio que FormIngreso).
             Dim sueldo As Double
             If Not Double.TryParse(
                     txtSueldo.Text.Trim(),

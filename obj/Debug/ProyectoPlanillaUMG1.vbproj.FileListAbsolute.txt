@@ -25,3 +25,4 @@ C:\Users\Usuario\Downloads\tarea\PlanillaUMG_VB\PlanillaUMG_VB\obj\Debug\Proyect
 C:\Users\Usuario\Downloads\tarea\PlanillaUMG_VB\PlanillaUMG_VB\obj\Debug\ProyectoPlanillaUMG1.exe
 C:\Users\Usuario\Downloads\tarea\PlanillaUMG_VB\PlanillaUMG_VB\obj\Debug\ProyectoPlanillaUMG1.xml
 C:\Users\Usuario\Downloads\tarea\PlanillaUMG_VB\PlanillaUMG_VB\obj\Debug\ProyectoPlanillaUMG1.pdb
+C:\Users\Usuario\Downloads\tarea\PlanillaUMG_VB\PlanillaUMG_VB\obj\Debug\ProyectoPlanillaUMG1.FormLogin.resources

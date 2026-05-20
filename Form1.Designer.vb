@@ -14,9 +14,9 @@ Namespace ProyectoPlanillaUMG1
         #Region "Windows Form Designer generated code"
 
         Private Sub InitializeComponent()
-            Dim dataGridViewCellStyle1 As New System.Windows.Forms.DataGridViewCellStyle()
-            Dim dataGridViewCellStyle2 As New System.Windows.Forms.DataGridViewCellStyle()
-            Dim dataGridViewCellStyle3 As New System.Windows.Forms.DataGridViewCellStyle()
+            Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+            Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+            Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
             Me.btnIngreso = New System.Windows.Forms.Button()
             Me.btnPlanilla = New System.Windows.Forms.Button()
             Me.btnCheque = New System.Windows.Forms.Button()
@@ -32,7 +32,6 @@ Namespace ProyectoPlanillaUMG1
             Me.lblBrutaVal = New System.Windows.Forms.Label()
             Me.lblLiquida = New System.Windows.Forms.Label()
             Me.lblLiquidaVal = New System.Windows.Forms.Label()
-            ' Controles placeholder para eventos vacíos
             Me.button1 = New System.Windows.Forms.Button()
             Me.button2 = New System.Windows.Forms.Button()
             Me.button4 = New System.Windows.Forms.Button()
@@ -42,125 +41,129 @@ Namespace ProyectoPlanillaUMG1
             Me.panelResumen.SuspendLayout()
             Me.SuspendLayout()
             '
-            ' btnIngreso
+            'btnIngreso
             '
-            Me.btnIngreso.BackColor = System.Drawing.Color.FromArgb(52, 152, 219)
+            Me.btnIngreso.BackColor = System.Drawing.Color.FromArgb(CType(CType(52, Byte), Integer), CType(CType(152, Byte), Integer), CType(CType(219, Byte), Integer))
             Me.btnIngreso.FlatAppearance.BorderSize = 0
             Me.btnIngreso.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-            Me.btnIngreso.Font = New System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold)
+            Me.btnIngreso.Font = New System.Drawing.Font("Segoe UI", 9.5!, System.Drawing.FontStyle.Bold)
             Me.btnIngreso.ForeColor = System.Drawing.Color.White
-            Me.btnIngreso.Location = New System.Drawing.Point(26, 13)
+            Me.btnIngreso.Location = New System.Drawing.Point(12, 12)
+            Me.btnIngreso.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
             Me.btnIngreso.Name = "btnIngreso"
-            Me.btnIngreso.Size = New System.Drawing.Size(140, 38)
+            Me.btnIngreso.Size = New System.Drawing.Size(174, 30)
             Me.btnIngreso.TabIndex = 0
             Me.btnIngreso.Text = "➕  Nuevo Ingreso"
             Me.btnIngreso.UseVisualStyleBackColor = False
             '
-            ' btnPlanilla
+            'btnPlanilla
             '
-            Me.btnPlanilla.BackColor = System.Drawing.Color.FromArgb(39, 174, 96)
+            Me.btnPlanilla.BackColor = System.Drawing.Color.FromArgb(CType(CType(39, Byte), Integer), CType(CType(174, Byte), Integer), CType(CType(96, Byte), Integer))
             Me.btnPlanilla.FlatAppearance.BorderSize = 0
             Me.btnPlanilla.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-            Me.btnPlanilla.Font = New System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold)
+            Me.btnPlanilla.Font = New System.Drawing.Font("Segoe UI", 9.5!, System.Drawing.FontStyle.Bold)
             Me.btnPlanilla.ForeColor = System.Drawing.Color.White
-            Me.btnPlanilla.Location = New System.Drawing.Point(172, 12)
+            Me.btnPlanilla.Location = New System.Drawing.Point(192, 11)
+            Me.btnPlanilla.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
             Me.btnPlanilla.Name = "btnPlanilla"
-            Me.btnPlanilla.Size = New System.Drawing.Size(140, 38)
+            Me.btnPlanilla.Size = New System.Drawing.Size(138, 30)
             Me.btnPlanilla.TabIndex = 1
             Me.btnPlanilla.Text = "📋  Ver Planilla"
             Me.btnPlanilla.UseVisualStyleBackColor = False
             '
-            ' btnCheque
+            'btnCheque
             '
-            Me.btnCheque.BackColor = System.Drawing.Color.FromArgb(243, 156, 18)
+            Me.btnCheque.BackColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(156, Byte), Integer), CType(CType(18, Byte), Integer))
             Me.btnCheque.FlatAppearance.BorderSize = 0
             Me.btnCheque.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-            Me.btnCheque.Font = New System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold)
+            Me.btnCheque.Font = New System.Drawing.Font("Segoe UI", 9.5!, System.Drawing.FontStyle.Bold)
             Me.btnCheque.ForeColor = System.Drawing.Color.White
-            Me.btnCheque.Location = New System.Drawing.Point(456, 12)
+            Me.btnCheque.Location = New System.Drawing.Point(465, 11)
+            Me.btnCheque.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
             Me.btnCheque.Name = "btnCheque"
-            Me.btnCheque.Size = New System.Drawing.Size(140, 38)
+            Me.btnCheque.Size = New System.Drawing.Size(173, 30)
             Me.btnCheque.TabIndex = 3
             Me.btnCheque.Text = "🖨  Generar Cheque"
             Me.btnCheque.UseVisualStyleBackColor = False
             '
-            ' btnSalir
+            'btnSalir
             '
-            Me.btnSalir.BackColor = System.Drawing.Color.FromArgb(192, 57, 43)
+            Me.btnSalir.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(57, Byte), Integer), CType(CType(43, Byte), Integer))
             Me.btnSalir.FlatAppearance.BorderSize = 0
             Me.btnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-            Me.btnSalir.Font = New System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold)
+            Me.btnSalir.Font = New System.Drawing.Font("Segoe UI", 9.5!, System.Drawing.FontStyle.Bold)
             Me.btnSalir.ForeColor = System.Drawing.Color.White
-            Me.btnSalir.Location = New System.Drawing.Point(615, 12)
+            Me.btnSalir.Location = New System.Drawing.Point(644, 11)
+            Me.btnSalir.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
             Me.btnSalir.Name = "btnSalir"
-            Me.btnSalir.Size = New System.Drawing.Size(132, 38)
+            Me.btnSalir.Size = New System.Drawing.Size(117, 30)
             Me.btnSalir.TabIndex = 5
             Me.btnSalir.Text = "✖  Salir"
             Me.btnSalir.UseVisualStyleBackColor = False
             '
-            ' labelId
+            'labelId
             '
             Me.labelId.AutoSize = True
-            Me.labelId.Font = New System.Drawing.Font("Segoe UI", 9.0F, System.Drawing.FontStyle.Bold)
+            Me.labelId.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
             Me.labelId.ForeColor = System.Drawing.Color.White
-            Me.labelId.Location = New System.Drawing.Point(308, 20)
+            Me.labelId.Location = New System.Drawing.Point(336, 15)
             Me.labelId.Name = "labelId"
-            Me.labelId.Size = New System.Drawing.Size(36, 25)
+            Me.labelId.Size = New System.Drawing.Size(29, 20)
             Me.labelId.TabIndex = 10
             Me.labelId.Text = "ID:"
             '
-            ' txtIdBusqueda
+            'txtIdBusqueda
             '
-            Me.txtIdBusqueda.BackColor = System.Drawing.Color.FromArgb(50, 50, 50)
+            Me.txtIdBusqueda.BackColor = System.Drawing.Color.FromArgb(CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer))
             Me.txtIdBusqueda.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-            Me.txtIdBusqueda.Font = New System.Drawing.Font("Segoe UI", 9.5F)
+            Me.txtIdBusqueda.Font = New System.Drawing.Font("Segoe UI", 9.5!)
             Me.txtIdBusqueda.ForeColor = System.Drawing.Color.White
-            Me.txtIdBusqueda.Location = New System.Drawing.Point(350, 18)
+            Me.txtIdBusqueda.Location = New System.Drawing.Point(370, 12)
+            Me.txtIdBusqueda.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
             Me.txtIdBusqueda.Name = "txtIdBusqueda"
-            Me.txtIdBusqueda.Size = New System.Drawing.Size(100, 33)
+            Me.txtIdBusqueda.Size = New System.Drawing.Size(89, 29)
             Me.txtIdBusqueda.TabIndex = 2
             '
-            ' dgvPlanilla
+            'dgvPlanilla
             '
             Me.dgvPlanilla.AllowUserToAddRows = False
             Me.dgvPlanilla.AllowUserToDeleteRows = False
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(55, 55, 55)
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.WhiteSmoke
-            Me.dgvPlanilla.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1
+            DataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(CType(CType(55, Byte), Integer), CType(CType(55, Byte), Integer), CType(CType(55, Byte), Integer))
+            DataGridViewCellStyle4.ForeColor = System.Drawing.Color.WhiteSmoke
+            Me.dgvPlanilla.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle4
             Me.dgvPlanilla.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
-            Me.dgvPlanilla.BackgroundColor = System.Drawing.Color.FromArgb(40, 40, 40)
+            Me.dgvPlanilla.BackgroundColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer))
             Me.dgvPlanilla.BorderStyle = System.Windows.Forms.BorderStyle.None
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(30, 30, 30)
-            dataGridViewCellStyle2.Font = New System.Drawing.Font("Segoe UI", 9.0F, System.Drawing.FontStyle.Bold)
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(243, 156, 18)
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True
-            Me.dgvPlanilla.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2
+            DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+            DataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer))
+            DataGridViewCellStyle5.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
+            DataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(156, Byte), Integer), CType(CType(18, Byte), Integer))
+            DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight
+            DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+            DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+            Me.dgvPlanilla.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle5
             Me.dgvPlanilla.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(45, 45, 45)
-            dataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CByte(0))
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.WhiteSmoke
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(52, 152, 219)
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False
-            Me.dgvPlanilla.DefaultCellStyle = dataGridViewCellStyle3
+            DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+            DataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(45, Byte), Integer))
+            DataGridViewCellStyle6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+            DataGridViewCellStyle6.ForeColor = System.Drawing.Color.WhiteSmoke
+            DataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(52, Byte), Integer), CType(CType(152, Byte), Integer), CType(CType(219, Byte), Integer))
+            DataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White
+            DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+            Me.dgvPlanilla.DefaultCellStyle = DataGridViewCellStyle6
             Me.dgvPlanilla.EnableHeadersVisualStyles = False
-            Me.dgvPlanilla.GridColor = System.Drawing.Color.FromArgb(60, 60, 60)
-            Me.dgvPlanilla.Location = New System.Drawing.Point(12, 62)
-            Me.dgvPlanilla.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+            Me.dgvPlanilla.GridColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(60, Byte), Integer), CType(CType(60, Byte), Integer))
+            Me.dgvPlanilla.Location = New System.Drawing.Point(11, 50)
             Me.dgvPlanilla.Name = "dgvPlanilla"
             Me.dgvPlanilla.ReadOnly = True
             Me.dgvPlanilla.RowHeadersWidth = 62
             Me.dgvPlanilla.RowTemplate.Height = 26
-            Me.dgvPlanilla.Size = New System.Drawing.Size(844, 420)
+            Me.dgvPlanilla.Size = New System.Drawing.Size(750, 336)
             Me.dgvPlanilla.TabIndex = 6
             '
-            ' panelResumen
+            'panelResumen
             '
-            Me.panelResumen.BackColor = System.Drawing.Color.FromArgb(30, 30, 30)
+            Me.panelResumen.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer))
             Me.panelResumen.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
             Me.panelResumen.Controls.Add(Me.lblTituloResumen)
             Me.panelResumen.Controls.Add(Me.lblNumEmp)
@@ -169,124 +172,138 @@ Namespace ProyectoPlanillaUMG1
             Me.panelResumen.Controls.Add(Me.lblBrutaVal)
             Me.panelResumen.Controls.Add(Me.lblLiquida)
             Me.panelResumen.Controls.Add(Me.lblLiquidaVal)
-            Me.panelResumen.Location = New System.Drawing.Point(868, 62)
+            Me.panelResumen.Location = New System.Drawing.Point(772, 50)
+            Me.panelResumen.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
             Me.panelResumen.Name = "panelResumen"
-            Me.panelResumen.Padding = New System.Windows.Forms.Padding(10)
-            Me.panelResumen.Size = New System.Drawing.Size(295, 420)
+            Me.panelResumen.Padding = New System.Windows.Forms.Padding(9, 8, 9, 8)
+            Me.panelResumen.Size = New System.Drawing.Size(262, 336)
             Me.panelResumen.TabIndex = 7
             '
-            ' lblTituloResumen
+            'lblTituloResumen
             '
-            Me.lblTituloResumen.Font = New System.Drawing.Font("Segoe UI", 11.0F, System.Drawing.FontStyle.Bold)
-            Me.lblTituloResumen.ForeColor = System.Drawing.Color.FromArgb(243, 156, 18)
-            Me.lblTituloResumen.Location = New System.Drawing.Point(10, 14)
+            Me.lblTituloResumen.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Bold)
+            Me.lblTituloResumen.ForeColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(156, Byte), Integer), CType(CType(18, Byte), Integer))
+            Me.lblTituloResumen.Location = New System.Drawing.Point(8, 8)
             Me.lblTituloResumen.Name = "lblTituloResumen"
-            Me.lblTituloResumen.Size = New System.Drawing.Size(196, 30)
+            Me.lblTituloResumen.Size = New System.Drawing.Size(243, 24)
             Me.lblTituloResumen.TabIndex = 0
             Me.lblTituloResumen.Text = "📊 Resumen de Planilla"
             Me.lblTituloResumen.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
             '
-            ' lblNumEmp
+            'lblNumEmp
             '
-            Me.lblNumEmp.Font = New System.Drawing.Font("Segoe UI", 9.0F, System.Drawing.FontStyle.Bold)
+            Me.lblNumEmp.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
             Me.lblNumEmp.ForeColor = System.Drawing.Color.Silver
-            Me.lblNumEmp.Location = New System.Drawing.Point(10, 70)
+            Me.lblNumEmp.Location = New System.Drawing.Point(9, 56)
             Me.lblNumEmp.Name = "lblNumEmp"
-            Me.lblNumEmp.Size = New System.Drawing.Size(196, 20)
+            Me.lblNumEmp.Size = New System.Drawing.Size(174, 16)
             Me.lblNumEmp.TabIndex = 1
             Me.lblNumEmp.Text = "No. de Empleados"
             '
-            ' lblNumEmpVal
+            'lblNumEmpVal
             '
-            Me.lblNumEmpVal.Font = New System.Drawing.Font("Segoe UI", 18.0F, System.Drawing.FontStyle.Bold)
+            Me.lblNumEmpVal.Font = New System.Drawing.Font("Segoe UI", 18.0!, System.Drawing.FontStyle.Bold)
             Me.lblNumEmpVal.ForeColor = System.Drawing.Color.White
-            Me.lblNumEmpVal.Location = New System.Drawing.Point(-7, 90)
+            Me.lblNumEmpVal.Location = New System.Drawing.Point(6, 72)
             Me.lblNumEmpVal.Name = "lblNumEmpVal"
-            Me.lblNumEmpVal.Size = New System.Drawing.Size(196, 40)
+            Me.lblNumEmpVal.Size = New System.Drawing.Size(89, 32)
             Me.lblNumEmpVal.TabIndex = 2
             Me.lblNumEmpVal.Text = "0"
             Me.lblNumEmpVal.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
             '
-            ' lblBruta
+            'lblBruta
             '
-            Me.lblBruta.Font = New System.Drawing.Font("Segoe UI", 9.0F, System.Drawing.FontStyle.Bold)
+            Me.lblBruta.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
             Me.lblBruta.ForeColor = System.Drawing.Color.Silver
-            Me.lblBruta.Location = New System.Drawing.Point(10, 155)
+            Me.lblBruta.Location = New System.Drawing.Point(9, 124)
             Me.lblBruta.Name = "lblBruta"
-            Me.lblBruta.Size = New System.Drawing.Size(266, 27)
+            Me.lblBruta.Size = New System.Drawing.Size(236, 22)
             Me.lblBruta.TabIndex = 3
             Me.lblBruta.Text = "Planilla Bruta (Total Sueldos)"
             '
-            ' lblBrutaVal
+            'lblBrutaVal
             '
-            Me.lblBrutaVal.Font = New System.Drawing.Font("Segoe UI", 14.0F, System.Drawing.FontStyle.Bold)
-            Me.lblBrutaVal.ForeColor = System.Drawing.Color.FromArgb(52, 152, 219)
-            Me.lblBrutaVal.Location = New System.Drawing.Point(-7, 175)
+            Me.lblBrutaVal.Font = New System.Drawing.Font("Segoe UI", 14.0!, System.Drawing.FontStyle.Bold)
+            Me.lblBrutaVal.ForeColor = System.Drawing.Color.FromArgb(CType(CType(52, Byte), Integer), CType(CType(152, Byte), Integer), CType(CType(219, Byte), Integer))
+            Me.lblBrutaVal.Location = New System.Drawing.Point(13, 146)
             Me.lblBrutaVal.Name = "lblBrutaVal"
-            Me.lblBrutaVal.Size = New System.Drawing.Size(196, 36)
+            Me.lblBrutaVal.Size = New System.Drawing.Size(232, 29)
             Me.lblBrutaVal.TabIndex = 4
             Me.lblBrutaVal.Text = "Q. 0.00"
             Me.lblBrutaVal.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
             '
-            ' lblLiquida
+            'lblLiquida
             '
-            Me.lblLiquida.Font = New System.Drawing.Font("Segoe UI", 9.0F, System.Drawing.FontStyle.Bold)
+            Me.lblLiquida.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
             Me.lblLiquida.ForeColor = System.Drawing.Color.Silver
-            Me.lblLiquida.Location = New System.Drawing.Point(10, 240)
+            Me.lblLiquida.Location = New System.Drawing.Point(9, 192)
             Me.lblLiquida.Name = "lblLiquida"
-            Me.lblLiquida.Size = New System.Drawing.Size(274, 30)
+            Me.lblLiquida.Size = New System.Drawing.Size(244, 24)
             Me.lblLiquida.TabIndex = 5
             Me.lblLiquida.Text = "Planilla Líquida (Total a Pagar)"
             '
-            ' lblLiquidaVal
+            'lblLiquidaVal
             '
-            Me.lblLiquidaVal.Font = New System.Drawing.Font("Segoe UI", 14.0F, System.Drawing.FontStyle.Bold)
-            Me.lblLiquidaVal.ForeColor = System.Drawing.Color.FromArgb(39, 174, 96)
-            Me.lblLiquidaVal.Location = New System.Drawing.Point(-6, 260)
+            Me.lblLiquidaVal.Font = New System.Drawing.Font("Segoe UI", 14.0!, System.Drawing.FontStyle.Bold)
+            Me.lblLiquidaVal.ForeColor = System.Drawing.Color.FromArgb(CType(CType(39, Byte), Integer), CType(CType(174, Byte), Integer), CType(CType(96, Byte), Integer))
+            Me.lblLiquidaVal.Location = New System.Drawing.Point(13, 216)
             Me.lblLiquidaVal.Name = "lblLiquidaVal"
-            Me.lblLiquidaVal.Size = New System.Drawing.Size(196, 36)
+            Me.lblLiquidaVal.Size = New System.Drawing.Size(232, 29)
             Me.lblLiquidaVal.TabIndex = 6
             Me.lblLiquidaVal.Text = "Q. 0.00"
             Me.lblLiquidaVal.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
             '
-            ' Botones placeholder (invisible, solo para manejar eventos heredados)
+            'button1
             '
-            Me.button1.Location = New System.Drawing.Point(-100, -100)
+            Me.button1.Location = New System.Drawing.Point(-89, -80)
+            Me.button1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
             Me.button1.Name = "button1"
             Me.button1.Size = New System.Drawing.Size(1, 1)
             Me.button1.TabIndex = 20
             Me.button1.Visible = False
-
-            Me.button2.Location = New System.Drawing.Point(-100, -100)
+            '
+            'button2
+            '
+            Me.button2.Location = New System.Drawing.Point(-89, -80)
+            Me.button2.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
             Me.button2.Name = "button2"
             Me.button2.Size = New System.Drawing.Size(1, 1)
             Me.button2.TabIndex = 21
             Me.button2.Visible = False
-
-            Me.button4.Location = New System.Drawing.Point(-100, -100)
+            '
+            'button4
+            '
+            Me.button4.Location = New System.Drawing.Point(-89, -80)
+            Me.button4.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
             Me.button4.Name = "button4"
             Me.button4.Size = New System.Drawing.Size(1, 1)
             Me.button4.TabIndex = 22
             Me.button4.Visible = False
-
-            Me.btnVisualizar.Location = New System.Drawing.Point(-100, -100)
+            '
+            'btnVisualizar
+            '
+            Me.btnVisualizar.Location = New System.Drawing.Point(-89, -80)
+            Me.btnVisualizar.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
             Me.btnVisualizar.Name = "btnVisualizar"
             Me.btnVisualizar.Size = New System.Drawing.Size(1, 1)
             Me.btnVisualizar.TabIndex = 23
             Me.btnVisualizar.Visible = False
-
-            Me.panel1.Location = New System.Drawing.Point(-100, -100)
+            '
+            'panel1
+            '
+            Me.panel1.Location = New System.Drawing.Point(-89, -80)
+            Me.panel1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
             Me.panel1.Name = "panel1"
             Me.panel1.Size = New System.Drawing.Size(1, 1)
             Me.panel1.TabIndex = 24
             Me.panel1.Visible = False
             '
-            ' Form1
+            'Form1
             '
-            Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0F, 20.0F)
+            Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-            Me.BackColor = System.Drawing.Color.FromArgb(35, 35, 35)
-            Me.ClientSize = New System.Drawing.Size(1165, 494)
+            Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
+            Me.ClientSize = New System.Drawing.Size(1036, 395)
             Me.Controls.Add(Me.btnIngreso)
             Me.Controls.Add(Me.btnPlanilla)
             Me.Controls.Add(Me.labelId)
@@ -300,17 +317,17 @@ Namespace ProyectoPlanillaUMG1
             Me.Controls.Add(Me.button4)
             Me.Controls.Add(Me.btnVisualizar)
             Me.Controls.Add(Me.panel1)
-            Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-            Me.MinimumSize = New System.Drawing.Size(1116, 533)
+            Me.MinimumSize = New System.Drawing.Size(994, 436)
             Me.Name = "Form1"
             Me.Text = "Sistema de Planilla UMG"
             CType(Me.dgvPlanilla, System.ComponentModel.ISupportInitialize).EndInit()
             Me.panelResumen.ResumeLayout(False)
             Me.ResumeLayout(False)
             Me.PerformLayout()
+
         End Sub
 
-        #End Region
+#End Region
 
         Private WithEvents btnIngreso As System.Windows.Forms.Button
         Private WithEvents btnPlanilla As System.Windows.Forms.Button

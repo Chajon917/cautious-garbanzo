@@ -39,7 +39,7 @@ Namespace ProyectoPlanillaUMG1
 
         Private Function NumeroALetras(valor As Long) As String
             If valor = 0 Then Return "CERO"
-            If valor < 0 Then Return "MENOS " & NumeroALetras(Math.Abs(valor))
+            If valor < 0 Then Return "MENOS " & NumeroALetras(CLng(Math.Abs(CDec(valor))))
 
             Dim unidades() As String = {
                 "", "UN", "DOS", "TRES", "CUATRO", "CINCO", "SEIS", "SIETE",
@@ -75,7 +75,7 @@ Namespace ProyectoPlanillaUMG1
         End Function
 
         ' ── Generar cheque ─────────────────────────────────────────────────────
-        Private Sub btnGenerar_Click(sender As Object, e As EventArgs) Handles btnGenerar.Click
+        Private Sub BtnGenerar_Click(sender As Object, e As EventArgs) Handles btnGenerar.Click
             Dim idTexto As String = txtIdBusqueda.Text.Trim()
 
             If String.IsNullOrWhiteSpace(idTexto) Then
@@ -140,7 +140,7 @@ Namespace ProyectoPlanillaUMG1
         End Sub
 
         ' ── Imprimir ───────────────────────────────────────────────────────────
-        Private Sub btnImprimir_Click(sender As Object, e As EventArgs) Handles btnImprimir.Click
+        Private Sub BtnImprimir_Click(sender As Object, e As EventArgs) Handles btnImprimir.Click
             If String.IsNullOrEmpty(_nombreEmpleado) Then
                 MessageBox.Show("Genere el comprobante antes de imprimir.",
                     "Sin datos", MessageBoxButtons.OK, MessageBoxIcon.Warning)
@@ -149,15 +149,16 @@ Namespace ProyectoPlanillaUMG1
 
             printDocument1.DefaultPageSettings.Landscape = False
 
-            Dim dlg As New PrintDialog()
-            dlg.Document = printDocument1
+            Dim dlg As New PrintDialog() With {
+                .Document = printDocument1
+            }
             If dlg.ShowDialog() = DialogResult.OK Then
                 printDocument1.Print()
             End If
         End Sub
 
         ' ── Evento PrintPage (dibuja directo, sin capturar panel) ──────────────
-        Private Sub printDocument1_PrintPage(sender As Object, e As PrintPageEventArgs) Handles printDocument1.PrintPage
+        Private Sub PrintDocument1_PrintPage(sender As Object, e As PrintPageEventArgs) Handles printDocument1.PrintPage
             Dim g As Graphics = e.Graphics
             g.SmoothingMode = Drawing2D.SmoothingMode.AntiAlias
 
@@ -174,8 +175,8 @@ Namespace ProyectoPlanillaUMG1
             Dim fontCheque As New Font("Arial", 9, FontStyle.Regular)
             Dim fontChequeBold As New Font("Arial", 9, FontStyle.Bold)
             Dim fontBanco As New Font("Arial", 11, FontStyle.Bold)
-            Dim negro As Brush = Brushes.Black
-            Dim rojo As Brush = Brushes.Red
+            Dim negro As Brush = New SolidBrush(Color.Black)
+            Dim rojo As Brush = New SolidBrush(Color.Red)
 
             ' ── Encabezado ────────────────────────────────────────────────
             g.DrawString("COMPROBANTE DE PAGO", fontTitulo, negro, x, y)
@@ -230,8 +231,9 @@ Namespace ProyectoPlanillaUMG1
             y += lineH + 20
 
             ' ── LÍNEA DE CORTE ────────────────────────────────────────────
-            Dim penCorte As New Pen(Color.Gray, 1.0F)
-            penCorte.DashStyle = Drawing2D.DashStyle.Dash
+            Dim penCorte As New Pen(Color.Gray, 1.0F) With {
+                 .DashStyle = Drawing2D.DashStyle.Dash
+            }
             g.DrawLine(penCorte, x, y, x + w, y)
 
             Dim textoCorte As String = "✂  CORTE AQUÍ"
@@ -315,40 +317,50 @@ Namespace ProyectoPlanillaUMG1
             fontBanco.Dispose()
             penCorte.Dispose()
             fontMICR.Dispose()
+            negro.Dispose()
+            rojo.Dispose()
 
             e.HasMorePages = False
         End Sub
 
         ' ── Eventos vacíos ─────────────────────────────────────────────────────
-        Private Sub button1_Click(sender As Object, e As EventArgs) Handles button1.Click
+        Private Sub Button1_Click(sender As Object, e As EventArgs) Handles button1.Click
             Me.Close()
         End Sub
 
-        Private Sub lblMontoLetras_Click(sender As Object, e As EventArgs) Handles lblMontoLetras.Click
+        Private Sub LblMontoLetras_Click(sender As Object, e As EventArgs) Handles lblMontoLetras.Click
         End Sub
 
         Private Sub FormCheque_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         End Sub
 
-        Private Sub lblAutorizado_Click(sender As Object, e As EventArgs) Handles lblAutorizado.Click
+        Private Sub LblAutorizado_Click(sender As Object, e As EventArgs) Handles lblAutorizado.Click
         End Sub
 
-        Private Sub panelCheque_Paint(sender As Object, e As PaintEventArgs) Handles panelCheque.Paint
+        Private Sub PanelCheque_Paint(sender As Object, e As PaintEventArgs) Handles panelCheque.Paint
         End Sub
 
-        Private Sub lblOtros_Click(sender As Object, e As EventArgs) Handles lblOtros.Click
+        Private Sub LblOtros_Click(sender As Object, e As EventArgs) Handles lblOtros.Click
         End Sub
 
-        Private Sub lblMontoNumero_Click(sender As Object, e As EventArgs) Handles lblMontoNumero.Click
+        Private Sub LblMontoNumero_Click(sender As Object, e As EventArgs) Handles lblMontoNumero.Click
         End Sub
 
-        Private Sub label1_Click(sender As Object, e As EventArgs)
+        Private Sub Label1_Click(sender As Object, e As EventArgs)
         End Sub
 
         Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-            ' Imprimir todos
+            ' Confirmar una sola vez antes del ciclo
+            Dim dlg As New PrintDialog() With {
+               .Document = printDocument1
+            }
+
+            If dlg.ShowDialog() <> DialogResult.OK Then Return
+
             Try
-                Const query As String = "SELECT nombres, cargo, sueldo, igss, bono, otros, liquido FROM trabajadores;"
+                Const query As String =
+                    "SELECT nombres, cargo, sueldo, igss, bono, otros, liquido " &
+                    "FROM trabajadores ORDER BY nombres;"
 
                 Dim obj As New CConexion()
                 Using conn As MySqlConnection = obj.ObtenerConexion()
@@ -357,7 +369,6 @@ Namespace ProyectoPlanillaUMG1
                     Using cmd As New MySqlCommand(query, conn)
                         Using dr As MySqlDataReader = cmd.ExecuteReader()
                             While dr.Read()
-
                                 Dim culturaGT As New System.Globalization.CultureInfo("es-GT")
 
                                 _nombreEmpleado = dr("nombres").ToString()
@@ -374,7 +385,8 @@ Namespace ProyectoPlanillaUMG1
                                 lblMontoNumero.Text = "Q " & _montoLiquido.ToString("N2")
                                 lblMontoLetras.Text = Enletras(_montoLiquido)
 
-                                btnImprimir.PerformClick()
+                                ' Imprimir directamente sin abrir otro diálogo
+                                printDocument1.Print()
                             End While
                         End Using
                     End Using
