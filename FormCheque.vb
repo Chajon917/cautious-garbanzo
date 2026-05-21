@@ -52,10 +52,6 @@ Namespace ProyectoPlanillaUMG1
             End If
         End Sub
 
-        ' ══════════════════════════════════════════════════════════════════
-        ' Conversión numérica a texto
-        ' ══════════════════════════════════════════════════════════════════
-
         Public Function Enletras(total As Double) As String
             If total < 0 Then Return "Monto invalido"
             Dim entero As Long = CLng(Math.Floor(total))
@@ -104,10 +100,6 @@ Namespace ProyectoPlanillaUMG1
             End If
             Return ""
         End Function
-
-        ' ══════════════════════════════════════════════════════════════════
-        ' Generar cheque desde BD
-        ' ══════════════════════════════════════════════════════════════════
 
         Private Sub BtnGenerar_Click(sender As Object, e As EventArgs) Handles btnGenerar.Click
             Dim idTexto As String = txtIdBusqueda.Text.Trim()
@@ -176,17 +168,9 @@ Namespace ProyectoPlanillaUMG1
             End Try
         End Sub
 
-        ' ══════════════════════════════════════════════════════════════════
-        ' Cerrar formulario
-        ' ══════════════════════════════════════════════════════════════════
-
         Private Sub BtnCerrar_Click(sender As Object, e As EventArgs) Handles btnCerrar.Click
             Me.Close()
         End Sub
-
-        ' ══════════════════════════════════════════════════════════════════
-        ' PNG del comprobante — solo para correo y carpeta (sin cheque)
-        ' ══════════════════════════════════════════════════════════════════
 
         Private Function GenerarImagenComprobante(
                 id As Integer, nombre As String, cargo As String,
@@ -257,10 +241,6 @@ Namespace ProyectoPlanillaUMG1
             Return nombreArchivo
         End Function
 
-        ' ══════════════════════════════════════════════════════════════════
-        ' Enviar correo con comprobante PNG adjunto
-        ' ══════════════════════════════════════════════════════════════════
-
         Private Sub EnviarCorreoComprobante(
                 correo As String, nombre As String,
                 liquido As Double, rutaArchivo As String)
@@ -317,10 +297,6 @@ Namespace ProyectoPlanillaUMG1
             End If
         End Sub
 
-        ' ══════════════════════════════════════════════════════════════════
-        ' Botón Imprimir
-        ' ══════════════════════════════════════════════════════════════════
-
         Private Sub BtnImprimir_Click(sender As Object, e As EventArgs) Handles btnImprimir.Click
             If Not _chequeGenerado Then
                 MessageBox.Show("Primero debe generar un cheque valido.",
@@ -328,23 +304,40 @@ Namespace ProyectoPlanillaUMG1
                 Return
             End If
 
-            Try
-                Dim pd As New PrintDocument()
-                ' Hoja Letter apaisada: 1100 × 850 centésimas de pulgada
-                pd.DefaultPageSettings.Landscape = True
-                pd.DefaultPageSettings.PaperSize = New PaperSize("Letter", 1100, 850)
-                pd.DefaultPageSettings.Margins = New Margins(30, 30, 30, 30)
-                AddHandler pd.PrintPage, AddressOf Documento_PrintPage
+            Dim pd As New PrintDocument()
+            pd.DefaultPageSettings.Landscape = True
+            pd.DefaultPageSettings.PaperSize = New PaperSize("Letter", 1100, 850)
+            pd.DefaultPageSettings.Margins = New Margins(30, 30, 30, 30)
+            AddHandler pd.PrintPage, AddressOf Documento_PrintPage
 
+            Try
                 Using pdi As New PrintPreviewDialog()
                     pdi.Document = pd
                     pdi.WindowState = FormWindowState.Maximized
                     pdi.Text = "Vista previa — Comprobante + Cheque BANTRAB"
                     pdi.ShowDialog()
                 End Using
+
+                Dim respuesta As DialogResult = MessageBox.Show(
+                    "¿Desea enviar el documento a la impresora ahora?",
+                    "Confirmar impresion", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+
+                If respuesta = DialogResult.Yes Then
+                    Using dlg As New PrintDialog()
+                        dlg.Document = pd
+                        dlg.AllowSomePages = False
+                        dlg.AllowSelection = False
+                        If dlg.ShowDialog() = DialogResult.OK Then
+                            pd.Print()
+                        End If
+                    End Using
+                End If
+
             Catch ex As Exception
                 MessageBox.Show("Error al imprimir: " & ex.Message,
                     "Error de impresion", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Finally
+                pd.Dispose()
             End Try
 
             Try
@@ -363,13 +356,6 @@ Namespace ProyectoPlanillaUMG1
             End Try
         End Sub
 
-        ' ══════════════════════════════════════════════════════════════════
-        ' PrintPage
-        '   Zona 1 — Comprobante de planilla  (48 % superior)
-        '   Zona 2 — Línea de corte con marca de agua
-        '   Zona 3 — Cheque BANTRAB con borde y espaciado generoso
-        ' ══════════════════════════════════════════════════════════════════
-
         Private Sub Documento_PrintPage(sender As Object, e As PrintPageEventArgs)
             Try
                 Dim g As Graphics = e.Graphics
@@ -378,6 +364,7 @@ Namespace ProyectoPlanillaUMG1
                 Dim W As Single = e.MarginBounds.Width
                 Dim R As Single = e.MarginBounds.Right
                 Dim BT As Single = e.MarginBounds.Bottom
+                Dim alturaTotal As Single = BT - T
 
                 ' ── Fuentes ────────────────────────────────────────────────
                 Dim fTitulo As New Font("Arial", 11, FontStyle.Bold)
@@ -393,24 +380,44 @@ Namespace ProyectoPlanillaUMG1
                 Dim negro As Brush = Brushes.Black
                 Dim rojo As Brush = Brushes.DarkRed
                 Dim gris As Brush = Brushes.Gray
-                Dim azulF As Brush = New SolidBrush(Color.FromArgb(0, 51, 102))   ' azul oscuro para cabecera cheque
 
                 Dim sfL As New StringFormat() : sfL.Alignment = StringAlignment.Near
                 Dim sfR As New StringFormat() : sfR.Alignment = StringAlignment.Far
                 Dim sfC As New StringFormat() : sfC.Alignment = StringAlignment.Center
 
-                ' ── Alturas de zonas ───────────────────────────────────────
-                ' lh = interlineado comprobante; lhQ = interlineado cheque
                 Dim lh As Single = 16
-                Dim lhQ As Single = 20   ' ← mayor para dar aire en el cheque
-
-                Dim alturaTotal As Single = BT - T
-                Dim mitad As Single = alturaTotal * 0.47F
+                Dim lhQ As Single = 20
 
                 ' ════════════════════════════════════════════════════════════
-                ' ZONA 1 — COMPROBANTE
+                ' La línea de corte va exactamente en la MITAD de la página
                 ' ════════════════════════════════════════════════════════════
-                Dim yC As Single = T
+                Dim yCorte As Single = T + alturaTotal / 2
+
+                ' ════════════════════════════════════════════════════════════
+                ' ZONA 1 — COMPROBANTE (mitad superior, centrado verticalmente)
+                ' ════════════════════════════════════════════════════════════
+
+                ' Calcular cuánto ocupa el comprobante para centrarlo en la mitad superior
+                Dim altComprobante As Single =
+                    (lh + 10) +     ' título
+                    (lh + 4) +      ' fecha / no cheque
+                    6 +             ' línea
+                    (lh + 3) +      ' empleado / cuenta
+                    (lh + 6) +      ' cargo
+                    6 +             ' línea
+                    (lh + 2) +      ' encabezados tabla
+                    (lh + 2) * 2 +  ' 2 filas de conceptos
+                    4 + 6 +         ' línea totales
+                    (lh + 4) +      ' total liquido
+                    (lh * 2 + 8) +  ' en letras
+                    lh + 6          ' firmas
+
+                Dim espacioSuperior As Single = yCorte - T
+                Dim margenVertical As Single = Math.Max(0, (espacioSuperior - altComprobante) / 2)
+                Dim yC As Single = T + margenVertical
+
+                Dim colA As Single = L
+                Dim colB As Single = L + W * 0.5F
 
                 g.DrawString("BANTRAB  —  COMPROBANTE DE PLANILLA",
                     fTitulo, negro, New RectangleF(L, yC, W, lh + 4), sfC)
@@ -424,9 +431,6 @@ Namespace ProyectoPlanillaUMG1
 
                 g.DrawLine(Pens.Gray, L, yC, R, yC) : yC += 6
 
-                Dim colA As Single = L
-                Dim colB As Single = L + W * 0.5F
-
                 g.DrawString("Empleado:", fNegrita, negro, colA, yC)
                 g.DrawString(_nombreEmpleado.ToUpper(), fNormal, negro, colA + 68, yC)
                 g.DrawString("No. Cuenta:", fNegrita, negro, colB, yC)
@@ -439,7 +443,6 @@ Namespace ProyectoPlanillaUMG1
 
                 g.DrawLine(Pens.Gray, L, yC, R, yC) : yC += 6
 
-                ' Encabezados de tabla
                 g.DrawString("CONCEPTO", fNegrita, negro, colA, yC)
                 g.DrawString("MONTO", fNegrita, negro, colA + 200, yC)
                 g.DrawString("CONCEPTO", fNegrita, negro, colB, yC)
@@ -475,7 +478,6 @@ Namespace ProyectoPlanillaUMG1
                     fNormal, negro, New RectangleF(L, yC, W, lh * 2))
                 yC += lh * 2 + 8
 
-                ' Líneas de firma del comprobante
                 Dim xF1S As Single = L + 20
                 Dim xF1E As Single = L + W * 0.35F
                 Dim xF2S As Single = L + W * 0.65F
@@ -489,10 +491,8 @@ Namespace ProyectoPlanillaUMG1
                     New RectangleF(xF2S, yC, xF2E - xF2S, lh), sfC)
 
                 ' ════════════════════════════════════════════════════════════
-                ' ZONA 2 — LÍNEA DE CORTE
+                ' ZONA 2 — LÍNEA DE CORTE exactamente en la mitad de la página
                 ' ════════════════════════════════════════════════════════════
-                Dim yCorte As Single = T + mitad + 8
-
                 Dim dashPen As New Pen(Color.Gray, 0.5F)
                 dashPen.DashStyle = Drawing2D.DashStyle.Dash
                 g.DrawLine(dashPen, L, yCorte, R, yCorte)
@@ -509,53 +509,79 @@ Namespace ProyectoPlanillaUMG1
                     xTC, yCorte - szCorte.Height / 2)
 
                 ' ════════════════════════════════════════════════════════════
-                ' ZONA 3 — CHEQUE CON BORDE DOBLE Y ESPACIADO GENEROSO
+                ' ZONA 3 — CHEQUE (mitad inferior, desde la línea de corte)
                 ' ════════════════════════════════════════════════════════════
+                Dim pad As Single = lhQ * 0.35F
+                Dim yQ As Single = yCorte + 10
+                Dim iL As Single = L + 12
+                Dim iR As Single = R - 12
+                Dim iW As Single = iR - iL
 
-                ' ── Área del cheque ────────────────────────────────────────
-                Dim yQ As Single = yCorte + 12
-                Dim hQ As Single = BT - yQ - 2   ' altura disponible
+                ' Calcular altura dinámica según el texto en letras
+                Dim letrasTexto As String = Enletras(_montoLiquido)
+                Dim fCampoMedir As New Font("Arial", 9, FontStyle.Regular)
+                Dim anchoLetras As Single = iW - 120
+                Dim szLetras As SizeF = g.MeasureString(letrasTexto, fCampoMedir, CInt(anchoLetras))
+                Dim altLetras As Single = Math.Max(szLetras.Height, lhQ)
+                fCampoMedir.Dispose()
 
-                ' Borde externo del cheque (rectángulo grueso azul oscuro)
+                Dim altFranja As Single = lhQ * 2.6F
+                Dim altFila1 As Single = lhQ + pad + 10
+                Dim altFila2 As Single = lhQ + pad + 10
+                Dim altFila3 As Single = altLetras + lhQ + pad + 14
+                Dim altBloqueFinal As Single = lhQ * 2 + pad + 20 + 14
+                Dim altBordePad As Single = 18
+                Dim hQ As Single = altFranja + altFila1 + altFila2 + altFila3 + altBloqueFinal + altBordePad
+
+                ' Borde externo del cheque
                 Dim bordeExtPen As New Pen(Color.FromArgb(0, 51, 102), 2.5F)
                 g.DrawRectangle(bordeExtPen, L, yQ, W, hQ)
                 bordeExtPen.Dispose()
 
-                ' Borde interno decorativo (línea fina gris, 4 px hacia adentro)
+                ' Borde interno decorativo
                 Dim bordeIntPen As New Pen(Color.FromArgb(180, 180, 200), 0.8F)
                 g.DrawRectangle(bordeIntPen, L + 4, yQ + 4, W - 8, hQ - 8)
                 bordeIntPen.Dispose()
 
-                ' Franja de cabecera azul oscuro (fondo detrás del logo/nro cheque)
-                Dim altFranja As Single = lhQ * 2.6F
+                ' Franja cabecera azul oscuro
                 g.FillRectangle(New SolidBrush(Color.FromArgb(0, 51, 102)),
                     L + 1, yQ + 1, W - 2, altFranja)
 
-                ' Márgenes internos del cheque para que el texto no toque el borde
-                Dim iL As Single = L + 12   ' inner left
-                Dim iR As Single = R - 12   ' inner right
-                Dim iW As Single = iR - iL  ' inner width
-
-                ' ── Logo BANTRAB (texto blanco sobre franja azul) ──────────
-                Dim yQT As Single = yQ + 6   ' top interno
+                ' Logo BANTRAB en blanco
+                Dim yQT As Single = yQ + 6
                 g.DrawString("* BANTRAB", fLogo, Brushes.White, iL, yQT)
-
-                ' Número de cuenta y nombre en blanco pequeño debajo del logo
-                g.DrawString(_noCuenta,
-                    fNormal, Brushes.White, iL, yQT + lhQ)
+                g.DrawString(_noCuenta, fNormal, Brushes.White, iL, yQT + lhQ)
                 g.DrawString(_nombreEmpleado.ToUpper(),
                     New Font("Arial", 7, FontStyle.Regular), Brushes.White,
                     iL, yQT + lhQ + 11)
-
-                ' CHEQUE No. y número en blanco, alineados a la derecha
                 g.DrawString("CHEQUE No.", fNegrita, Brushes.White,
                     New RectangleF(iL, yQT, iW, lhQ), sfR)
                 g.DrawString(_idActual.ToString("D8"), fCheqNum, Brushes.White,
                     New RectangleF(iL, yQT + 12, iW, lhQ + 4), sfR)
 
-                ' ── Cuerpo del cheque (bajo la franja) ─────────────────────
-                ' Cada sección tiene un padding vertical de lhQ * 0.35 extra
-                Dim pad As Single = lhQ * 0.35F   ' espacio extra entre secciones
+                ' ── Marca de agua BANTRAB diagonal en el cuerpo del cheque ──
+                Dim cuerpoTop As Single = yQ + altFranja
+                Dim cuerpoH As Single = hQ - altFranja
+                Dim estadoG As Drawing2D.GraphicsState = g.Save()
+                g.SetClip(New RectangleF(L, cuerpoTop, W, cuerpoH))
+                Dim brushMarca As New SolidBrush(Color.FromArgb(18, 0, 51, 102))
+                Dim sfMarca As New StringFormat()
+                sfMarca.Alignment = StringAlignment.Center
+                sfMarca.LineAlignment = StringAlignment.Center
+                Dim centroCuerpoX As Single = L + W / 2
+                Dim centroCuerpoY As Single = cuerpoTop + cuerpoH / 2
+                g.TranslateTransform(centroCuerpoX, centroCuerpoY)
+                g.RotateTransform(-30)
+                Dim fMarcaGrande As New Font("Arial", 38, FontStyle.Bold)
+                g.DrawString("BANCO DE LOS TRABAJADORES" & Environment.NewLine & "GUATEMALA, C.A.",
+                    fMarcaGrande, brushMarca,
+                    New RectangleF(-320, -50, 640, 100), sfMarca)
+                fMarcaGrande.Dispose()
+                brushMarca.Dispose()
+                sfMarca.Dispose()
+                g.Restore(estadoG)
+
+                ' ── Cuerpo del cheque ──
 
                 ' Fila 1 — Lugar y fecha
                 Dim yQ1 As Single = yQ + altFranja + pad + 6
@@ -571,66 +597,55 @@ Namespace ProyectoPlanillaUMG1
                 Dim yQ2 As Single = yQ1 + lhQ + pad + 8
                 g.DrawString("PAGUESE A:", fNegrita, negro, iL, yQ2)
                 g.DrawString(_nombreEmpleado.ToUpper(), fMonto, negro, iL + 85, yQ2)
-                g.DrawString("Q.", fNegrita, negro,
-                    New RectangleF(iL, yQ2, iW - 68, lhQ), sfR)
-                g.DrawString(_montoLiquido.ToString("N2"), fMonto, negro,
+                Dim montoTexto As String = "Q " & _montoLiquido.ToString("N2") & "  QUETZALES"
+                g.DrawString(montoTexto, fMonto, negro,
                     New RectangleF(iL, yQ2, iW, lhQ), sfR)
-                ' Línea debajo del nombre del beneficiario
                 g.DrawLine(New Pen(Color.Black, 0.7F),
                     iL + 85, yQ2 + lhQ + 1, iR - 90, yQ2 + lhQ + 1)
 
-                ' Fila 3 — La cantidad de
+                ' Fila 3 — La cantidad de (altura dinámica)
                 Dim yQ3 As Single = yQ2 + lhQ + pad + 8
                 g.DrawString("LA CANTIDAD DE:", fNegrita, negro, iL, yQ3)
-                g.DrawString(Enletras(_montoLiquido), fCampo, negro,
-                    New RectangleF(iL + 120, yQ3, iW - 120, lhQ * 2))
+                Dim rectLetras As New RectangleF(iL + 120, yQ3, anchoLetras, altLetras + lhQ)
+                g.DrawString(letrasTexto, fCampo, negro, rectLetras)
 
-                ' Referencia GT95 en rojo
+                ' Referencia GT95
                 Dim refTexto As String =
                     "GT95 TRAJ 0101 0000 " &
                     _noCuenta.Replace("-", "").PadLeft(8, "0"c) & " " &
                     _idActual.ToString("D4") & " " &
                     DateTime.Now.Year.ToString()
-                g.DrawString(refTexto, fNegrita, rojo, iL, yQ3 + lhQ + 4)
+                Dim yRef As Single = yQ3 + altLetras + 4
+                g.DrawString(refTexto, fNegrita, rojo, iL, yRef)
                 g.DrawLine(New Pen(Color.Black, 0.7F),
-                    iL, yQ3 + lhQ * 2 + 6, iR, yQ3 + lhQ * 2 + 6)
+                    iL, yRef + lhQ + 4, iR, yRef + lhQ + 4)
 
-                ' Bloque inferior — Ref. banco + firma + monto final
-                Dim yQF As Single = yQ3 + lhQ * 2 + pad + 14
+                ' Bloque inferior — Ref. banco + firma
+                Dim yQF As Single = yRef + lhQ + pad + 14
                 g.DrawString("Ref.:", fNegrita, negro, iL, yQF)
                 g.DrawString("BANCO DE LOS TRABAJADORES, GUATEMALA, C.A.",
                     fNormal, negro, iL + 42, yQF)
 
-                ' Línea de firma alineada a la derecha
                 Dim xFirIni As Single = iR - 195
                 g.DrawLine(New Pen(Color.Black, 0.7F),
                     xFirIni, yQF + lhQ + 3, iR, yQF + lhQ + 3)
                 g.DrawString("Firma(s) Registrada(s)", fNormal, gris,
                     New RectangleF(xFirIni, yQF + lhQ + 5, iR - xFirIni, lhQ), sfC)
 
-                ' Monto final en letras y número abajo a la derecha
-                Dim yQM As Single = yQF + lhQ * 2 + pad + 4
-                g.DrawString("Q.", fNegrita, negro, iR - 135, yQM)
-                g.DrawString(_montoLiquido.ToString("N2"), fMonto, negro, iR - 110, yQM)
-                g.DrawString("QUETZALES.", fNormal, negro,
-                    New RectangleF(iL, yQM, iW, lhQ), sfR)
-
-                ' ── Línea MICR al fondo del cheque ─────────────────────────
+                ' Línea MICR al fondo del cheque
                 Dim yMicr As Single = yQ + hQ - 14
                 Dim micrTexto As String =
                     "||" & _idActual.ToString("D9") & "|| " &
                     _noCuenta.Replace("-", "").PadLeft(10, "0"c) & "|| " &
                     _idActual.ToString("D8") & "||"
-                ' Fondo blanco detrás del MICR para contraste
                 Dim szMicr As SizeF = g.MeasureString(micrTexto, fMicr)
                 g.FillRectangle(Brushes.White, iL - 1, yMicr - 1, szMicr.Width + 4, szMicr.Height + 2)
                 g.DrawString(micrTexto, fMicr, negro, iL, yMicr)
 
-                ' ── Liberar todos los recursos ─────────────────────────────
+                ' Liberar recursos
                 fTitulo.Dispose() : fNormal.Dispose() : fNegrita.Dispose()
                 fCampo.Dispose() : fMonto.Dispose() : fCheqNum.Dispose()
                 fLogo.Dispose() : fMicr.Dispose() : fCorte.Dispose()
-                azulF.Dispose()
                 sfL.Dispose() : sfR.Dispose() : sfC.Dispose()
 
                 e.HasMorePages = False
@@ -640,10 +655,6 @@ Namespace ProyectoPlanillaUMG1
                     "Error de impresion", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End Try
         End Sub
-
-        ' ══════════════════════════════════════════════════════════════════
-        ' Planilla completa — genera y envía PNG a todos los trabajadores
-        ' ══════════════════════════════════════════════════════════════════
 
         Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
             Try
