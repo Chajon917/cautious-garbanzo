@@ -25,6 +25,7 @@ Namespace ProyectoPlanillaUMG1
         ''' el contenido de este método con el editor de código.
         ''' </summary>
         Private Sub InitializeComponent()
+            Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormIngreso))
             Me.btnGuardar = New System.Windows.Forms.Button()
             Me.label1 = New System.Windows.Forms.Label()
             Me.label2 = New System.Windows.Forms.Label()
@@ -46,9 +47,10 @@ Namespace ProyectoPlanillaUMG1
             Me.btnGuardar.BackColor = System.Drawing.SystemColors.ActiveCaption
             Me.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.btnGuardar.ForeColor = System.Drawing.Color.Black
-            Me.btnGuardar.Location = New System.Drawing.Point(122, 362)
+            Me.btnGuardar.Location = New System.Drawing.Point(92, 294)
+            Me.btnGuardar.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
             Me.btnGuardar.Name = "btnGuardar"
-            Me.btnGuardar.Size = New System.Drawing.Size(201, 24)
+            Me.btnGuardar.Size = New System.Drawing.Size(155, 27)
             Me.btnGuardar.TabIndex = 3
             Me.btnGuardar.Text = "Guardar Datos"
             Me.btnGuardar.UseVisualStyleBackColor = False
@@ -58,9 +60,10 @@ Namespace ProyectoPlanillaUMG1
             Me.label1.AutoSize = True
             Me.label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
             Me.label1.ForeColor = System.Drawing.Color.Yellow
-            Me.label1.Location = New System.Drawing.Point(68, 60)
+            Me.label1.Location = New System.Drawing.Point(51, 49)
+            Me.label1.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
             Me.label1.Name = "label1"
-            Me.label1.Size = New System.Drawing.Size(157, 16)
+            Me.label1.Size = New System.Drawing.Size(126, 13)
             Me.label1.TabIndex = 1
             Me.label1.Text = "Código de empleado:"
             '
@@ -69,9 +72,10 @@ Namespace ProyectoPlanillaUMG1
             Me.label2.AutoSize = True
             Me.label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
             Me.label2.ForeColor = System.Drawing.Color.Teal
-            Me.label2.Location = New System.Drawing.Point(68, 158)
+            Me.label2.Location = New System.Drawing.Point(51, 128)
+            Me.label2.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
             Me.label2.Name = "label2"
-            Me.label2.Size = New System.Drawing.Size(136, 16)
+            Me.label2.Size = New System.Drawing.Size(110, 13)
             Me.label2.TabIndex = 2
             Me.label2.Text = "Nombre Completo:"
             '
@@ -80,34 +84,38 @@ Namespace ProyectoPlanillaUMG1
             Me.label3.AutoSize = True
             Me.label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
             Me.label3.ForeColor = System.Drawing.Color.Teal
-            Me.label3.Location = New System.Drawing.Point(68, 299)
+            Me.label3.Location = New System.Drawing.Point(51, 243)
+            Me.label3.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
             Me.label3.Name = "label3"
-            Me.label3.Size = New System.Drawing.Size(100, 16)
+            Me.label3.Size = New System.Drawing.Size(82, 13)
             Me.label3.TabIndex = 3
             Me.label3.Text = "Sueldo Base:"
             '
             'txtId
             '
             Me.txtId.BackColor = System.Drawing.Color.SkyBlue
-            Me.txtId.Location = New System.Drawing.Point(242, 57)
+            Me.txtId.Location = New System.Drawing.Point(182, 46)
+            Me.txtId.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
             Me.txtId.Name = "txtId"
-            Me.txtId.Size = New System.Drawing.Size(125, 22)
+            Me.txtId.Size = New System.Drawing.Size(95, 20)
             Me.txtId.TabIndex = 0
             '
             'txtNombre
             '
             Me.txtNombre.BackColor = System.Drawing.Color.SkyBlue
-            Me.txtNombre.Location = New System.Drawing.Point(243, 152)
+            Me.txtNombre.Location = New System.Drawing.Point(182, 124)
+            Me.txtNombre.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
             Me.txtNombre.Name = "txtNombre"
-            Me.txtNombre.Size = New System.Drawing.Size(125, 22)
+            Me.txtNombre.Size = New System.Drawing.Size(95, 20)
             Me.txtNombre.TabIndex = 1
             '
             'txtSueldo
             '
             Me.txtSueldo.BackColor = System.Drawing.Color.SkyBlue
-            Me.txtSueldo.Location = New System.Drawing.Point(241, 293)
+            Me.txtSueldo.Location = New System.Drawing.Point(181, 238)
+            Me.txtSueldo.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
             Me.txtSueldo.Name = "txtSueldo"
-            Me.txtSueldo.Size = New System.Drawing.Size(125, 22)
+            Me.txtSueldo.Size = New System.Drawing.Size(95, 20)
             Me.txtSueldo.TabIndex = 2
             '
             'label4
@@ -115,18 +123,20 @@ Namespace ProyectoPlanillaUMG1
             Me.label4.AutoSize = True
             Me.label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
             Me.label4.ForeColor = System.Drawing.Color.Teal
-            Me.label4.Location = New System.Drawing.Point(68, 110)
+            Me.label4.Location = New System.Drawing.Point(51, 89)
+            Me.label4.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
             Me.label4.Name = "label4"
-            Me.label4.Size = New System.Drawing.Size(53, 16)
+            Me.label4.Size = New System.Drawing.Size(44, 13)
             Me.label4.TabIndex = 4
             Me.label4.Text = "Cargo:"
             '
             'txtCargo
             '
             Me.txtCargo.BackColor = System.Drawing.Color.SkyBlue
-            Me.txtCargo.Location = New System.Drawing.Point(241, 104)
+            Me.txtCargo.Location = New System.Drawing.Point(181, 84)
+            Me.txtCargo.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
             Me.txtCargo.Name = "txtCargo"
-            Me.txtCargo.Size = New System.Drawing.Size(125, 22)
+            Me.txtCargo.Size = New System.Drawing.Size(95, 20)
             Me.txtCargo.TabIndex = 5
             '
             'button1
@@ -134,11 +144,12 @@ Namespace ProyectoPlanillaUMG1
             Me.button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(57, Byte), Integer), CType(CType(43, Byte), Integer))
             Me.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red
             Me.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-            Me.button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 20.0!)
+            Me.button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.0!)
             Me.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-            Me.button1.Location = New System.Drawing.Point(364, 2)
+            Me.button1.Location = New System.Drawing.Point(295, 11)
+            Me.button1.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
             Me.button1.Name = "button1"
-            Me.button1.Size = New System.Drawing.Size(91, 45)
+            Me.button1.Size = New System.Drawing.Size(55, 37)
             Me.button1.TabIndex = 6
             Me.button1.Text = "X"
             Me.button1.UseVisualStyleBackColor = False
@@ -146,17 +157,19 @@ Namespace ProyectoPlanillaUMG1
             'txtCorreo
             '
             Me.txtCorreo.BackColor = System.Drawing.Color.SkyBlue
-            Me.txtCorreo.Location = New System.Drawing.Point(244, 201)
+            Me.txtCorreo.Location = New System.Drawing.Point(183, 163)
+            Me.txtCorreo.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
             Me.txtCorreo.Name = "txtCorreo"
-            Me.txtCorreo.Size = New System.Drawing.Size(124, 22)
+            Me.txtCorreo.Size = New System.Drawing.Size(94, 20)
             Me.txtCorreo.TabIndex = 7
             '
             'txtNoCuenta
             '
             Me.txtNoCuenta.BackColor = System.Drawing.Color.SkyBlue
-            Me.txtNoCuenta.Location = New System.Drawing.Point(244, 244)
+            Me.txtNoCuenta.Location = New System.Drawing.Point(183, 198)
+            Me.txtNoCuenta.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
             Me.txtNoCuenta.Name = "txtNoCuenta"
-            Me.txtNoCuenta.Size = New System.Drawing.Size(124, 22)
+            Me.txtNoCuenta.Size = New System.Drawing.Size(94, 20)
             Me.txtNoCuenta.TabIndex = 8
             '
             'Label5
@@ -164,9 +177,10 @@ Namespace ProyectoPlanillaUMG1
             Me.Label5.AutoSize = True
             Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
             Me.Label5.ForeColor = System.Drawing.Color.Teal
-            Me.Label5.Location = New System.Drawing.Point(68, 207)
+            Me.Label5.Location = New System.Drawing.Point(51, 168)
+            Me.Label5.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
             Me.Label5.Name = "Label5"
-            Me.Label5.Size = New System.Drawing.Size(135, 16)
+            Me.Label5.Size = New System.Drawing.Size(111, 13)
             Me.Label5.TabIndex = 9
             Me.Label5.Text = "Correo electronico"
             '
@@ -175,19 +189,20 @@ Namespace ProyectoPlanillaUMG1
             Me.Label6.AutoSize = True
             Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
             Me.Label6.ForeColor = System.Drawing.Color.Teal
-            Me.Label6.Location = New System.Drawing.Point(68, 250)
+            Me.Label6.Location = New System.Drawing.Point(51, 203)
+            Me.Label6.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
             Me.Label6.Name = "Label6"
-            Me.Label6.Size = New System.Drawing.Size(107, 16)
+            Me.Label6.Size = New System.Drawing.Size(92, 13)
             Me.Label6.TabIndex = 10
             Me.Label6.Text = "No. de cuenta "
             '
             'FormIngreso
             '
-            Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+            Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
             Me.BackColor = System.Drawing.Color.DarkGray
-            Me.BackgroundImage = Global.ProyectoPlanillaUMG1.My.Resources.Resources.Conoce_Bantrab
-            Me.ClientSize = New System.Drawing.Size(456, 427)
+            Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
+            Me.ClientSize = New System.Drawing.Size(361, 347)
             Me.Controls.Add(Me.Label6)
             Me.Controls.Add(Me.Label5)
             Me.Controls.Add(Me.txtNoCuenta)
@@ -202,6 +217,7 @@ Namespace ProyectoPlanillaUMG1
             Me.Controls.Add(Me.label2)
             Me.Controls.Add(Me.label1)
             Me.Controls.Add(Me.btnGuardar)
+            Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
             Me.Name = "FormIngreso"
             Me.ResumeLayout(False)
             Me.PerformLayout()

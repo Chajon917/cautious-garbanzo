@@ -18,6 +18,7 @@ Namespace ProyectoPlanillaUMG1
             Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
             Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
             Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+            Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
             Me.btnIngreso = New System.Windows.Forms.Button()
             Me.btnPlanilla = New System.Windows.Forms.Button()
             Me.btnCheque = New System.Windows.Forms.Button()
@@ -49,10 +50,10 @@ Namespace ProyectoPlanillaUMG1
             Me.btnIngreso.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.btnIngreso.Font = New System.Drawing.Font("Segoe UI", 9.5!, System.Drawing.FontStyle.Bold)
             Me.btnIngreso.ForeColor = System.Drawing.Color.White
-            Me.btnIngreso.Location = New System.Drawing.Point(12, 12)
-            Me.btnIngreso.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+            Me.btnIngreso.Location = New System.Drawing.Point(154, 27)
+            Me.btnIngreso.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
             Me.btnIngreso.Name = "btnIngreso"
-            Me.btnIngreso.Size = New System.Drawing.Size(174, 33)
+            Me.btnIngreso.Size = New System.Drawing.Size(143, 27)
             Me.btnIngreso.TabIndex = 0
             Me.btnIngreso.Text = "➕  Nuevo Ingreso"
             Me.btnIngreso.UseVisualStyleBackColor = False
@@ -64,12 +65,12 @@ Namespace ProyectoPlanillaUMG1
             Me.btnPlanilla.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.btnPlanilla.Font = New System.Drawing.Font("Segoe UI", 9.5!, System.Drawing.FontStyle.Bold)
             Me.btnPlanilla.ForeColor = System.Drawing.Color.White
-            Me.btnPlanilla.Location = New System.Drawing.Point(192, 11)
-            Me.btnPlanilla.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+            Me.btnPlanilla.Location = New System.Drawing.Point(477, 27)
+            Me.btnPlanilla.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
             Me.btnPlanilla.Name = "btnPlanilla"
-            Me.btnPlanilla.Size = New System.Drawing.Size(138, 34)
+            Me.btnPlanilla.Size = New System.Drawing.Size(160, 28)
             Me.btnPlanilla.TabIndex = 1
-            Me.btnPlanilla.Text = "📋  Ver Planilla"
+            Me.btnPlanilla.Text = "📋  Consultar Planilla"
             Me.btnPlanilla.UseVisualStyleBackColor = False
             '
             'btnCheque
@@ -79,10 +80,10 @@ Namespace ProyectoPlanillaUMG1
             Me.btnCheque.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.btnCheque.Font = New System.Drawing.Font("Segoe UI", 9.5!, System.Drawing.FontStyle.Bold)
             Me.btnCheque.ForeColor = System.Drawing.Color.White
-            Me.btnCheque.Location = New System.Drawing.Point(465, 11)
-            Me.btnCheque.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+            Me.btnCheque.Location = New System.Drawing.Point(315, 27)
+            Me.btnCheque.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
             Me.btnCheque.Name = "btnCheque"
-            Me.btnCheque.Size = New System.Drawing.Size(173, 34)
+            Me.btnCheque.Size = New System.Drawing.Size(145, 28)
             Me.btnCheque.TabIndex = 3
             Me.btnCheque.Text = "🖨  Generar Cheque"
             Me.btnCheque.UseVisualStyleBackColor = False
@@ -94,10 +95,10 @@ Namespace ProyectoPlanillaUMG1
             Me.btnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.btnSalir.Font = New System.Drawing.Font("Segoe UI", 9.5!, System.Drawing.FontStyle.Bold)
             Me.btnSalir.ForeColor = System.Drawing.Color.White
-            Me.btnSalir.Location = New System.Drawing.Point(644, 11)
-            Me.btnSalir.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+            Me.btnSalir.Location = New System.Drawing.Point(670, 12)
+            Me.btnSalir.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
             Me.btnSalir.Name = "btnSalir"
-            Me.btnSalir.Size = New System.Drawing.Size(117, 34)
+            Me.btnSalir.Size = New System.Drawing.Size(88, 28)
             Me.btnSalir.TabIndex = 5
             Me.btnSalir.Text = "✖  Salir"
             Me.btnSalir.UseVisualStyleBackColor = False
@@ -105,15 +106,16 @@ Namespace ProyectoPlanillaUMG1
             'labelId
             '
             Me.labelId.AutoSize = True
-            Me.labelId.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+            Me.labelId.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
             Me.labelId.FlatStyle = System.Windows.Forms.FlatStyle.System
             Me.labelId.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
-            Me.labelId.ForeColor = System.Drawing.Color.White
-            Me.labelId.Location = New System.Drawing.Point(336, 15)
+            Me.labelId.ForeColor = System.Drawing.Color.Transparent
+            Me.labelId.Location = New System.Drawing.Point(19, 14)
+            Me.labelId.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
             Me.labelId.Name = "labelId"
-            Me.labelId.Size = New System.Drawing.Size(29, 20)
+            Me.labelId.Size = New System.Drawing.Size(94, 15)
             Me.labelId.TabIndex = 10
-            Me.labelId.Text = "ID:"
+            Me.labelId.Text = "INGRESE SU ID "
             '
             'txtIdBusqueda
             '
@@ -121,10 +123,10 @@ Namespace ProyectoPlanillaUMG1
             Me.txtIdBusqueda.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
             Me.txtIdBusqueda.Font = New System.Drawing.Font("Segoe UI", 9.5!)
             Me.txtIdBusqueda.ForeColor = System.Drawing.Color.White
-            Me.txtIdBusqueda.Location = New System.Drawing.Point(370, 12)
-            Me.txtIdBusqueda.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+            Me.txtIdBusqueda.Location = New System.Drawing.Point(18, 40)
+            Me.txtIdBusqueda.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
             Me.txtIdBusqueda.Name = "txtIdBusqueda"
-            Me.txtIdBusqueda.Size = New System.Drawing.Size(89, 29)
+            Me.txtIdBusqueda.Size = New System.Drawing.Size(67, 24)
             Me.txtIdBusqueda.TabIndex = 2
             '
             'dgvPlanilla
@@ -156,12 +158,13 @@ Namespace ProyectoPlanillaUMG1
             Me.dgvPlanilla.DefaultCellStyle = DataGridViewCellStyle3
             Me.dgvPlanilla.EnableHeadersVisualStyles = False
             Me.dgvPlanilla.GridColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(60, Byte), Integer), CType(CType(60, Byte), Integer))
-            Me.dgvPlanilla.Location = New System.Drawing.Point(11, 50)
+            Me.dgvPlanilla.Location = New System.Drawing.Point(8, 83)
+            Me.dgvPlanilla.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
             Me.dgvPlanilla.Name = "dgvPlanilla"
             Me.dgvPlanilla.ReadOnly = True
             Me.dgvPlanilla.RowHeadersWidth = 62
             Me.dgvPlanilla.RowTemplate.Height = 26
-            Me.dgvPlanilla.Size = New System.Drawing.Size(750, 336)
+            Me.dgvPlanilla.Size = New System.Drawing.Size(562, 231)
             Me.dgvPlanilla.TabIndex = 6
             '
             'panelResumen
@@ -175,20 +178,21 @@ Namespace ProyectoPlanillaUMG1
             Me.panelResumen.Controls.Add(Me.lblBrutaVal)
             Me.panelResumen.Controls.Add(Me.lblLiquida)
             Me.panelResumen.Controls.Add(Me.lblLiquidaVal)
-            Me.panelResumen.Location = New System.Drawing.Point(772, 50)
-            Me.panelResumen.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+            Me.panelResumen.Location = New System.Drawing.Point(587, 83)
+            Me.panelResumen.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
             Me.panelResumen.Name = "panelResumen"
-            Me.panelResumen.Padding = New System.Windows.Forms.Padding(9, 8, 9, 8)
-            Me.panelResumen.Size = New System.Drawing.Size(262, 336)
+            Me.panelResumen.Padding = New System.Windows.Forms.Padding(7, 6, 7, 6)
+            Me.panelResumen.Size = New System.Drawing.Size(190, 232)
             Me.panelResumen.TabIndex = 7
             '
             'lblTituloResumen
             '
             Me.lblTituloResumen.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Bold)
             Me.lblTituloResumen.ForeColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(156, Byte), Integer), CType(CType(18, Byte), Integer))
-            Me.lblTituloResumen.Location = New System.Drawing.Point(8, 8)
+            Me.lblTituloResumen.Location = New System.Drawing.Point(6, 6)
+            Me.lblTituloResumen.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
             Me.lblTituloResumen.Name = "lblTituloResumen"
-            Me.lblTituloResumen.Size = New System.Drawing.Size(243, 24)
+            Me.lblTituloResumen.Size = New System.Drawing.Size(182, 20)
             Me.lblTituloResumen.TabIndex = 0
             Me.lblTituloResumen.Text = "📊 Resumen de Planilla"
             Me.lblTituloResumen.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -197,9 +201,10 @@ Namespace ProyectoPlanillaUMG1
             '
             Me.lblNumEmp.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
             Me.lblNumEmp.ForeColor = System.Drawing.Color.Silver
-            Me.lblNumEmp.Location = New System.Drawing.Point(9, 56)
+            Me.lblNumEmp.Location = New System.Drawing.Point(39, 41)
+            Me.lblNumEmp.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
             Me.lblNumEmp.Name = "lblNumEmp"
-            Me.lblNumEmp.Size = New System.Drawing.Size(174, 16)
+            Me.lblNumEmp.Size = New System.Drawing.Size(130, 13)
             Me.lblNumEmp.TabIndex = 1
             Me.lblNumEmp.Text = "No. de Empleados"
             '
@@ -207,9 +212,10 @@ Namespace ProyectoPlanillaUMG1
             '
             Me.lblNumEmpVal.Font = New System.Drawing.Font("Segoe UI", 18.0!, System.Drawing.FontStyle.Bold)
             Me.lblNumEmpVal.ForeColor = System.Drawing.Color.White
-            Me.lblNumEmpVal.Location = New System.Drawing.Point(6, 72)
+            Me.lblNumEmpVal.Location = New System.Drawing.Point(61, 58)
+            Me.lblNumEmpVal.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
             Me.lblNumEmpVal.Name = "lblNumEmpVal"
-            Me.lblNumEmpVal.Size = New System.Drawing.Size(89, 32)
+            Me.lblNumEmpVal.Size = New System.Drawing.Size(67, 26)
             Me.lblNumEmpVal.TabIndex = 2
             Me.lblNumEmpVal.Text = "0"
             Me.lblNumEmpVal.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -218,9 +224,10 @@ Namespace ProyectoPlanillaUMG1
             '
             Me.lblBruta.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
             Me.lblBruta.ForeColor = System.Drawing.Color.Silver
-            Me.lblBruta.Location = New System.Drawing.Point(9, 124)
+            Me.lblBruta.Location = New System.Drawing.Point(7, 95)
+            Me.lblBruta.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
             Me.lblBruta.Name = "lblBruta"
-            Me.lblBruta.Size = New System.Drawing.Size(236, 22)
+            Me.lblBruta.Size = New System.Drawing.Size(177, 18)
             Me.lblBruta.TabIndex = 3
             Me.lblBruta.Text = "Planilla Bruta (Total Sueldos)"
             '
@@ -228,9 +235,10 @@ Namespace ProyectoPlanillaUMG1
             '
             Me.lblBrutaVal.Font = New System.Drawing.Font("Segoe UI", 14.0!, System.Drawing.FontStyle.Bold)
             Me.lblBrutaVal.ForeColor = System.Drawing.Color.FromArgb(CType(CType(52, Byte), Integer), CType(CType(152, Byte), Integer), CType(CType(219, Byte), Integer))
-            Me.lblBrutaVal.Location = New System.Drawing.Point(13, 146)
+            Me.lblBrutaVal.Location = New System.Drawing.Point(10, 119)
+            Me.lblBrutaVal.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
             Me.lblBrutaVal.Name = "lblBrutaVal"
-            Me.lblBrutaVal.Size = New System.Drawing.Size(232, 29)
+            Me.lblBrutaVal.Size = New System.Drawing.Size(174, 24)
             Me.lblBrutaVal.TabIndex = 4
             Me.lblBrutaVal.Text = "Q. 0.00"
             Me.lblBrutaVal.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -239,9 +247,10 @@ Namespace ProyectoPlanillaUMG1
             '
             Me.lblLiquida.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
             Me.lblLiquida.ForeColor = System.Drawing.Color.Silver
-            Me.lblLiquida.Location = New System.Drawing.Point(9, 192)
+            Me.lblLiquida.Location = New System.Drawing.Point(7, 156)
+            Me.lblLiquida.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
             Me.lblLiquida.Name = "lblLiquida"
-            Me.lblLiquida.Size = New System.Drawing.Size(244, 24)
+            Me.lblLiquida.Size = New System.Drawing.Size(183, 20)
             Me.lblLiquida.TabIndex = 5
             Me.lblLiquida.Text = "Planilla Líquida (Total a Pagar)"
             '
@@ -249,17 +258,18 @@ Namespace ProyectoPlanillaUMG1
             '
             Me.lblLiquidaVal.Font = New System.Drawing.Font("Segoe UI", 14.0!, System.Drawing.FontStyle.Bold)
             Me.lblLiquidaVal.ForeColor = System.Drawing.Color.FromArgb(CType(CType(39, Byte), Integer), CType(CType(174, Byte), Integer), CType(CType(96, Byte), Integer))
-            Me.lblLiquidaVal.Location = New System.Drawing.Point(13, 216)
+            Me.lblLiquidaVal.Location = New System.Drawing.Point(10, 176)
+            Me.lblLiquidaVal.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
             Me.lblLiquidaVal.Name = "lblLiquidaVal"
-            Me.lblLiquidaVal.Size = New System.Drawing.Size(232, 29)
+            Me.lblLiquidaVal.Size = New System.Drawing.Size(174, 24)
             Me.lblLiquidaVal.TabIndex = 6
             Me.lblLiquidaVal.Text = "Q. 0.00"
             Me.lblLiquidaVal.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
             '
             'button1
             '
-            Me.button1.Location = New System.Drawing.Point(-89, -80)
-            Me.button1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+            Me.button1.Location = New System.Drawing.Point(-67, -65)
+            Me.button1.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
             Me.button1.Name = "button1"
             Me.button1.Size = New System.Drawing.Size(1, 1)
             Me.button1.TabIndex = 20
@@ -267,8 +277,8 @@ Namespace ProyectoPlanillaUMG1
             '
             'button2
             '
-            Me.button2.Location = New System.Drawing.Point(-89, -80)
-            Me.button2.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+            Me.button2.Location = New System.Drawing.Point(-67, -65)
+            Me.button2.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
             Me.button2.Name = "button2"
             Me.button2.Size = New System.Drawing.Size(1, 1)
             Me.button2.TabIndex = 21
@@ -276,8 +286,8 @@ Namespace ProyectoPlanillaUMG1
             '
             'button4
             '
-            Me.button4.Location = New System.Drawing.Point(-89, -80)
-            Me.button4.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+            Me.button4.Location = New System.Drawing.Point(-67, -65)
+            Me.button4.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
             Me.button4.Name = "button4"
             Me.button4.Size = New System.Drawing.Size(1, 1)
             Me.button4.TabIndex = 22
@@ -285,8 +295,8 @@ Namespace ProyectoPlanillaUMG1
             '
             'btnVisualizar
             '
-            Me.btnVisualizar.Location = New System.Drawing.Point(-89, -80)
-            Me.btnVisualizar.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+            Me.btnVisualizar.Location = New System.Drawing.Point(-67, -65)
+            Me.btnVisualizar.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
             Me.btnVisualizar.Name = "btnVisualizar"
             Me.btnVisualizar.Size = New System.Drawing.Size(1, 1)
             Me.btnVisualizar.TabIndex = 23
@@ -294,8 +304,8 @@ Namespace ProyectoPlanillaUMG1
             '
             'panel1
             '
-            Me.panel1.Location = New System.Drawing.Point(-89, -80)
-            Me.panel1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+            Me.panel1.Location = New System.Drawing.Point(-67, -65)
+            Me.panel1.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
             Me.panel1.Name = "panel1"
             Me.panel1.Size = New System.Drawing.Size(1, 1)
             Me.panel1.TabIndex = 24
@@ -303,11 +313,11 @@ Namespace ProyectoPlanillaUMG1
             '
             'Form1
             '
-            Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+            Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
             Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
-            Me.BackgroundImage = Global.ProyectoPlanillaUMG1.My.Resources.Resources.La_interesante_razon_por_la_que_Bantrab_cambio_su_imagen_en_Guatemala_885x500
-            Me.ClientSize = New System.Drawing.Size(1036, 395)
+            Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
+            Me.ClientSize = New System.Drawing.Size(777, 323)
             Me.Controls.Add(Me.btnIngreso)
             Me.Controls.Add(Me.btnPlanilla)
             Me.Controls.Add(Me.labelId)
@@ -321,7 +331,8 @@ Namespace ProyectoPlanillaUMG1
             Me.Controls.Add(Me.button4)
             Me.Controls.Add(Me.btnVisualizar)
             Me.Controls.Add(Me.panel1)
-            Me.MinimumSize = New System.Drawing.Size(994, 436)
+            Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+            Me.MinimumSize = New System.Drawing.Size(750, 362)
             Me.Name = "Form1"
             Me.Text = "Sistema de Planilla UMG"
             CType(Me.dgvPlanilla, System.ComponentModel.ISupportInitialize).EndInit()
