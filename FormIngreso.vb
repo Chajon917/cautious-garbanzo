@@ -141,6 +141,17 @@ Namespace ProyectoPlanillaUMG1
             Me.Close()
         End Sub
 
+        Private Sub Label5_Click(sender As Object, e As EventArgs) Handles Label5.Click
+
+        End Sub
+
+        Private Sub txtCargo_TextChanged(sender As Object, e As EventArgs) Handles txtCargo.TextChanged
+
+        End Sub
+
+        Private Sub label1_Click(sender As Object, e As EventArgs) Handles label1.Click
+
+        End Sub
     End Class
 
 End Namespace
