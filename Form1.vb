@@ -10,16 +10,28 @@ Namespace ProyectoPlanillaUMG1
 
         Public Sub New()
             InitializeComponent()
+
+            ' Suscripción de eventos — reemplaza las cláusulas Handles
+            AddHandler MyBase.Load, AddressOf Form1_Load
+            AddHandler btnIngreso.Click, AddressOf BtnIngreso_Click
+            AddHandler btnPlanilla.Click, AddressOf BtnPlanilla_Click
+            AddHandler btnVisualizar.Click, AddressOf BtnVisualizar_Click
+            AddHandler btnCheque.Click, AddressOf BtnCheque_Click
+            AddHandler btnSalir.Click, AddressOf BtnSalir_Click
+            AddHandler button4.Click, AddressOf Button4_Click
+            AddHandler labelId.Click, AddressOf LabelId_Click
+            AddHandler lblTituloResumen.Click, AddressOf LblTituloResumen_Click
         End Sub
 
-        Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ' ── Carga inicial ───────────────────────────────────────────────────────
+
+        Private Sub Form1_Load(sender As Object, e As EventArgs)
             CargarPlanilla()
         End Sub
 
         ''' <summary>
         ''' Carga la tabla de trabajadores y los totales resumen.
-        ''' MEJORA: una sola conexión para ambas consultas; COALESCE en SQL
-        ''' evita valores nulos en los totales sin conversiones extra en VB.
+        ''' Una sola conexión para ambas consultas; COALESCE evita nulos en totales.
         ''' </summary>
         Private Sub CargarPlanilla()
             Try
@@ -51,7 +63,7 @@ Namespace ProyectoPlanillaUMG1
 
                     ' ── Totales ─────────────────────────────────────────────
                     Const queryTotales As String =
-                        "SELECT COUNT(*)             AS total_emp," &
+                        "SELECT COUNT(*)                   AS total_emp," &
                         "       COALESCE(SUM(sueldo),  0) AS planilla_bruta," &
                         "       COALESCE(SUM(liquido), 0) AS planilla_liquida" &
                         " FROM trabajadores"
@@ -75,7 +87,6 @@ Namespace ProyectoPlanillaUMG1
 
         ''' <summary>
         ''' Aplica configuración visual estándar a cualquier DataGridView.
-        ''' MEJORA: centraliza la configuración en lugar de repetirla en cada formulario.
         ''' </summary>
         Friend Shared Sub ConfigurarGrid(dgv As DataGridView)
             dgv.ReadOnly = True
@@ -87,22 +98,21 @@ Namespace ProyectoPlanillaUMG1
 
         ' ── Navegación ─────────────────────────────────────────────────────────
 
-        Private Sub BtnIngreso_Click(sender As Object, e As EventArgs) Handles btnIngreso.Click
+        Private Sub BtnIngreso_Click(sender As Object, e As EventArgs)
             Using ventana As New FormIngreso()
                 ventana.ShowDialog()
             End Using
             CargarPlanilla()
         End Sub
 
-        Private Sub BtnPlanilla_Click(sender As Object, e As EventArgs) Handles btnPlanilla.Click
+        Private Sub BtnPlanilla_Click(sender As Object, e As EventArgs)
             AbrirFormPlanilla()
         End Sub
 
-        Private Sub BtnVisualizar_Click(sender As Object, e As EventArgs) Handles btnVisualizar.Click
+        Private Sub BtnVisualizar_Click(sender As Object, e As EventArgs)
             AbrirFormPlanilla()
         End Sub
 
-        ' MEJORA: lógica duplicada de BtnPlanilla y BtnVisualizar extraída a método.
         Private Sub AbrirFormPlanilla()
             Using ventana As New FormPlanilla()
                 ventana.ShowDialog()
@@ -110,7 +120,7 @@ Namespace ProyectoPlanillaUMG1
             CargarPlanilla()
         End Sub
 
-        Private Sub BtnCheque_Click(sender As Object, e As EventArgs) Handles btnCheque.Click
+        Private Sub BtnCheque_Click(sender As Object, e As EventArgs)
             Dim idTexto As String = txtIdBusqueda.Text.Trim()
 
             If String.IsNullOrWhiteSpace(idTexto) Then
@@ -130,12 +140,11 @@ Namespace ProyectoPlanillaUMG1
                 Return
             End If
 
-            ' MEJORA: se pasa el entero validado, no el string raw.
             Dim miCheque As New FormCheque(idTexto)
             miCheque.Show()
         End Sub
 
-        Private Sub BtnSalir_Click(sender As Object, e As EventArgs) Handles btnSalir.Click
+        Private Sub BtnSalir_Click(sender As Object, e As EventArgs)
             If MessageBox.Show(
                     "¿Desea salir del sistema?",
                     "Confirmar salida",
@@ -145,18 +154,18 @@ Namespace ProyectoPlanillaUMG1
             End If
         End Sub
 
-        ' MEJORA: botones sin implementación eliminados o redirigidos a BtnSalir.
-        Private Sub Button4_Click(sender As Object, e As EventArgs) Handles button4.Click
+        Private Sub Button4_Click(sender As Object, e As EventArgs)
             BtnSalir_Click(sender, e)
         End Sub
 
-        Private Sub labelId_Click(sender As Object, e As EventArgs) Handles labelId.Click
-
+        Private Sub LabelId_Click(sender As Object, e As EventArgs)
+            ' Sin implementación
         End Sub
 
-        Private Sub lblTituloResumen_Click(sender As Object, e As EventArgs) Handles lblTituloResumen.Click
-
+        Private Sub LblTituloResumen_Click(sender As Object, e As EventArgs)
+            ' Sin implementación
         End Sub
+
     End Class
 
 End Namespace
