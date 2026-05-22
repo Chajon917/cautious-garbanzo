@@ -153,6 +153,10 @@ Namespace ProyectoPlanillaUMG1
         Private Sub labelId_Click(sender As Object, e As EventArgs) Handles labelId.Click
 
         End Sub
+
+        Private Sub lblTituloResumen_Click(sender As Object, e As EventArgs) Handles lblTituloResumen.Click
+
+        End Sub
     End Class
 
 End Namespace
