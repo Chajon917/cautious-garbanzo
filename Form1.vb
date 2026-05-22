@@ -150,6 +150,9 @@ Namespace ProyectoPlanillaUMG1
             BtnSalir_Click(sender, e)
         End Sub
 
+        Private Sub labelId_Click(sender As Object, e As EventArgs) Handles labelId.Click
+
+        End Sub
     End Class
 
 End Namespace

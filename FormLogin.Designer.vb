@@ -34,13 +34,14 @@ Partial Class FormLogin
         '
         'Button1
         '
-        Me.Button1.BackColor = System.Drawing.SystemColors.ScrollBar
+        Me.Button1.BackColor = System.Drawing.SystemColors.WindowFrame
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.Font = New System.Drawing.Font("Segoe UI", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button1.Location = New System.Drawing.Point(145, 261)
-        Me.Button1.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Button1.Font = New System.Drawing.Font("Times New Roman", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.Button1.Location = New System.Drawing.Point(143, 259)
+        Me.Button1.Margin = New System.Windows.Forms.Padding(2)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(83, 34)
+        Me.Button1.Size = New System.Drawing.Size(90, 34)
         Me.Button1.TabIndex = 0
         Me.Button1.Text = "INGRESAR"
         Me.Button1.UseVisualStyleBackColor = False
@@ -50,7 +51,7 @@ Partial Class FormLogin
         Me.txtContraseña.BackColor = System.Drawing.SystemColors.Menu
         Me.txtContraseña.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtContraseña.Location = New System.Drawing.Point(143, 212)
-        Me.txtContraseña.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtContraseña.Margin = New System.Windows.Forms.Padding(2)
         Me.txtContraseña.Name = "txtContraseña"
         Me.txtContraseña.Size = New System.Drawing.Size(92, 20)
         Me.txtContraseña.TabIndex = 1
@@ -60,7 +61,7 @@ Partial Class FormLogin
         Me.txtUsuario.BackColor = System.Drawing.SystemColors.Menu
         Me.txtUsuario.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtUsuario.Location = New System.Drawing.Point(143, 162)
-        Me.txtUsuario.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtUsuario.Margin = New System.Windows.Forms.Padding(2)
         Me.txtUsuario.Name = "txtUsuario"
         Me.txtUsuario.Size = New System.Drawing.Size(92, 20)
         Me.txtUsuario.TabIndex = 2
@@ -68,8 +69,9 @@ Partial Class FormLogin
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.BackColor = System.Drawing.SystemColors.ActiveBorder
+        Me.Label1.BackColor = System.Drawing.Color.Transparent
         Me.Label1.Font = New System.Drawing.Font("Times New Roman", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight
         Me.Label1.Location = New System.Drawing.Point(48, 165)
         Me.Label1.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label1.Name = "Label1"
@@ -80,9 +82,9 @@ Partial Class FormLogin
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.BackColor = System.Drawing.SystemColors.ActiveBorder
+        Me.Label2.BackColor = System.Drawing.Color.Transparent
         Me.Label2.Font = New System.Drawing.Font("Times New Roman", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.Label2.ForeColor = System.Drawing.SystemColors.ButtonHighlight
         Me.Label2.Location = New System.Drawing.Point(26, 213)
         Me.Label2.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label2.Name = "Label2"
@@ -92,6 +94,7 @@ Partial Class FormLogin
         '
         'PictureBox1
         '
+        Me.PictureBox1.BackColor = System.Drawing.Color.Transparent
         Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
         Me.PictureBox1.Location = New System.Drawing.Point(134, 29)
         Me.PictureBox1.Name = "PictureBox1"
@@ -105,14 +108,15 @@ Partial Class FormLogin
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ActiveBorder
-        Me.ClientSize = New System.Drawing.Size(357, 338)
+        Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
+        Me.ClientSize = New System.Drawing.Size(374, 331)
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.txtUsuario)
         Me.Controls.Add(Me.txtContraseña)
         Me.Controls.Add(Me.Button1)
-        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "FormLogin"
         Me.Text = "FormLogin"
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()

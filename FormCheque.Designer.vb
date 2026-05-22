@@ -16,6 +16,7 @@ Namespace ProyectoPlanillaUMG1
 #Region "Windows Form Designer generated code"
 
         Private Sub InitializeComponent()
+            Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormCheque))
             Me.txtIdBusqueda = New System.Windows.Forms.TextBox()
             Me.btnGenerar = New System.Windows.Forms.Button()
             Me.btnImprimir = New System.Windows.Forms.Button()
@@ -68,10 +69,10 @@ Namespace ProyectoPlanillaUMG1
             Me.txtIdBusqueda.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
             Me.txtIdBusqueda.Font = New System.Drawing.Font("Courier New", 12.0!, System.Drawing.FontStyle.Bold)
             Me.txtIdBusqueda.ForeColor = System.Drawing.Color.White
-            Me.txtIdBusqueda.Location = New System.Drawing.Point(12, 99)
-            Me.txtIdBusqueda.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+            Me.txtIdBusqueda.Location = New System.Drawing.Point(11, 98)
+            Me.txtIdBusqueda.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
             Me.txtIdBusqueda.Name = "txtIdBusqueda"
-            Me.txtIdBusqueda.Size = New System.Drawing.Size(171, 30)
+            Me.txtIdBusqueda.Size = New System.Drawing.Size(129, 26)
             Me.txtIdBusqueda.TabIndex = 0
             Me.txtIdBusqueda.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
             '
@@ -82,10 +83,10 @@ Namespace ProyectoPlanillaUMG1
             Me.btnGenerar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.btnGenerar.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
             Me.btnGenerar.ForeColor = System.Drawing.Color.White
-            Me.btnGenerar.Location = New System.Drawing.Point(12, 138)
-            Me.btnGenerar.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+            Me.btnGenerar.Location = New System.Drawing.Point(10, 139)
+            Me.btnGenerar.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
             Me.btnGenerar.Name = "btnGenerar"
-            Me.btnGenerar.Size = New System.Drawing.Size(171, 51)
+            Me.btnGenerar.Size = New System.Drawing.Size(128, 47)
             Me.btnGenerar.TabIndex = 1
             Me.btnGenerar.Text = "Generar" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Comprobante"
             Me.btnGenerar.UseVisualStyleBackColor = False
@@ -97,10 +98,10 @@ Namespace ProyectoPlanillaUMG1
             Me.btnImprimir.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.btnImprimir.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
             Me.btnImprimir.ForeColor = System.Drawing.Color.White
-            Me.btnImprimir.Location = New System.Drawing.Point(12, 204)
-            Me.btnImprimir.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+            Me.btnImprimir.Location = New System.Drawing.Point(9, 198)
+            Me.btnImprimir.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
             Me.btnImprimir.Name = "btnImprimir"
-            Me.btnImprimir.Size = New System.Drawing.Size(171, 37)
+            Me.btnImprimir.Size = New System.Drawing.Size(128, 30)
             Me.btnImprimir.TabIndex = 2
             Me.btnImprimir.Text = "Imprimir"
             Me.btnImprimir.UseVisualStyleBackColor = False
@@ -112,10 +113,10 @@ Namespace ProyectoPlanillaUMG1
             Me.btnCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.btnCerrar.Font = New System.Drawing.Font("Segoe UI", 9.5!, System.Drawing.FontStyle.Bold)
             Me.btnCerrar.ForeColor = System.Drawing.Color.White
-            Me.btnCerrar.Location = New System.Drawing.Point(12, 416)
-            Me.btnCerrar.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+            Me.btnCerrar.Location = New System.Drawing.Point(9, 338)
+            Me.btnCerrar.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
             Me.btnCerrar.Name = "btnCerrar"
-            Me.btnCerrar.Size = New System.Drawing.Size(171, 32)
+            Me.btnCerrar.Size = New System.Drawing.Size(128, 26)
             Me.btnCerrar.TabIndex = 3
             Me.btnCerrar.Text = "Cerrar"
             Me.btnCerrar.UseVisualStyleBackColor = False
@@ -124,7 +125,6 @@ Namespace ProyectoPlanillaUMG1
             '
             Me.panelCheque.BackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(235, Byte), Integer))
             Me.panelCheque.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-            Me.panelCheque.Controls.Add(Me.pnlHeader)
             Me.panelCheque.Controls.Add(Me.pnlMonto)
             Me.panelCheque.Controls.Add(Me.lblFechaLbl)
             Me.panelCheque.Controls.Add(Me.lblFecha)
@@ -149,10 +149,10 @@ Namespace ProyectoPlanillaUMG1
             Me.panelCheque.Controls.Add(Me.lblLineaFirma)
             Me.panelCheque.Controls.Add(Me.lblFirmaLbl)
             Me.panelCheque.Controls.Add(Me.lblAutorizado)
-            Me.panelCheque.Location = New System.Drawing.Point(204, 58)
-            Me.panelCheque.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+            Me.panelCheque.Location = New System.Drawing.Point(153, 47)
+            Me.panelCheque.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
             Me.panelCheque.Name = "panelCheque"
-            Me.panelCheque.Size = New System.Drawing.Size(765, 344)
+            Me.panelCheque.Size = New System.Drawing.Size(574, 280)
             Me.panelCheque.TabIndex = 5
             '
             'pnlHeader
@@ -161,10 +161,10 @@ Namespace ProyectoPlanillaUMG1
             Me.pnlHeader.Controls.Add(Me.lblBancoNombre)
             Me.pnlHeader.Controls.Add(Me.lblBancoSlogan)
             Me.pnlHeader.Controls.Add(Me.lblNoCheque)
-            Me.pnlHeader.Location = New System.Drawing.Point(0, 0)
-            Me.pnlHeader.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+            Me.pnlHeader.Location = New System.Drawing.Point(153, 19)
+            Me.pnlHeader.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
             Me.pnlHeader.Name = "pnlHeader"
-            Me.pnlHeader.Size = New System.Drawing.Size(764, 56)
+            Me.pnlHeader.Size = New System.Drawing.Size(573, 46)
             Me.pnlHeader.TabIndex = 0
             '
             'lblBancoNombre
@@ -172,9 +172,10 @@ Namespace ProyectoPlanillaUMG1
             Me.lblBancoNombre.AutoSize = True
             Me.lblBancoNombre.Font = New System.Drawing.Font("Georgia", 18.0!, System.Drawing.FontStyle.Bold)
             Me.lblBancoNombre.ForeColor = System.Drawing.Color.White
-            Me.lblBancoNombre.Location = New System.Drawing.Point(11, 0)
+            Me.lblBancoNombre.Location = New System.Drawing.Point(8, 0)
+            Me.lblBancoNombre.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
             Me.lblBancoNombre.Name = "lblBancoNombre"
-            Me.lblBancoNombre.Size = New System.Drawing.Size(396, 35)
+            Me.lblBancoNombre.Size = New System.Drawing.Size(314, 29)
             Me.lblBancoNombre.TabIndex = 0
             Me.lblBancoNombre.Text = "BANCO PLANILLA UMG"
             '
@@ -183,9 +184,10 @@ Namespace ProyectoPlanillaUMG1
             Me.lblBancoSlogan.AutoSize = True
             Me.lblBancoSlogan.Font = New System.Drawing.Font("Segoe UI", 8.5!, System.Drawing.FontStyle.Italic)
             Me.lblBancoSlogan.ForeColor = System.Drawing.Color.FromArgb(CType(CType(200, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(255, Byte), Integer))
-            Me.lblBancoSlogan.Location = New System.Drawing.Point(14, 33)
+            Me.lblBancoSlogan.Location = New System.Drawing.Point(10, 27)
+            Me.lblBancoSlogan.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
             Me.lblBancoSlogan.Name = "lblBancoSlogan"
-            Me.lblBancoSlogan.Size = New System.Drawing.Size(228, 20)
+            Me.lblBancoSlogan.Size = New System.Drawing.Size(184, 15)
             Me.lblBancoSlogan.TabIndex = 1
             Me.lblBancoSlogan.Text = "Su confianza, nuestro compromiso"
             '
@@ -193,9 +195,10 @@ Namespace ProyectoPlanillaUMG1
             '
             Me.lblNoCheque.Font = New System.Drawing.Font("Courier New", 11.0!, System.Drawing.FontStyle.Bold)
             Me.lblNoCheque.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(100, Byte), Integer))
-            Me.lblNoCheque.Location = New System.Drawing.Point(604, 18)
+            Me.lblNoCheque.Location = New System.Drawing.Point(453, 15)
+            Me.lblNoCheque.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
             Me.lblNoCheque.Name = "lblNoCheque"
-            Me.lblNoCheque.Size = New System.Drawing.Size(151, 22)
+            Me.lblNoCheque.Size = New System.Drawing.Size(113, 18)
             Me.lblNoCheque.TabIndex = 2
             Me.lblNoCheque.Text = "No. 000000"
             Me.lblNoCheque.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -205,10 +208,10 @@ Namespace ProyectoPlanillaUMG1
             Me.pnlMonto.BackColor = System.Drawing.Color.FromArgb(CType(CType(26, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(93, Byte), Integer))
             Me.pnlMonto.Controls.Add(Me.lblValorNumLbl)
             Me.pnlMonto.Controls.Add(Me.lblMontoNumero)
-            Me.pnlMonto.Location = New System.Drawing.Point(528, 94)
-            Me.pnlMonto.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+            Me.pnlMonto.Location = New System.Drawing.Point(396, 76)
+            Me.pnlMonto.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
             Me.pnlMonto.Name = "pnlMonto"
-            Me.pnlMonto.Size = New System.Drawing.Size(236, 54)
+            Me.pnlMonto.Size = New System.Drawing.Size(177, 44)
             Me.pnlMonto.TabIndex = 1
             '
             'lblValorNumLbl
@@ -216,9 +219,10 @@ Namespace ProyectoPlanillaUMG1
             Me.lblValorNumLbl.AutoSize = True
             Me.lblValorNumLbl.Font = New System.Drawing.Font("Segoe UI", 7.5!, System.Drawing.FontStyle.Bold)
             Me.lblValorNumLbl.ForeColor = System.Drawing.Color.FromArgb(CType(CType(180, Byte), Integer), CType(CType(210, Byte), Integer), CType(CType(255, Byte), Integer))
-            Me.lblValorNumLbl.Location = New System.Drawing.Point(7, 5)
+            Me.lblValorNumLbl.Location = New System.Drawing.Point(5, 4)
+            Me.lblValorNumLbl.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
             Me.lblValorNumLbl.Name = "lblValorNumLbl"
-            Me.lblValorNumLbl.Size = New System.Drawing.Size(50, 17)
+            Me.lblValorNumLbl.Size = New System.Drawing.Size(38, 12)
             Me.lblValorNumLbl.TabIndex = 0
             Me.lblValorNumLbl.Text = "VALOR"
             '
@@ -226,9 +230,10 @@ Namespace ProyectoPlanillaUMG1
             '
             Me.lblMontoNumero.Font = New System.Drawing.Font("Courier New", 15.0!, System.Drawing.FontStyle.Bold)
             Me.lblMontoNumero.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(100, Byte), Integer))
-            Me.lblMontoNumero.Location = New System.Drawing.Point(0, 26)
+            Me.lblMontoNumero.Location = New System.Drawing.Point(0, 11)
+            Me.lblMontoNumero.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
             Me.lblMontoNumero.Name = "lblMontoNumero"
-            Me.lblMontoNumero.Size = New System.Drawing.Size(236, 29)
+            Me.lblMontoNumero.Size = New System.Drawing.Size(177, 24)
             Me.lblMontoNumero.TabIndex = 1
             Me.lblMontoNumero.Text = "Q 0.00"
             Me.lblMontoNumero.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -238,9 +243,10 @@ Namespace ProyectoPlanillaUMG1
             Me.lblFechaLbl.AutoSize = True
             Me.lblFechaLbl.Font = New System.Drawing.Font("Segoe UI", 8.5!, System.Drawing.FontStyle.Bold)
             Me.lblFechaLbl.ForeColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(60, Byte), Integer), CType(CType(60, Byte), Integer))
-            Me.lblFechaLbl.Location = New System.Drawing.Point(524, 66)
+            Me.lblFechaLbl.Location = New System.Drawing.Point(393, 54)
+            Me.lblFechaLbl.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
             Me.lblFechaLbl.Name = "lblFechaLbl"
-            Me.lblFechaLbl.Size = New System.Drawing.Size(53, 20)
+            Me.lblFechaLbl.Size = New System.Drawing.Size(42, 15)
             Me.lblFechaLbl.TabIndex = 2
             Me.lblFechaLbl.Text = "Fecha:"
             '
@@ -248,9 +254,10 @@ Namespace ProyectoPlanillaUMG1
             '
             Me.lblFecha.Font = New System.Drawing.Font("Segoe UI", 8.5!)
             Me.lblFecha.ForeColor = System.Drawing.Color.FromArgb(CType(CType(26, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(93, Byte), Integer))
-            Me.lblFecha.Location = New System.Drawing.Point(567, 66)
+            Me.lblFecha.Location = New System.Drawing.Point(425, 54)
+            Me.lblFecha.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
             Me.lblFecha.Name = "lblFecha"
-            Me.lblFecha.Size = New System.Drawing.Size(187, 16)
+            Me.lblFecha.Size = New System.Drawing.Size(140, 13)
             Me.lblFecha.TabIndex = 3
             Me.lblFecha.Text = "—"
             '
@@ -259,9 +266,10 @@ Namespace ProyectoPlanillaUMG1
             Me.lblPaguese.AutoSize = True
             Me.lblPaguese.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
             Me.lblPaguese.ForeColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(60, Byte), Integer), CType(CType(60, Byte), Integer))
-            Me.lblPaguese.Location = New System.Drawing.Point(12, 94)
+            Me.lblPaguese.Location = New System.Drawing.Point(9, 76)
+            Me.lblPaguese.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
             Me.lblPaguese.Name = "lblPaguese"
-            Me.lblPaguese.Size = New System.Drawing.Size(165, 20)
+            Me.lblPaguese.Size = New System.Drawing.Size(130, 15)
             Me.lblPaguese.TabIndex = 4
             Me.lblPaguese.Text = "Páguese a la orden de:"
             '
@@ -269,18 +277,20 @@ Namespace ProyectoPlanillaUMG1
             '
             Me.lblNombre.Font = New System.Drawing.Font("Georgia", 14.0!, System.Drawing.FontStyle.Bold)
             Me.lblNombre.ForeColor = System.Drawing.Color.FromArgb(CType(CType(26, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(93, Byte), Integer))
-            Me.lblNombre.Location = New System.Drawing.Point(12, 112)
+            Me.lblNombre.Location = New System.Drawing.Point(9, 91)
+            Me.lblNombre.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
             Me.lblNombre.Name = "lblNombre"
-            Me.lblNombre.Size = New System.Drawing.Size(427, 24)
+            Me.lblNombre.Size = New System.Drawing.Size(320, 20)
             Me.lblNombre.TabIndex = 5
             Me.lblNombre.Text = "—"
             '
             'lineaNombre
             '
             Me.lineaNombre.BackColor = System.Drawing.Color.FromArgb(CType(CType(26, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(93, Byte), Integer))
-            Me.lineaNombre.Location = New System.Drawing.Point(12, 139)
+            Me.lineaNombre.Location = New System.Drawing.Point(9, 113)
+            Me.lineaNombre.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
             Me.lineaNombre.Name = "lineaNombre"
-            Me.lineaNombre.Size = New System.Drawing.Size(427, 2)
+            Me.lineaNombre.Size = New System.Drawing.Size(320, 2)
             Me.lineaNombre.TabIndex = 10
             '
             'lblCargoLbl
@@ -288,9 +298,10 @@ Namespace ProyectoPlanillaUMG1
             Me.lblCargoLbl.AutoSize = True
             Me.lblCargoLbl.Font = New System.Drawing.Font("Segoe UI", 8.5!, System.Drawing.FontStyle.Bold)
             Me.lblCargoLbl.ForeColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(100, Byte), Integer), CType(CType(100, Byte), Integer))
-            Me.lblCargoLbl.Location = New System.Drawing.Point(12, 144)
+            Me.lblCargoLbl.Location = New System.Drawing.Point(9, 117)
+            Me.lblCargoLbl.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
             Me.lblCargoLbl.Name = "lblCargoLbl"
-            Me.lblCargoLbl.Size = New System.Drawing.Size(54, 20)
+            Me.lblCargoLbl.Size = New System.Drawing.Size(42, 15)
             Me.lblCargoLbl.TabIndex = 6
             Me.lblCargoLbl.Text = "Cargo:"
             '
@@ -298,9 +309,10 @@ Namespace ProyectoPlanillaUMG1
             '
             Me.lblCargo.Font = New System.Drawing.Font("Segoe UI", 8.5!)
             Me.lblCargo.ForeColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(60, Byte), Integer), CType(CType(60, Byte), Integer))
-            Me.lblCargo.Location = New System.Drawing.Point(65, 146)
+            Me.lblCargo.Location = New System.Drawing.Point(49, 119)
+            Me.lblCargo.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
             Me.lblCargo.Name = "lblCargo"
-            Me.lblCargo.Size = New System.Drawing.Size(267, 16)
+            Me.lblCargo.Size = New System.Drawing.Size(200, 13)
             Me.lblCargo.TabIndex = 7
             Me.lblCargo.Text = "—"
             '
@@ -309,9 +321,10 @@ Namespace ProyectoPlanillaUMG1
             Me.lblValorLetLbl.AutoSize = True
             Me.lblValorLetLbl.Font = New System.Drawing.Font("Segoe UI", 8.5!, System.Drawing.FontStyle.Bold)
             Me.lblValorLetLbl.ForeColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(60, Byte), Integer), CType(CType(60, Byte), Integer))
-            Me.lblValorLetLbl.Location = New System.Drawing.Point(12, 168)
+            Me.lblValorLetLbl.Location = New System.Drawing.Point(9, 136)
+            Me.lblValorLetLbl.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
             Me.lblValorLetLbl.Name = "lblValorLetLbl"
-            Me.lblValorLetLbl.Size = New System.Drawing.Size(139, 20)
+            Me.lblValorLetLbl.Size = New System.Drawing.Size(109, 15)
             Me.lblValorLetLbl.TabIndex = 8
             Me.lblValorLetLbl.Text = "Cantidad en letras:"
             '
@@ -319,18 +332,20 @@ Namespace ProyectoPlanillaUMG1
             '
             Me.lblMontoLetras.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Italic)
             Me.lblMontoLetras.ForeColor = System.Drawing.Color.FromArgb(CType(CType(26, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(93, Byte), Integer))
-            Me.lblMontoLetras.Location = New System.Drawing.Point(12, 184)
+            Me.lblMontoLetras.Location = New System.Drawing.Point(9, 150)
+            Me.lblMontoLetras.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
             Me.lblMontoLetras.Name = "lblMontoLetras"
-            Me.lblMontoLetras.Size = New System.Drawing.Size(743, 29)
+            Me.lblMontoLetras.Size = New System.Drawing.Size(557, 24)
             Me.lblMontoLetras.TabIndex = 9
             Me.lblMontoLetras.Text = "—"
             '
             'lineaLetras
             '
             Me.lineaLetras.BackColor = System.Drawing.Color.FromArgb(CType(CType(180, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(100, Byte), Integer))
-            Me.lineaLetras.Location = New System.Drawing.Point(12, 214)
+            Me.lineaLetras.Location = New System.Drawing.Point(9, 174)
+            Me.lineaLetras.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
             Me.lineaLetras.Name = "lineaLetras"
-            Me.lineaLetras.Size = New System.Drawing.Size(743, 1)
+            Me.lineaLetras.Size = New System.Drawing.Size(557, 1)
             Me.lineaLetras.TabIndex = 11
             '
             'lblDetalleLbl
@@ -338,9 +353,10 @@ Namespace ProyectoPlanillaUMG1
             Me.lblDetalleLbl.AutoSize = True
             Me.lblDetalleLbl.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
             Me.lblDetalleLbl.ForeColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(80, Byte), Integer), CType(CType(20, Byte), Integer))
-            Me.lblDetalleLbl.Location = New System.Drawing.Point(12, 222)
+            Me.lblDetalleLbl.Location = New System.Drawing.Point(9, 180)
+            Me.lblDetalleLbl.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
             Me.lblDetalleLbl.Name = "lblDetalleLbl"
-            Me.lblDetalleLbl.Size = New System.Drawing.Size(141, 19)
+            Me.lblDetalleLbl.Size = New System.Drawing.Size(111, 13)
             Me.lblDetalleLbl.TabIndex = 13
             Me.lblDetalleLbl.Text = "DESGLOSE DE PAGO"
             '
@@ -349,9 +365,10 @@ Namespace ProyectoPlanillaUMG1
             Me.lblSueldoLbl.AutoSize = True
             Me.lblSueldoLbl.Font = New System.Drawing.Font("Segoe UI", 8.5!)
             Me.lblSueldoLbl.ForeColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(60, Byte), Integer), CType(CType(60, Byte), Integer))
-            Me.lblSueldoLbl.Location = New System.Drawing.Point(12, 238)
+            Me.lblSueldoLbl.Location = New System.Drawing.Point(9, 193)
+            Me.lblSueldoLbl.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
             Me.lblSueldoLbl.Name = "lblSueldoLbl"
-            Me.lblSueldoLbl.Size = New System.Drawing.Size(93, 20)
+            Me.lblSueldoLbl.Size = New System.Drawing.Size(73, 15)
             Me.lblSueldoLbl.TabIndex = 14
             Me.lblSueldoLbl.Text = "Sueldo Base:"
             '
@@ -359,9 +376,10 @@ Namespace ProyectoPlanillaUMG1
             '
             Me.lblSueldo.Font = New System.Drawing.Font("Courier New", 8.5!)
             Me.lblSueldo.ForeColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(80, Byte), Integer), CType(CType(30, Byte), Integer))
-            Me.lblSueldo.Location = New System.Drawing.Point(183, 241)
+            Me.lblSueldo.Location = New System.Drawing.Point(137, 196)
+            Me.lblSueldo.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
             Me.lblSueldo.Name = "lblSueldo"
-            Me.lblSueldo.Size = New System.Drawing.Size(116, 16)
+            Me.lblSueldo.Size = New System.Drawing.Size(87, 13)
             Me.lblSueldo.TabIndex = 15
             Me.lblSueldo.Text = "Q 0.00"
             Me.lblSueldo.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -371,9 +389,10 @@ Namespace ProyectoPlanillaUMG1
             Me.lblIGSSLbl.AutoSize = True
             Me.lblIGSSLbl.Font = New System.Drawing.Font("Segoe UI", 8.5!)
             Me.lblIGSSLbl.ForeColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(60, Byte), Integer), CType(CType(60, Byte), Integer))
-            Me.lblIGSSLbl.Location = New System.Drawing.Point(12, 262)
+            Me.lblIGSSLbl.Location = New System.Drawing.Point(9, 211)
+            Me.lblIGSSLbl.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
             Me.lblIGSSLbl.Name = "lblIGSSLbl"
-            Me.lblIGSSLbl.Size = New System.Drawing.Size(115, 20)
+            Me.lblIGSSLbl.Size = New System.Drawing.Size(91, 15)
             Me.lblIGSSLbl.TabIndex = 16
             Me.lblIGSSLbl.Text = "(-) IGSS (4.83%):"
             '
@@ -381,9 +400,10 @@ Namespace ProyectoPlanillaUMG1
             '
             Me.lblIGSS.Font = New System.Drawing.Font("Courier New", 8.5!)
             Me.lblIGSS.ForeColor = System.Drawing.Color.FromArgb(CType(CType(160, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer))
-            Me.lblIGSS.Location = New System.Drawing.Point(187, 262)
+            Me.lblIGSS.Location = New System.Drawing.Point(140, 213)
+            Me.lblIGSS.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
             Me.lblIGSS.Name = "lblIGSS"
-            Me.lblIGSS.Size = New System.Drawing.Size(112, 18)
+            Me.lblIGSS.Size = New System.Drawing.Size(84, 15)
             Me.lblIGSS.TabIndex = 17
             Me.lblIGSS.Text = "Q 0.00"
             Me.lblIGSS.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -393,9 +413,10 @@ Namespace ProyectoPlanillaUMG1
             Me.lblBonoLbl.AutoSize = True
             Me.lblBonoLbl.Font = New System.Drawing.Font("Segoe UI", 8.5!)
             Me.lblBonoLbl.ForeColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(60, Byte), Integer), CType(CType(60, Byte), Integer))
-            Me.lblBonoLbl.Location = New System.Drawing.Point(14, 281)
+            Me.lblBonoLbl.Location = New System.Drawing.Point(9, 228)
+            Me.lblBonoLbl.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
             Me.lblBonoLbl.Name = "lblBonoLbl"
-            Me.lblBonoLbl.Size = New System.Drawing.Size(91, 20)
+            Me.lblBonoLbl.Size = New System.Drawing.Size(72, 15)
             Me.lblBonoLbl.TabIndex = 18
             Me.lblBonoLbl.Text = "(+) Bono 14:"
             '
@@ -403,9 +424,10 @@ Namespace ProyectoPlanillaUMG1
             '
             Me.lblBono.Font = New System.Drawing.Font("Courier New", 8.5!)
             Me.lblBono.ForeColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(80, Byte), Integer), CType(CType(30, Byte), Integer))
-            Me.lblBono.Location = New System.Drawing.Point(178, 277)
+            Me.lblBono.Location = New System.Drawing.Point(134, 225)
+            Me.lblBono.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
             Me.lblBono.Name = "lblBono"
-            Me.lblBono.Size = New System.Drawing.Size(121, 29)
+            Me.lblBono.Size = New System.Drawing.Size(91, 24)
             Me.lblBono.TabIndex = 19
             Me.lblBono.Text = "Q 0.00"
             Me.lblBono.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -415,9 +437,10 @@ Namespace ProyectoPlanillaUMG1
             Me.lblOtrosLbl.AutoSize = True
             Me.lblOtrosLbl.Font = New System.Drawing.Font("Segoe UI", 8.5!)
             Me.lblOtrosLbl.ForeColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(60, Byte), Integer), CType(CType(60, Byte), Integer))
-            Me.lblOtrosLbl.Location = New System.Drawing.Point(14, 302)
+            Me.lblOtrosLbl.Location = New System.Drawing.Point(10, 245)
+            Me.lblOtrosLbl.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
             Me.lblOtrosLbl.Name = "lblOtrosLbl"
-            Me.lblOtrosLbl.Size = New System.Drawing.Size(146, 20)
+            Me.lblOtrosLbl.Size = New System.Drawing.Size(118, 15)
             Me.lblOtrosLbl.TabIndex = 20
             Me.lblOtrosLbl.Text = "(-) Otros descuentos:"
             '
@@ -425,9 +448,10 @@ Namespace ProyectoPlanillaUMG1
             '
             Me.lblOtros.Font = New System.Drawing.Font("Courier New", 8.5!)
             Me.lblOtros.ForeColor = System.Drawing.Color.FromArgb(CType(CType(160, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer))
-            Me.lblOtros.Location = New System.Drawing.Point(178, 301)
+            Me.lblOtros.Location = New System.Drawing.Point(134, 245)
+            Me.lblOtros.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
             Me.lblOtros.Name = "lblOtros"
-            Me.lblOtros.Size = New System.Drawing.Size(121, 27)
+            Me.lblOtros.Size = New System.Drawing.Size(91, 22)
             Me.lblOtros.TabIndex = 21
             Me.lblOtros.Text = "Q 0.00"
             Me.lblOtros.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -435,17 +459,19 @@ Namespace ProyectoPlanillaUMG1
             'lineaTotal
             '
             Me.lineaTotal.BackColor = System.Drawing.Color.FromArgb(CType(CType(26, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(93, Byte), Integer))
-            Me.lineaTotal.Location = New System.Drawing.Point(14, 321)
+            Me.lineaTotal.Location = New System.Drawing.Point(10, 261)
+            Me.lineaTotal.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
             Me.lineaTotal.Name = "lineaTotal"
-            Me.lineaTotal.Size = New System.Drawing.Size(284, 8)
+            Me.lineaTotal.Size = New System.Drawing.Size(213, 6)
             Me.lineaTotal.TabIndex = 12
             '
             'lblLineaFirma
             '
             Me.lblLineaFirma.BackColor = System.Drawing.Color.FromArgb(CType(CType(26, Byte), Integer), CType(CType(54, Byte), Integer), CType(CType(93, Byte), Integer))
-            Me.lblLineaFirma.Location = New System.Drawing.Point(516, 312)
+            Me.lblLineaFirma.Location = New System.Drawing.Point(387, 254)
+            Me.lblLineaFirma.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
             Me.lblLineaFirma.Name = "lblLineaFirma"
-            Me.lblLineaFirma.Size = New System.Drawing.Size(231, 2)
+            Me.lblLineaFirma.Size = New System.Drawing.Size(173, 2)
             Me.lblLineaFirma.TabIndex = 22
             '
             'lblFirmaLbl
@@ -453,9 +479,10 @@ Namespace ProyectoPlanillaUMG1
             Me.lblFirmaLbl.AutoSize = True
             Me.lblFirmaLbl.Font = New System.Drawing.Font("Segoe UI", 8.0!)
             Me.lblFirmaLbl.ForeColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(100, Byte), Integer), CType(CType(100, Byte), Integer))
-            Me.lblFirmaLbl.Location = New System.Drawing.Point(542, 317)
+            Me.lblFirmaLbl.Location = New System.Drawing.Point(406, 258)
+            Me.lblFirmaLbl.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
             Me.lblFirmaLbl.Name = "lblFirmaLbl"
-            Me.lblFirmaLbl.Size = New System.Drawing.Size(111, 19)
+            Me.lblFirmaLbl.Size = New System.Drawing.Size(93, 13)
             Me.lblFirmaLbl.TabIndex = 23
             Me.lblFirmaLbl.Text = "Firma autorizada"
             '
@@ -463,10 +490,11 @@ Namespace ProyectoPlanillaUMG1
             '
             Me.lblAutorizado.AutoSize = True
             Me.lblAutorizado.Font = New System.Drawing.Font("Segoe UI", 25.0!, System.Drawing.FontStyle.Bold)
-            Me.lblAutorizado.ForeColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(60, Byte), Integer))
-            Me.lblAutorizado.Location = New System.Drawing.Point(299, 275)
+            Me.lblAutorizado.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer))
+            Me.lblAutorizado.Location = New System.Drawing.Point(224, 223)
+            Me.lblAutorizado.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
             Me.lblAutorizado.Name = "lblAutorizado"
-            Me.lblAutorizado.Size = New System.Drawing.Size(202, 57)
+            Me.lblAutorizado.Size = New System.Drawing.Size(162, 46)
             Me.lblAutorizado.TabIndex = 24
             Me.lblAutorizado.Text = "PAGADO"
             '
@@ -481,20 +509,21 @@ Namespace ProyectoPlanillaUMG1
             Me.pnlSide.Controls.Add(Me.btnImprimir)
             Me.pnlSide.Controls.Add(Me.btnCerrar)
             Me.pnlSide.Location = New System.Drawing.Point(0, 0)
-            Me.pnlSide.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+            Me.pnlSide.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
             Me.pnlSide.Name = "pnlSide"
-            Me.pnlSide.Size = New System.Drawing.Size(196, 464)
+            Me.pnlSide.Size = New System.Drawing.Size(147, 377)
             Me.pnlSide.TabIndex = 6
             '
             'Button2
             '
-            Me.Button2.BackColor = System.Drawing.Color.Yellow
+            Me.Button2.BackColor = System.Drawing.Color.Goldenrod
             Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.Button2.Font = New System.Drawing.Font("Segoe UI", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.Button2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
-            Me.Button2.Location = New System.Drawing.Point(12, 262)
+            Me.Button2.ForeColor = System.Drawing.Color.White
+            Me.Button2.Location = New System.Drawing.Point(9, 244)
+            Me.Button2.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
             Me.Button2.Name = "Button2"
-            Me.Button2.Size = New System.Drawing.Size(171, 39)
+            Me.Button2.Size = New System.Drawing.Size(128, 32)
             Me.Button2.TabIndex = 7
             Me.Button2.Text = "Imprimir planila"
             Me.Button2.UseVisualStyleBackColor = False
@@ -503,9 +532,10 @@ Namespace ProyectoPlanillaUMG1
             '
             Me.lblSideTitle.Font = New System.Drawing.Font("Segoe UI", 13.0!, System.Drawing.FontStyle.Bold)
             Me.lblSideTitle.ForeColor = System.Drawing.Color.Gainsboro
-            Me.lblSideTitle.Location = New System.Drawing.Point(12, 16)
+            Me.lblSideTitle.Location = New System.Drawing.Point(9, 13)
+            Me.lblSideTitle.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
             Me.lblSideTitle.Name = "lblSideTitle"
-            Me.lblSideTitle.Size = New System.Drawing.Size(171, 64)
+            Me.lblSideTitle.Size = New System.Drawing.Size(128, 52)
             Me.lblSideTitle.TabIndex = 0
             Me.lblSideTitle.Text = "Comprobante" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "de Pago"
             '
@@ -514,21 +544,24 @@ Namespace ProyectoPlanillaUMG1
             Me.lblIdLbl.AutoSize = True
             Me.lblIdLbl.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
             Me.lblIdLbl.ForeColor = System.Drawing.Color.FromArgb(CType(CType(180, Byte), Integer), CType(CType(210, Byte), Integer), CType(CType(255, Byte), Integer))
-            Me.lblIdLbl.Location = New System.Drawing.Point(11, 74)
+            Me.lblIdLbl.Location = New System.Drawing.Point(32, 75)
+            Me.lblIdLbl.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
             Me.lblIdLbl.Name = "lblIdLbl"
-            Me.lblIdLbl.Size = New System.Drawing.Size(109, 20)
+            Me.lblIdLbl.Size = New System.Drawing.Size(80, 15)
             Me.lblIdLbl.TabIndex = 1
-            Me.lblIdLbl.Text = "ID Trabajador:"
+            Me.lblIdLbl.Text = "Ingrese su ID"
             '
             'FormCheque
             '
-            Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+            Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
             Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer))
-            Me.BackgroundImage = Global.ProyectoPlanillaUMG1.My.Resources.Resources.saving_stack_coins_money_with_charts_and_graphs_finance_account_statistics_analytic_research_data_economy_stock_exchange_trading_and_business_concept_free_photo
-            Me.ClientSize = New System.Drawing.Size(970, 471)
+            Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
+            Me.ClientSize = New System.Drawing.Size(728, 383)
+            Me.Controls.Add(Me.pnlHeader)
             Me.Controls.Add(Me.pnlSide)
             Me.Controls.Add(Me.panelCheque)
+            Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
             Me.Name = "FormCheque"
             Me.Text = "Comprobante de Pago"
             Me.panelCheque.ResumeLayout(False)
