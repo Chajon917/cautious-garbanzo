@@ -71,14 +71,12 @@ ProyectoPlanillaUMG1
 <member name="M:ProyectoPlanillaUMG1.ProyectoPlanillaUMG1.Form1.CargarPlanilla">
  <summary>
  Carga la tabla de trabajadores y los totales resumen.
- MEJORA: una sola conexión para ambas consultas; COALESCE en SQL
- evita valores nulos en los totales sin conversiones extra en VB.
+ Una sola conexión para ambas consultas; COALESCE evita nulos en totales.
  </summary>
 </member>
 <member name="M:ProyectoPlanillaUMG1.ProyectoPlanillaUMG1.Form1.ConfigurarGrid(System.Windows.Forms.DataGridView)">
  <summary>
  Aplica configuración visual estándar a cualquier DataGridView.
- MEJORA: centraliza la configuración en lugar de repetirla en cada formulario.
  </summary>
 </member>
 <member name="M:ProyectoPlanillaUMG1.ProyectoPlanillaUMG1.FormIngreso.ValidarCampos(System.Int32@,System.Double@)">

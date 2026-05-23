@@ -533,6 +533,7 @@ Namespace ProyectoPlanillaUMG1
             Me.Controls.Add(Me.pnlSide)
             Me.Controls.Add(Me.panelCheque)
             Me.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+            Me.MaximizeBox = False
             Me.Name = "FormCheque"
             Me.Text = "Comprobante de Pago"
             Me.panelCheque.ResumeLayout(False)

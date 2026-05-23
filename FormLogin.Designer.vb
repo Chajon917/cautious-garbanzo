@@ -96,7 +96,7 @@ Partial Class FormLogin
         Me.PictureBox1.BackColor = System.Drawing.Color.Transparent
         Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
         Me.PictureBox1.Location = New System.Drawing.Point(179, 36)
-        Me.PictureBox1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.PictureBox1.Margin = New System.Windows.Forms.Padding(4)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(140, 133)
         Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -117,6 +117,7 @@ Partial Class FormLogin
         Me.Controls.Add(Me.txtContraseña)
         Me.Controls.Add(Me.Button1)
         Me.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.MaximizeBox = False
         Me.Name = "FormLogin"
         Me.Text = "FormLogin"
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()

@@ -7,9 +7,7 @@ Namespace ProyectoPlanillaUMG1
     Partial Public Class FormIngreso
         Inherits Form
 
-        ' MEJORA: constantes centralizadas para los parámetros de planilla.
-        ' Si cambia la tasa del IGSS o el bono, se edita en un solo lugar.
-        Private Const TasaIGSS As Double = 0.0483   ' 4.83 %
+        Private Const TasaIGSS As Double = 0.0483
         Private Const MontoBonoFijo As Double = 250.0
 
         Public Sub New()
@@ -20,7 +18,6 @@ Namespace ProyectoPlanillaUMG1
             Dim id As Integer
             Dim sueldoBase As Double
 
-            ' ── Validaciones ────────────────────────────────────────────────
             If Not ValidarCampos(id, sueldoBase) Then Return
 
             Try
@@ -29,7 +26,6 @@ Namespace ProyectoPlanillaUMG1
                 Dim correo As String = txtCorreo.Text.Trim()
                 Dim noCuenta As String = txtNoCuenta.Text.Trim()
 
-                ' MEJORA: cálculos centralizados con la constante TasaIGSS.
                 Dim igss As Double = Math.Round(sueldoBase * TasaIGSS, 2)
                 Dim bono As Double = MontoBonoFijo
                 Dim otros As Double = 0
@@ -65,7 +61,7 @@ Namespace ProyectoPlanillaUMG1
 
                 LimpiarFormulario()
 
-            Catch ex As MySqlException When ex.Number = 1062   ' Duplicate entry
+            Catch ex As MySqlException When ex.Number = 1062
                 MessageBox.Show(
                     $"Ya existe un empleado con el ID {id}. Use un ID diferente.",
                     "ID duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning)
@@ -77,11 +73,6 @@ Namespace ProyectoPlanillaUMG1
             End Try
         End Sub
 
-        ''' <summary>
-        ''' Valida todos los campos del formulario.
-        ''' Devuelve True si todo es válido; parámetros de salida con valores parseados.
-        ''' MEJORA: validaciones separadas en su propio método; uso de Regex para correo.
-        ''' </summary>
         Private Function ValidarCampos(ByRef id As Integer, ByRef sueldoBase As Double) As Boolean
             If String.IsNullOrWhiteSpace(txtId.Text) OrElse
                String.IsNullOrWhiteSpace(txtNombre.Text) OrElse
@@ -102,7 +93,6 @@ Namespace ProyectoPlanillaUMG1
                 Return False
             End If
 
-            ' MEJORA: validación de correo con expresión regular básica (RFC 5322 simplificado).
             Dim correo As String = txtCorreo.Text.Trim()
             If Not System.Text.RegularExpressions.Regex.IsMatch(
                     correo, "^[^@\s]+@[^@\s]+\.[^@\s]+$") Then
@@ -145,11 +135,15 @@ Namespace ProyectoPlanillaUMG1
 
         End Sub
 
-        Private Sub txtCargo_TextChanged(sender As Object, e As EventArgs) Handles txtCargo.TextChanged
+        Private Sub TxtCargo_TextChanged(sender As Object, e As EventArgs) Handles txtCargo.TextChanged
 
         End Sub
 
-        Private Sub label1_Click(sender As Object, e As EventArgs) Handles label1.Click
+        Private Sub Label1_Click(sender As Object, e As EventArgs) Handles label1.Click
+
+        End Sub
+
+        Private Sub FormIngreso_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         End Sub
     End Class
