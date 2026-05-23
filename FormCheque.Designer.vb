@@ -502,13 +502,14 @@ Namespace ProyectoPlanillaUMG1
             '
             'lblSideTitle
             '
-            Me.lblSideTitle.Font = New System.Drawing.Font("Segoe UI", 13.0!, System.Drawing.FontStyle.Bold)
+            Me.lblSideTitle.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
             Me.lblSideTitle.ForeColor = System.Drawing.Color.Gainsboro
             Me.lblSideTitle.Location = New System.Drawing.Point(12, 16)
             Me.lblSideTitle.Name = "lblSideTitle"
             Me.lblSideTitle.Size = New System.Drawing.Size(171, 64)
             Me.lblSideTitle.TabIndex = 0
-            Me.lblSideTitle.Text = "Comprobante" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "de Pago"
+            Me.lblSideTitle.Text = "COMPROBANTE DE PAGO"
+            Me.lblSideTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
             '
             'lblIdLbl
             '
