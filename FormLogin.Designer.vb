@@ -38,10 +38,10 @@ Partial Class FormLogin
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button1.Font = New System.Drawing.Font("Times New Roman", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.Button1.Location = New System.Drawing.Point(143, 259)
-        Me.Button1.Margin = New System.Windows.Forms.Padding(2)
+        Me.Button1.Location = New System.Drawing.Point(191, 319)
+        Me.Button1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(90, 34)
+        Me.Button1.Size = New System.Drawing.Size(120, 42)
         Me.Button1.TabIndex = 0
         Me.Button1.Text = "INGRESAR"
         Me.Button1.UseVisualStyleBackColor = False
@@ -50,20 +50,21 @@ Partial Class FormLogin
         '
         Me.txtContraseña.BackColor = System.Drawing.SystemColors.Menu
         Me.txtContraseña.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.txtContraseña.Location = New System.Drawing.Point(143, 212)
-        Me.txtContraseña.Margin = New System.Windows.Forms.Padding(2)
+        Me.txtContraseña.Location = New System.Drawing.Point(191, 261)
+        Me.txtContraseña.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.txtContraseña.Name = "txtContraseña"
-        Me.txtContraseña.Size = New System.Drawing.Size(92, 20)
+        Me.txtContraseña.Size = New System.Drawing.Size(122, 22)
         Me.txtContraseña.TabIndex = 1
+        Me.txtContraseña.UseSystemPasswordChar = True
         '
         'txtUsuario
         '
         Me.txtUsuario.BackColor = System.Drawing.SystemColors.Menu
         Me.txtUsuario.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.txtUsuario.Location = New System.Drawing.Point(143, 162)
-        Me.txtUsuario.Margin = New System.Windows.Forms.Padding(2)
+        Me.txtUsuario.Location = New System.Drawing.Point(191, 199)
+        Me.txtUsuario.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.txtUsuario.Name = "txtUsuario"
-        Me.txtUsuario.Size = New System.Drawing.Size(92, 20)
+        Me.txtUsuario.Size = New System.Drawing.Size(122, 22)
         Me.txtUsuario.TabIndex = 2
         '
         'Label1
@@ -72,10 +73,9 @@ Partial Class FormLogin
         Me.Label1.BackColor = System.Drawing.Color.Transparent
         Me.Label1.Font = New System.Drawing.Font("Times New Roman", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.Label1.Location = New System.Drawing.Point(48, 165)
-        Me.Label1.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.Label1.Location = New System.Drawing.Point(64, 203)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(71, 17)
+        Me.Label1.Size = New System.Drawing.Size(84, 19)
         Me.Label1.TabIndex = 3
         Me.Label1.Text = "USUARIO"
         '
@@ -85,10 +85,9 @@ Partial Class FormLogin
         Me.Label2.BackColor = System.Drawing.Color.Transparent
         Me.Label2.Font = New System.Drawing.Font("Times New Roman", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.Label2.Location = New System.Drawing.Point(26, 213)
-        Me.Label2.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.Label2.Location = New System.Drawing.Point(35, 262)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(102, 17)
+        Me.Label2.Size = New System.Drawing.Size(122, 19)
         Me.Label2.TabIndex = 4
         Me.Label2.Text = "CONTRASEÑA"
         '
@@ -96,27 +95,28 @@ Partial Class FormLogin
         '
         Me.PictureBox1.BackColor = System.Drawing.Color.Transparent
         Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
-        Me.PictureBox1.Location = New System.Drawing.Point(134, 29)
+        Me.PictureBox1.Location = New System.Drawing.Point(179, 36)
+        Me.PictureBox1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(105, 108)
+        Me.PictureBox1.Size = New System.Drawing.Size(140, 133)
         Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBox1.TabIndex = 5
         Me.PictureBox1.TabStop = False
         '
         'FormLogin
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ActiveBorder
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
-        Me.ClientSize = New System.Drawing.Size(374, 331)
+        Me.ClientSize = New System.Drawing.Size(499, 407)
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.txtUsuario)
         Me.Controls.Add(Me.txtContraseña)
         Me.Controls.Add(Me.Button1)
-        Me.Margin = New System.Windows.Forms.Padding(2)
+        Me.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.Name = "FormLogin"
         Me.Text = "FormLogin"
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()

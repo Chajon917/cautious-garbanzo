@@ -177,7 +177,7 @@ Namespace ProyectoPlanillaUMG1
                 sueldo As Double, igss As Double, bono As Double,
                 otros As Double, liquido As Double, noCuenta As String) As String
 
-            Dim bmp As New Bitmap(700, 480)
+            Dim bmp As New Bitmap(700, 500)
             Using g As Graphics = Graphics.FromImage(bmp)
                 g.Clear(Color.White)
 
@@ -188,6 +188,7 @@ Namespace ProyectoPlanillaUMG1
                 Dim x As Integer = 30
                 Dim y As Integer = 20
                 Dim lineH As Integer = 22
+                Dim colMonto As Integer = x + 230
 
                 g.DrawString("BANTRAB - COMPROBANTE DE PLANILLA", fontTitulo, brushN, x, y)
                 y += lineH + 6
@@ -204,6 +205,11 @@ Namespace ProyectoPlanillaUMG1
                 g.DrawLine(Pens.Gray, x, y, 670, y) : y += 8
                 g.DrawString("DESGLOSE DE PLANILLA", fontNegrita, brushN, x, y) : y += lineH
 
+                ' Encabezados de columna
+                g.DrawString("CONCEPTO", fontNegrita, brushN, x, y)
+                g.DrawString("MONTO", fontNegrita, brushN, colMonto, y)
+                y += lineH
+
                 Dim conceptos() As String = {
                     "Sueldo Base:", "Bono Incentivo:", "Retencion IGSS:", "Otros Descuentos:"}
                 Dim montos() As String = {
@@ -212,13 +218,13 @@ Namespace ProyectoPlanillaUMG1
 
                 For i As Integer = 0 To conceptos.Length - 1
                     g.DrawString(conceptos(i), fontNormal, brushN, x, y)
-                    g.DrawString(montos(i), fontNormal, brushN, x + 220, y)
+                    g.DrawString(montos(i), fontNormal, brushN, colMonto, y)
                     y += lineH
                 Next
 
                 g.DrawLine(Pens.Gray, x, y, 400, y) : y += 6
                 g.DrawString("Total Liquido:", fontNegrita, brushN, x, y)
-                g.DrawString("Q " & liquido.ToString("N2"), fontNegrita, brushN, x + 220, y)
+                g.DrawString("Q " & liquido.ToString("N2"), fontNegrita, brushN, colMonto, y)
                 y += lineH + 6
 
                 g.DrawString("En letras: " & Enletras(liquido), fontNormal, brushN, x, y)
@@ -396,28 +402,28 @@ Namespace ProyectoPlanillaUMG1
                 ' ════════════════════════════════════════════════════════════
                 ' ZONA 1 — COMPROBANTE (mitad superior, centrado verticalmente)
                 ' ════════════════════════════════════════════════════════════
+                Dim colA As Single = L
+                Dim colB As Single = L + W * 0.5F
+                Dim colMontoA As Single = L + W * 0.28F
+                Dim colMontoB As Single = colB + W * 0.28F
 
-                ' Calcular cuánto ocupa el comprobante para centrarlo en la mitad superior
                 Dim altComprobante As Single =
-                    (lh + 10) +     ' título
-                    (lh + 4) +      ' fecha / no cheque
-                    6 +             ' línea
-                    (lh + 3) +      ' empleado / cuenta
-                    (lh + 6) +      ' cargo
-                    6 +             ' línea
-                    (lh + 2) +      ' encabezados tabla
-                    (lh + 2) * 2 +  ' 2 filas de conceptos
-                    4 + 6 +         ' línea totales
-                    (lh + 4) +      ' total liquido
-                    (lh * 2 + 8) +  ' en letras
-                    lh + 6          ' firmas
+                    (lh + 10) +
+                    (lh + 4) +
+                    6 +
+                    (lh + 3) +
+                    (lh + 6) +
+                    6 +
+                    (lh + 2) +
+                    (lh + 2) * 2 +
+                    4 + 6 +
+                    (lh + 4) +
+                    (lh * 2 + 8) +
+                    lh + 6
 
                 Dim espacioSuperior As Single = yCorte - T
                 Dim margenVertical As Single = Math.Max(0, (espacioSuperior - altComprobante) / 2)
                 Dim yC As Single = T + margenVertical
-
-                Dim colA As Single = L
-                Dim colB As Single = L + W * 0.5F
 
                 g.DrawString("BANTRAB  —  COMPROBANTE DE PLANILLA",
                     fTitulo, negro, New RectangleF(L, yC, W, lh + 4), sfC)
@@ -443,10 +449,11 @@ Namespace ProyectoPlanillaUMG1
 
                 g.DrawLine(Pens.Gray, L, yC, R, yC) : yC += 6
 
+                ' Encabezados tabla con columnas de monto bien separadas
                 g.DrawString("CONCEPTO", fNegrita, negro, colA, yC)
-                g.DrawString("MONTO", fNegrita, negro, colA + 200, yC)
+                g.DrawString("MONTO", fNegrita, negro, colMontoA, yC)
                 g.DrawString("CONCEPTO", fNegrita, negro, colB, yC)
-                g.DrawString("MONTO", fNegrita, negro, colB + 200, yC)
+                g.DrawString("MONTO", fNegrita, negro, colMontoB, yC)
                 yC += lh + 2
 
                 Dim filasCon() As String = {"Sueldo Base:", "Bono Incentivo:"}
@@ -460,9 +467,9 @@ Namespace ProyectoPlanillaUMG1
 
                 For i As Integer = 0 To 1
                     g.DrawString(filasCon(i), fNormal, negro, colA, yC)
-                    g.DrawString(montosCon(i), fNormal, negro, colA + 200, yC)
+                    g.DrawString(montosCon(i), fNormal, negro, colMontoA, yC)
                     g.DrawString(filasDesc(i), fNormal, negro, colB, yC)
-                    g.DrawString(montosDesc(i), fNormal, negro, colB + 200, yC)
+                    g.DrawString(montosDesc(i), fNormal, negro, colMontoB, yC)
                     yC += lh + 2
                 Next
 
@@ -517,7 +524,6 @@ Namespace ProyectoPlanillaUMG1
                 Dim iR As Single = R - 12
                 Dim iW As Single = iR - iL
 
-                ' Calcular altura dinámica según el texto en letras
                 Dim letrasTexto As String = Enletras(_montoLiquido)
                 Dim fCampoMedir As New Font("Arial", 9, FontStyle.Regular)
                 Dim anchoLetras As Single = iW - 120
@@ -623,8 +629,6 @@ Namespace ProyectoPlanillaUMG1
                 ' Bloque inferior — Ref. banco + firma
                 Dim yQF As Single = yRef + lhQ + pad + 14
                 g.DrawString("Ref.:", fNegrita, negro, iL, yQF)
-                g.DrawString("BANCO DE LOS TRABAJADORES, GUATEMALA, C.A.",
-                    fNormal, negro, iL + 42, yQF)
 
                 Dim xFirIni As Single = iR - 195
                 g.DrawLine(New Pen(Color.Black, 0.7F),
