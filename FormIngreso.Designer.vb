@@ -208,7 +208,7 @@ Namespace ProyectoPlanillaUMG1
             Me.TextBox1.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
             Me.TextBox1.ForeColor = System.Drawing.SystemColors.Window
             Me.TextBox1.Location = New System.Drawing.Point(93, 32)
-            Me.TextBox1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+            Me.TextBox1.Margin = New System.Windows.Forms.Padding(4)
             Me.TextBox1.Name = "TextBox1"
             Me.TextBox1.Size = New System.Drawing.Size(271, 27)
             Me.TextBox1.TabIndex = 11
@@ -227,7 +227,7 @@ Namespace ProyectoPlanillaUMG1
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
             Me.BackColor = System.Drawing.Color.DarkGray
             Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
-            Me.ClientSize = New System.Drawing.Size(481, 427)
+            Me.ClientSize = New System.Drawing.Size(459, 427)
             Me.Controls.Add(Me.TextBox1)
             Me.Controls.Add(Me.Label6)
             Me.Controls.Add(Me.Label5)

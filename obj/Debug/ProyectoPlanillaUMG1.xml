@@ -79,13 +79,6 @@ ProyectoPlanillaUMG1
  Aplica configuración visual estándar a cualquier DataGridView.
  </summary>
 </member>
-<member name="M:ProyectoPlanillaUMG1.ProyectoPlanillaUMG1.FormIngreso.ValidarCampos(System.Int32@,System.Double@)">
- <summary>
- Valida todos los campos del formulario.
- Devuelve True si todo es válido; parámetros de salida con valores parseados.
- MEJORA: validaciones separadas en su propio método; uso de Regex para correo.
- </summary>
-</member>
 <member name="F:ProyectoPlanillaUMG1.ProyectoPlanillaUMG1.FormIngreso.components">
  <summary>
  Variable del diseñador requerida.
