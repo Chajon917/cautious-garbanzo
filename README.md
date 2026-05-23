@@ -35,7 +35,7 @@ Abre `CConexion.vb` y cambia estos valores con los de tu MySQL:
 
 ```vb
 Dim servidor As String = "localhost"
-Dim baseDatos As String = "planilla"
+Dim baseDatos As String = "planillaumg"
 Dim usuario As String = "tu_usuario"
 Dim contrasena As String = "tu_contraseña"
 ```
